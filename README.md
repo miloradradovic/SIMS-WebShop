@@ -1,5 +1,5 @@
 # SIMS-WebShop
 Tim:
-	Vukašin Ocokoljić
-	Romana Erdelji
-	Milorad Radović
+	Vukašin Ocokoljić /n
+	Romana Erdelji /n
+	Milorad Radović /n
