@@ -1,0 +1,21 @@
+	
+Pozdrav svima,
+
+Svaki tim je potrebno da ima sledeæe:
+
+	1. Analizu zahteva (word ili pdf dokument) koji sadrži taksativno nabrojane funkcionalne i nefunkcionalne zahteve
+
+	2. Detaljan Use-case. Treba da se vide koraci, a preduslovi, taèke proširenja i posledice na onim mestima gde to ima smisla.
+
+	3. Dijagram prelaza stanja (jedan ili više - zavisi od projekta)
+
+	4. Dijagram klasa. Modelovani dijagrami prelaza stanja treba da imaju svoju reprezentaciju na dijagramu klasa, u vidu state pattern-a.
+
+	5. Po jedan (netrivijalan) dijagram aktivnosti i dijagram sekvence, za svakog èlana tima
+
+Doprinos svakog èlana tima treba da je vidljiv na git repozitorijumu (gledaæemo git statistike). "Radili smo svi sa istog raèunara",
+ "Moj nalog nije radio" i sl. razlozi neæe biti uvaženi. Ako neko ima problema sa git-om, neka se javi asistentima za pomoæ.
+
+Pozdrav,
+
+Gordana
