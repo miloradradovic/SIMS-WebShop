@@ -20,13 +20,13 @@ public class MainWindow extends JFrame {
 
 	public MainWindow() {
 		
-		setTitle("Globus");
+		setTitle("TinyHouse");
 		
 		setLayout(new BorderLayout());
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		JLabel background = new JLabel(new ImageIcon("background1.jpg"));
 		
-		globus_label = new JLabel("G L O B U S");
+		globus_label = new JLabel("TINY  HOUSE");
 		globus_label.setFont(new Font("Serif", Font.BOLD, 40));
 		globus_label.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width/2 - 100,20,300,30);
 		

@@ -18,7 +18,7 @@ public class Prodavnica {
    /** @pdOid 8868d89c-3a51-4761-bcc1-13a92bc289fe */
    private String email;
    
-   public Collection<?> association13;
+   public HashMap<Integer, Artikl> Raspolozivo;
    /** @pdRoleInfo migr=no name=Adresa assc=association5 mult=1..1 */
    public Adresa adresa;
    
@@ -79,14 +79,6 @@ public class Prodavnica {
 		this.email = email;
 	}
 	
-	public java.util.Collection getAssociation13() {
-		return association13;
-	}
-	
-	public void setAssociation13(java.util.Collection association13) {
-		this.association13 = association13;
-	}
-	
 	public Adresa getAdresa() {
 		return adresa;
 	}
@@ -94,6 +86,16 @@ public class Prodavnica {
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
+
+	public HashMap<Integer, Artikl> getRaspolozivo() {
+		return Raspolozivo;
+	}
+
+	public void setRaspolozivo(HashMap<Integer, Artikl> raspolozivo) {
+		Raspolozivo = raspolozivo;
+	}
+	
+	
    
    
 

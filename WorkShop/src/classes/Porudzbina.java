@@ -18,7 +18,8 @@ public class Porudzbina {
    /** @pdOid abe8a61c-077d-4b52-9946-7753f4f8b415 */
    private Date datumPorucivanja;
    
-   public Cene association23;
+   public HashMap<String, Integer> Cene;
+   
    /** @pdRoleInfo migr=no name=Stanje assc=association24 mult=1..1 */
    public Stanje stanje;
    
@@ -40,18 +41,21 @@ public class Porudzbina {
 	public void setDatumPorucivanja(Date datumPorucivanja) {
 		this.datumPorucivanja = datumPorucivanja;
 	}
-	public Cene getAssociation23() {
-		return association23;
-	}
-	public void setAssociation23(Cene association23) {
-		this.association23 = association23;
-	}
+	
 	public Stanje getStanje() {
 		return stanje;
 	}
 	public void setStanje(Stanje stanje) {
 		this.stanje = stanje;
 	}
+	public HashMap<String, Integer> getCene() {
+		return Cene;
+	}
+	public void setCene(HashMap<String, Integer> cene) {
+		Cene = cene;
+	}
+	
+	
 
    
    
