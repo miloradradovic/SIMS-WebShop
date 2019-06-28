@@ -1,10 +1,11 @@
 package controller;
 
+import view.*;
+
 public class main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		MainWindow ww = new MainWindow();
 	}
 
 }
