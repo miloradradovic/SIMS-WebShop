@@ -1,4 +1,4 @@
-package classes;
+package states;
 /***********************************************************************
  * Module:  Odbijeno.java
  * Author:  Vukasin

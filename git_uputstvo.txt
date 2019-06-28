@@ -1,6 +1,6 @@
 git status
 git add -A // -A == . == all, ako se navede tacno ime onda je samo taj fajl doda
-git commit
+git commit -m 'message'
 git push
 
 git rm //remove projekat

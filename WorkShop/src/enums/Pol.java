@@ -1,11 +1,13 @@
-package classes;
+package enums;
 /***********************************************************************
- * Module:  UObradi.java
+ * Module:  Pol.java
  * Author:  Vukasin
- * Purpose: Defines the Class UObradi
+ * Purpose: Defines the Class Pol
  ***********************************************************************/
 
+/** @pdOid c0e39b76-9657-455d-9b78-a3179e884ecd */
+public enum Pol {
+   muski,
+   zenski;
 
-/** @pdOid a1f2c123-2389-47b5-ae0b-070870eeaa37 */
-public class UObradi extends Stanje {
 }

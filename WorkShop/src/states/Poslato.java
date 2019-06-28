@@ -1,13 +1,10 @@
-package classes;
+package states;
 /***********************************************************************
- * Module:  Pol.java
+ * Module:  Poslato.java
  * Author:  Vukasin
- * Purpose: Defines the Class Pol
+ * Purpose: Defines the Class Poslato
  ***********************************************************************/
 
-/** @pdOid c0e39b76-9657-455d-9b78-a3179e884ecd */
-public enum Pol {
-   muski,
-   zenski;
-
+/** @pdOid 35660da7-e828-46f7-beb3-7ed0502a8824 */
+public class Poslato extends Stanje {
 }

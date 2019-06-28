@@ -1,4 +1,4 @@
-package classes;
+package enums;
 
 /***********************************************************************
  * Module:  Boja.java

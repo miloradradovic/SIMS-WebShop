@@ -5,6 +5,7 @@ package classes;
  * Purpose: Defines the Class Artikl
  ***********************************************************************/
 
+import enums.Boja;
 
 /** @pdOid ba58dd52-f07d-4cb4-9279-809b664cd646 */
 public class Artikl {

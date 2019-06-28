@@ -1,5 +1,9 @@
-package classes;
+package model;
 import java.util.*;
+
+import classes.*;
+import enums.Boja;
+import enums.TipKorisnika;
 
 /***********************************************************************
  * Module:  Aplikacija.java

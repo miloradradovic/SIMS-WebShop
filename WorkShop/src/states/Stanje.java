@@ -1,10 +1,10 @@
-package classes;
+package states;
 /***********************************************************************
- * Module:  Vracena.java
+ * Module:  Stanje.java
  * Author:  Vukasin
- * Purpose: Defines the Class Vracena
+ * Purpose: Defines the Class Stanje
  ***********************************************************************/
 
-/** @pdOid 0c5dc430-b9b5-4324-9c38-4c114549dde5 */
-public class Vracena extends Stanje {
+/** @pdOid 7154a549-a5cd-40f9-a6c0-5d348ee2b55c */
+public abstract class Stanje {
 }

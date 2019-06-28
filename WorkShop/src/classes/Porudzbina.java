@@ -7,6 +7,8 @@ package classes;
 
 import java.util.*;
 
+import states.Stanje;
+
 /** @pdOid fbfb16eb-b5ae-4029-9acf-de26d1336b66 */
 public class Porudzbina {
    /** @pdOid 8909065e-3c32-4349-b10d-b9566dfd8915 */

@@ -1,4 +1,4 @@
-package classes;
+package enums;
 /***********************************************************************
  * Module:  TipKorisnika.java
  * Author:  Vukasin
