@@ -23,6 +23,20 @@ public class Korpa {
 	this.idNeulog = idNeulog;
 	this.stavka = stavka;
    }
+   
+   public Boolean umanjiStavku(Stavka stavka)
+   {
+	   Iterator<Stavka> it = getIteratorStavka();
+  	 while(it.hasNext())
+  	 {
+  		 if(it.next().getArtikl().equals(stavka.getArtikl()))
+  		 {
+  			 it.next().setKolicina(it.next().getKolicina() - 1);
+  			 return true;
+  		 }
+  	 }
+  	 return false;
+   }
 
 /** @pdGenerated default getter */
    public ArrayList<Stavka> getStavka() {
@@ -43,28 +57,45 @@ public class Korpa {
    public void setStavka(ArrayList<Stavka> newStavka) {
       removeAllStavka();
       for (Iterator<Stavka> iter = newStavka.iterator(); iter.hasNext();)
-         addStavka((Stavka)iter.next());
+    	  dodajStavku((Stavka)iter.next());
    }
    
    /** @pdGenerated default add
      * @param newStavka */
-   public void addStavka(Stavka newStavka) {
+   public Boolean dodajStavku(Stavka newStavka) {
       if (newStavka == null)
-         return;
+         return false;
       if (this.stavka == null)
          this.stavka = new ArrayList<Stavka>();
       if (!this.stavka.contains(newStavka))
          this.stavka.add(newStavka);
+      else
+      {
+    	 Iterator<Stavka> it = getIteratorStavka();
+    	 while(it.hasNext())
+    	 {
+    		 if(it.next().getArtikl().equals(newStavka.getArtikl()))
+    		 {
+    			 it.next().setKolicina(it.next().getKolicina() + newStavka.getKolicina());
+    			 break;
+    		 }
+    	 }
+      }
+      return true;
    }
    
    /** @pdGenerated default remove
      * @param oldStavka */
-   public void removeStavka(Stavka oldStavka) {
+   public Boolean obrisiStavku(Stavka oldStavka) {
       if (oldStavka == null)
-         return;
+         return false;
       if (this.stavka != null)
          if (this.stavka.contains(oldStavka))
-            this.stavka.remove(oldStavka);
+         {
+        	 this.stavka.remove(oldStavka);
+        	 return true;
+         }           
+      return false;
    }
    
    /** @pdGenerated default removeAll */

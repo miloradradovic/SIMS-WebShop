@@ -25,7 +25,8 @@ public class Porudzbina {
    
    public Porudzbina() {}
    
-	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, Stanje stanje) {
+	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, Stanje stanje) 
+	{
 	super();
 	this.brojPor = brojPor;
 	this.ukupnaCena = ukupnaCena;

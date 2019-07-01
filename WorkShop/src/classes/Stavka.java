@@ -11,7 +11,7 @@ public class Stavka {
    private int kolicina;
    
    /** @pdRoleInfo migr=no name=Artikl assc=association8 mult=1..1 */
-   public Artikl artikl;
+   Artikl artikl;
    
    public Stavka() {}
 

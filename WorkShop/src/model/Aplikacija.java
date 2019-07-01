@@ -34,7 +34,11 @@ public class Aplikacija {
    
    public Aplikacija() {}
    
-   
+   public Aplikacija(ArrayList<String> naziviFajlova)
+   {
+	   //TODO Mico, good luck
+	     
+   }
    
    public Aplikacija(TipKorisnika aktivniKorisnik, int id, ArrayList<Grad> grad, ArrayList<Artikl> artikl,
 		ArrayList<Korisnik> korisnik, ArrayList<Korpa> korpa, ArrayList<Kategorija> kategorija,
@@ -506,6 +510,15 @@ public class Aplikacija {
 		this.id = id;
 	}
 	   
-   
+	public void ucitajIzFajla(ArrayList<String> naziviFajlova)
+	{
+		//TODO
+	}
+	
+	public void sacuvajUFajl(ArrayList<String> naziviFajlova)
+	{
+		
+		
+	}
 
 }

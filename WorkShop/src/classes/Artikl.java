@@ -41,7 +41,7 @@ public class Artikl {
 	this.boja = boja;
 	this.aktivan = aktivan;
 	this.kategorija = kategorija;
-}
+	}
 
 	public String getSifra() 
 	{

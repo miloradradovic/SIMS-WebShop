@@ -23,15 +23,15 @@ public class Korisnik {
    private Date datumRodj;
    
    public Adresa adresa;
-   public Korpa korpa;
    public ArrayList<Porudzbina> porudzbina;
-   public ArrayList<Artikl> artikl;
+   public ArrayList<Artikl> listaZelja;
+   public Korpa korpa;
    
    public Korisnik() {}
    
    public Korisnik(String email, String telefon, String ime, String prezime, int jmbg, Pol pol, String korisnickoIme,
 		String sifra, Date datumRodj, Adresa adresa, Korpa korpa, ArrayList<Porudzbina> porudzbina,
-		ArrayList<Artikl> artikl) 
+		ArrayList<Artikl> listaZelja) 
    {
 	super();
 	this.email = email;
@@ -46,7 +46,7 @@ public class Korisnik {
 	this.adresa = adresa;
 	this.korpa = korpa;
 	this.porudzbina = porudzbina;
-	this.artikl = artikl;
+	this.listaZelja = listaZelja;
 }
 
 public void kupiStavke() 
@@ -139,54 +139,54 @@ public void kupiStavke()
          porudzbina.clear();
    }
    /** @pdGenerated default getter */
-   public ArrayList<Artikl> getArtikl() {
-      if (artikl == null)
-         artikl = new ArrayList<Artikl>();
-      return artikl;
+   public ArrayList<Artikl> getListaZelja() {
+      if (listaZelja == null)
+    	  listaZelja = new ArrayList<Artikl>();
+      return listaZelja;
    }
    
    /** @pdGenerated default iterator getter */
-   public Iterator<Artikl> getIteratorArtikl() {
-      if (artikl == null)
-         artikl = new ArrayList<Artikl>();
-      return artikl.iterator();
+   public Iterator<Artikl> getIteratorListaZelja() {
+      if (listaZelja == null)
+    	  listaZelja = new ArrayList<Artikl>();
+      return listaZelja.iterator();
    }
    
    /** @pdGenerated default setter
      * @param newArtikl */
    public void setArtikl(ArrayList<Artikl> newArtikl) {
-      removeAllArtikl();
+      removeAllListaZelja();
       for (Iterator<Artikl> iter = newArtikl.iterator(); iter.hasNext();)
-         addArtikl((Artikl)iter.next());
+    	  addListaZelja((Artikl)iter.next());
    }
    
    /** @pdGenerated default add
      * @param newArtikl */
-   public void addArtikl(Artikl newArtikl) {
+   public void addListaZelja(Artikl newArtikl) {
       if (newArtikl == null)
          return;
-      if (this.artikl == null)
-         this.artikl = new ArrayList<Artikl>();
-      if (!this.artikl.contains(newArtikl))
-         this.artikl.add(newArtikl);
+      if (this.listaZelja == null)
+         this.listaZelja = new ArrayList<Artikl>();
+      if (!this.listaZelja.contains(newArtikl))
+         this.listaZelja.add(newArtikl);
    }
    
    /** @pdGenerated default remove
      * @param oldArtikl */
-   public void removeArtikl(Artikl oldArtikl) 
+   public void removeListaZelja(Artikl oldArtikl) 
    {
       if (oldArtikl == null)
          return;
-      if (this.artikl != null)
-         if (this.artikl.contains(oldArtikl))
-            this.artikl.remove(oldArtikl);
+      if (this.listaZelja != null)
+         if (this.listaZelja.contains(oldArtikl))
+            this.listaZelja.remove(oldArtikl);
    }
    
    /** @pdGenerated default removeAll */
-   public void removeAllArtikl() 
+   public void removeAllListaZelja() 
    {
-      if (artikl != null)
-         artikl.clear();
+      if (listaZelja != null)
+    	  listaZelja.clear();
    }
 
 	public String getEmail() {
