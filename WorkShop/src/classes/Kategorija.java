@@ -16,7 +16,16 @@ public class Kategorija {
    /** @pdRoleInfo migr=no name=Kategorija assc=association20 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public ArrayList<Kategorija> kategorijaB;
    
-   /** @param nazivKategorije
+   public Kategorija() {}
+   
+   public Kategorija(String naziv, ArrayList<Kategorija> kategorijaB) 
+   {
+	super();
+	this.naziv = naziv;
+	this.kategorijaB = kategorijaB;
+   }
+
+/** @param nazivKategorije
     * @pdOid d3e1f464-25a5-4298-9cfc-09da64a1bbb7 */
    public void dodajKategoriju(String nazivKategorije) 
    {

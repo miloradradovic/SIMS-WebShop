@@ -26,6 +26,22 @@ public class Artikl {
    
    /** @pdRoleInfo migr=no name=Kategorija assc=association21 mult=1..1 */
    public Kategorija kategorija;
+   
+   public Artikl() {}
+
+	public Artikl(String sifra, String slika, String naziv, int stanje, int cena, Boja boja, Boolean aktivan,
+		Kategorija kategorija) 
+	{
+	super();
+	this.sifra = sifra;
+	this.slika = slika;
+	this.naziv = naziv;
+	this.stanje = stanje;
+	this.cena = cena;
+	this.boja = boja;
+	this.aktivan = aktivan;
+	this.kategorija = kategorija;
+}
 
 	public String getSifra() 
 	{

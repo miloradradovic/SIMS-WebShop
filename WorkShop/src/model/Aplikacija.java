@@ -32,7 +32,28 @@ public class Aplikacija {
    /** @pdRoleInfo migr=no name=Prodavnica assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public ArrayList<Prodavnica> prodavnica;
    
-   /** @pdOid 5db79e13-b2e3-48db-bb99-0dc862503e1f */
+   public Aplikacija() {}
+   
+   
+   
+   public Aplikacija(TipKorisnika aktivniKorisnik, int id, ArrayList<Grad> grad, ArrayList<Artikl> artikl,
+		ArrayList<Korisnik> korisnik, ArrayList<Korpa> korpa, ArrayList<Kategorija> kategorija,
+		ArrayList<Prodavnica> prodavnica) 
+   {
+	super();
+	this.aktivniKorisnik = aktivniKorisnik;
+	this.id = id;
+	this.grad = grad;
+	this.artikl = artikl;
+	this.korisnik = korisnik;
+	this.korpa = korpa;
+	this.kategorija = kategorija;
+	this.prodavnica = prodavnica;
+   }
+
+
+
+/** @pdOid 5db79e13-b2e3-48db-bb99-0dc862503e1f */
    public void dodajKorisnika() {
       // TODO: implement
    }

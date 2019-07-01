@@ -22,7 +22,25 @@ public class Prodavnica {
    /** @pdRoleInfo migr=no name=Adresa assc=association5 mult=1..1 */
    public Adresa adresa;
    
-   /** @param sifraArtikla
+   public Prodavnica() {}
+   
+   
+   
+   public Prodavnica(String pocetakRadVr, String krajRadVr, String naziv, String email,
+		HashMap<Integer, Artikl> raspolozivo, Adresa adresa) 
+   {
+	super();
+	this.pocetakRadVr = pocetakRadVr;
+	this.krajRadVr = krajRadVr;
+	this.naziv = naziv;
+	this.email = email;
+	Raspolozivo = raspolozivo;
+	this.adresa = adresa;
+   }
+
+
+
+/** @param sifraArtikla
     * @pdOid 02fbda89-6eb2-41e1-a260-134ecd2d6d3c */
    public void dodajArtikl(String sifraArtikla) {
       // TODO: implement

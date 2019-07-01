@@ -15,8 +15,16 @@ public class Korpa {
    /** @pdRoleInfo migr=no name=Stavka assc=association16 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public ArrayList<Stavka> stavka;
    
+   public Korpa() {}   
    
-   /** @pdGenerated default getter */
+   public Korpa(int idNeulog, ArrayList<Stavka> stavka)
+   {
+	super();
+	this.idNeulog = idNeulog;
+	this.stavka = stavka;
+   }
+
+/** @pdGenerated default getter */
    public ArrayList<Stavka> getStavka() {
       if (stavka == null)
          stavka = new ArrayList<Stavka>();

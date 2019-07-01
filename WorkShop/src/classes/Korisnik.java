@@ -27,7 +27,29 @@ public class Korisnik {
    public ArrayList<Porudzbina> porudzbina;
    public ArrayList<Artikl> artikl;
    
-   public void kupiStavke() 
+   public Korisnik() {}
+   
+   public Korisnik(String email, String telefon, String ime, String prezime, int jmbg, Pol pol, String korisnickoIme,
+		String sifra, Date datumRodj, Adresa adresa, Korpa korpa, ArrayList<Porudzbina> porudzbina,
+		ArrayList<Artikl> artikl) 
+   {
+	super();
+	this.email = email;
+	this.telefon = telefon;
+	this.ime = ime;
+	this.prezime = prezime;
+	this.jmbg = jmbg;
+	this.pol = pol;
+	this.korisnickoIme = korisnickoIme;
+	this.sifra = sifra;
+	this.datumRodj = datumRodj;
+	this.adresa = adresa;
+	this.korpa = korpa;
+	this.porudzbina = porudzbina;
+	this.artikl = artikl;
+}
+
+public void kupiStavke() 
    {
       // TODO: implement
    }

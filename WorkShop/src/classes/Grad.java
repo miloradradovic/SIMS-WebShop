@@ -12,6 +12,15 @@ public class Grad {
    /** @pdOid e5fb68ee-eb48-4427-a943-ea52041bdc05 */
    private int postanskiBroj;
    
+   public Grad() {}
+   
+	public Grad(String mesto, int postanskiBroj) 
+	{
+	super();
+	this.mesto = mesto;
+	this.postanskiBroj = postanskiBroj;
+	}
+	
 	public String getMesto() 
 	{
 		return mesto;
