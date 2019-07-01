@@ -1,2 +1,6 @@
-/view/
+/classes/
 /controller/
+/enums/
+/model/
+/states/
+/view/
