@@ -1,4 +1,6 @@
 package model;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import classes.*;
@@ -31,6 +33,8 @@ public class Aplikacija {
    public ArrayList<Kategorija> kategorija;
    /** @pdRoleInfo migr=no name=Prodavnica assc=association1 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public ArrayList<Prodavnica> prodavnica;
+   
+   public SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
    
    public Aplikacija() {}
    
@@ -515,10 +519,145 @@ public class Aplikacija {
 		//TODO
 	}
 	
-	public void sacuvajUFajl(ArrayList<String> naziviFajlova)
+	public void sacuvajUFajl(ArrayList<String> naziviFajlova) throws IOException
 	{
+		File fajlGrad = new File(".\\Files\\" + naziviFajlova.get(0) +".txt");
+		File fajlArtikl = new File(".\\Files\\" + naziviFajlova.get(1) +".txt");
+		File fajlKorisnik = new File(".\\Files\\" + naziviFajlova.get(2) +".txt");
+		File fajlKategorija = new File(".\\Files\\" + naziviFajlova.get(3) +".txt");
+		File fajlProdavnica = new File(".\\Files\\" + naziviFajlova.get(4) +".txt");
+		File fajlPorudzbina = new File(".\\Files\\" + naziviFajlova.get(5) +".txt");
+		
+		fajlGrad.createNewFile();
+		fajlArtikl.createNewFile();
+		fajlKorisnik.createNewFile();
+		fajlKategorija.createNewFile();
+		fajlProdavnica.createNewFile();
+		fajlPorudzbina.createNewFile();
+		
+		PrintWriter pwGrad = new PrintWriter(new FileWriter(fajlGrad));
+		PrintWriter pwArtikl = new PrintWriter(new FileWriter(fajlArtikl));
+		PrintWriter pwKorisnik = new PrintWriter(new FileWriter(fajlKorisnik));
+		PrintWriter pwKategorija = new PrintWriter(new FileWriter(fajlKategorija));
+		PrintWriter pwProdavnica = new PrintWriter(new FileWriter(fajlProdavnica));
+		PrintWriter pwPorudzbina = new PrintWriter(new FileWriter(fajlPorudzbina));
+		
+		Iterator<Grad> itGrad = grad.iterator();
+		Iterator<Artikl> itArtikl = artikl.iterator();
+		Iterator<Korisnik> itKorisnik = korisnik.iterator();
+		Iterator<Kategorija> itKategorija = kategorija.iterator();
+		Iterator<Prodavnica> itProdavnica = prodavnica.iterator();
+		
+		String unos;
+		
+		while(itGrad.hasNext())
+		{
+			unos = itGrad.next().getMesto() + "|" + itGrad.next().getPostanskiBroj();
+			pwGrad.println(unos);
+			pwGrad.flush();
+		}
+		 
+		while(itArtikl.hasNext())
+		{
+			unos = itArtikl.next().getSifra() + "|" + itArtikl.next().getSlika() + "|" + itArtikl.next().getNaziv() + "|" + 
+					itArtikl.next().getStanje() + "|" + itArtikl.next().getCena() + "|" + itArtikl.next().getBoja() + "|" + 
+					itArtikl.next() + "|" + itArtikl.next().getAktivan() + "|" + itArtikl.next().getKategorija().getNaziv();
+			pwArtikl.println(unos);
+			pwArtikl.flush();
+		}
+		
+		String unosPor;
+		while(itKorisnik.hasNext())
+		{
+			StringBuilder sbKorPor = new StringBuilder();
+			StringBuilder sbKorLisZ = new StringBuilder();
+			StringBuilder sbKorKorpa = new StringBuilder();
+			Iterator<Porudzbina> itPor = itKorisnik.next().getIteratorPorudzbina();
+			Iterator<Artikl> itLisZ = itKorisnik.next().getIteratorListaZelja();
+			Iterator<Stavka> itKorpa = itKorisnik.next().getKorpa().getIteratorStavka();
+			
+			while(itPor.hasNext())
+			{
+				sbKorPor.append(itPor.next().getBrojPor() + ",");
+				
+				StringBuilder sbPor = new StringBuilder();
+				
+				for (Map.Entry<String, Integer> entry : itPor.next().getCene().entrySet())  
+				{
+					sbPor.append(entry.getKey() + ":" + entry.getValue() + ",");
+				}
+				sbPor.deleteCharAt(sbPor.length() - 1);
+		
+				unosPor = itPor.next().getBrojPor() + "|" + itPor.next().getUkupnaCena() + "|" + 
+						format.format(itPor.next().getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + itPor.next().getStanje();
+				pwPorudzbina.println(unosPor);
+				pwPorudzbina.flush();
+				
+			}
+			sbKorPor.deleteCharAt(sbKorPor.length() - 1);
+			
+			while(itLisZ.hasNext())
+			{
+				sbKorLisZ.append(itLisZ.next().getSifra() + ",");
+			}
+			sbKorLisZ.deleteCharAt(sbKorLisZ.length() - 1);
+			
+			while(itKorpa.hasNext())
+			{
+				sbKorKorpa.append(itKorpa.next().getArtikl().getSifra() + "%" + itKorpa.next().getKolicina() + ",");
+			}
+			sbKorKorpa.deleteCharAt(sbKorKorpa.length() - 1);
+			
+			unos = itKorisnik.next().getEmail() + "|" + itKorisnik.next().getTelefon() + "|" + itKorisnik.next().getIme() + "|" + 
+					itKorisnik.next().getPrezime() + "|" + itKorisnik.next().getJmbg() + "|" + itKorisnik.next().getPol() + "|" + 
+					itKorisnik.next().getKorisnickoIme() + "|" + itKorisnik.next().getSifra() + "|" + format.format(itKorisnik.next().getDatumRodj())
+					+ "|" + itKorisnik.next().getAdresa().getUlica() + "%" + itKorisnik.next().getAdresa().getBroj() + itKorisnik.next().getAdresa().getGrad().getPostanskiBroj()
+					+ "|" + sbKorPor.toString() + "|" + sbKorLisZ.toString() + "|" + sbKorKorpa.toString();
+			pwKorisnik.println(unos);
+			pwKorisnik.flush();
+		}
+		
+		while(itKategorija.hasNext())
+		{
+			StringBuilder sbKat = new StringBuilder();
+			Iterator<Kategorija> itKatKat = itKategorija.next().getIteratorKategorijaB();
+			
+			while(itKatKat.hasNext())
+			{
+				sbKat.append(itKatKat.next().getNaziv() + ",");
+			}
+			sbKat.deleteCharAt(sbKat.length() - 1);
+			
+			unos = itKategorija.next().getNaziv() + "|" + sbKat.toString();
+			pwKategorija.println(unos);
+			pwKategorija.flush();
+		}
+		
+		while(itProdavnica.hasNext())
+		{
+			StringBuilder sbPro = new StringBuilder();
+			
+			for (Map.Entry<Artikl, Integer> entry : itProdavnica.next().getRaspolozivo().entrySet())  
+			{
+				sbPro.append(entry.getKey() + ":" + entry.getValue() + ",");
+			}
+			sbPro.deleteCharAt(sbPro.length() - 1);
+			
+			unos = itProdavnica.next().getPocetakRadVr() + "|" + itProdavnica.next().getKrajRadVr() + "|" +
+					itProdavnica.next().getNaziv() + "|" + itProdavnica.next().getEmail() + "|" + sbPro.toString() + "|" + 
+					itProdavnica.next().getAdresa().getUlica() + "%" + itProdavnica.next().getAdresa().getBroj() + "%" +
+					itProdavnica.next().getAdresa().getGrad().getPostanskiBroj();
+			pwProdavnica.println(unos);
+			pwProdavnica.flush();
+		}
 		
 		
+		pwGrad.close();
+		pwArtikl.close();
+		pwKorisnik.close();
+		pwKategorija.close();
+		pwProdavnica.close();
+		pwPorudzbina.close();	
 	}
 
 }
