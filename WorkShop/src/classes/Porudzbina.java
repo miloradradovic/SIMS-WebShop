@@ -23,6 +23,18 @@ public class Porudzbina {
    /** @pdRoleInfo migr=no name=Stanje assc=association24 mult=1..1 */
    public Stanje stanje;
    
+   public Porudzbina() {}
+   
+	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, Stanje stanje) 
+	{
+	super();
+	this.brojPor = brojPor;
+	this.ukupnaCena = ukupnaCena;
+	this.datumPorucivanja = datumPorucivanja;
+	Cene = cene;
+	this.stanje = stanje;
+	}
+	
 	public int getBrojPor() {
 		return brojPor;
 	}

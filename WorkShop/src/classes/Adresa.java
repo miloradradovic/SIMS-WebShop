@@ -15,6 +15,16 @@ public class Adresa {
    
    /** @pdRoleInfo migr=no name=Grad assc=association19 mult=1..1 */
    public Grad grad;
+   
+   public Adresa() {}
+
+	public Adresa(String ulica, int broj, Grad grad) 
+	{
+	super();
+	this.ulica = ulica;
+	this.broj = broj;
+	this.grad = grad;
+	}
 
    
    
