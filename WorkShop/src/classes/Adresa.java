@@ -16,6 +16,8 @@ public class Adresa {
    /** @pdRoleInfo migr=no name=Grad assc=association19 mult=1..1 */
    public Grad grad;
 
+   
+   
 	public String getUlica() 
 	{
 		return ulica;
