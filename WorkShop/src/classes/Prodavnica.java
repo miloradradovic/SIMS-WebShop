@@ -17,6 +17,7 @@ public class Prodavnica {
    private String naziv;
    /** @pdOid 8868d89c-3a51-4761-bcc1-13a92bc289fe */
    private String email;
+   private int idProd;
    
    public HashMap<Artikl, Integer> Raspolozivo;
    /** @pdRoleInfo migr=no name=Adresa assc=association5 mult=1..1 */
@@ -25,10 +26,11 @@ public class Prodavnica {
    
    public Prodavnica() {}
    
-   public Prodavnica(String pocetakRadVr, String krajRadVr, String naziv, String email,
+   public Prodavnica(int id, String pocetakRadVr, String krajRadVr, String naziv, String email,
 		HashMap<Artikl, Integer> raspolozivo, Adresa adresa) 
    {
 	super();
+	this.idProd = id;
 	this.pocetakRadVr = pocetakRadVr;
 	this.krajRadVr = krajRadVr;
 	this.naziv = naziv;
@@ -124,6 +126,14 @@ public class Prodavnica {
 
 	public void setRaspolozivo(HashMap<Artikl, Integer> raspolozivo) {
 		Raspolozivo = raspolozivo;
+	}
+
+	public int getIdProd() {
+		return idProd;
+	}
+
+	public void setIdProd(int idProd) {
+		this.idProd = idProd;
 	}
 
 }
