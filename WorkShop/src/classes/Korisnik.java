@@ -5,6 +5,8 @@ package classes;
  * Purpose: Defines the Class Korisnik
  ***********************************************************************/
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import enums.Pol;
@@ -49,44 +51,65 @@ public class Korisnik {
 	this.listaZelja = listaZelja;
 }
 
-public void kupiStavke() 
+public void kupiStavke() throws ParseException 
    {
-      // TODO: implement
+	  SimpleDateFormat sdf = new SimpleDateFormat("dd.mm.yyyy.");
+      Porudzbina p = new Porudzbina();
+      p.setBrojPor((this.porudzbina.get(-1).getBrojPor())+1);
+      Date today = Calendar.getInstance().getTime();
+      String today2 = sdf.format(today);
+      p.setDatumPorucivanja(sdf.parse(today2));
+      
+	  
    }
    
    public void pregledNarudzbina()
    {
       // TODO: implement
+	  //CEKA SE GUI
    }
    
    public void dodajStavku(Stavka stavka)
    {
-      // TODO: implement
+	   boolean uspesnost = this.korpa.dodajStavku(stavka);
    }
    
    public void dodajArtikl(Artikl novArtikl) 
    {
-      // TODO: implement
+      if(!this.listaZelja.contains(novArtikl)){
+    	  this.listaZelja.add(novArtikl);
+      }
    }
    
    public void pregledKorpe() 
    {
       // TODO: implement
+	  // CEKA SE GUI
    }
    
    public void ukloniStavku(String sifraArtikla)
    {
-      // TODO: implement
+      for(Stavka s:this.korpa.getStavka()){
+    	  if(s.getArtikl().getSifra().equals(sifraArtikla)){
+    		  boolean uspesnost = this.korpa.obrisiStavku(s);
+    	  }
+      }
    }
    
    public void ukloniArtikl(String sifraArtikla) 
    {
-      // TODO: implement
+      for(Artikl a:this.listaZelja){
+    	  if(a.getSifra().equals(sifraArtikla)){
+    		  this.listaZelja.remove(a);
+    		  break;
+    	  }
+      }
    }
    
    public void pregledZelja() 
    {
       // TODO: implement
+	  // CEKA SE GUI
    }
    
    
