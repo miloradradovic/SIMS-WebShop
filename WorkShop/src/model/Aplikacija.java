@@ -108,26 +108,6 @@ public class Aplikacija {
 	      return null;
 	   }
    
-   public void addArtikl(Artikl newArtikl) 
-   {
-      if (newArtikl == null)
-         return;
-      if (this.artikli == null)
-         this.artikli = new ArrayList<Artikl>();
-      if (!this.artikli.contains(newArtikl))
-         this.artikli.add(newArtikl);
-   }
-   
-   
-   public void removeArtikl(Artikl oldArtikl) 
-   {
-      if (oldArtikl == null)
-         return;
-      if (this.artikli != null)
-         if (this.artikli.contains(oldArtikl))
-            this.artikli.remove(oldArtikl);
-   }
-   
    
    public void dodajArtikl(Artikl artikl) {
 	   if (artikl == null)
@@ -209,25 +189,6 @@ public class Aplikacija {
       return null;
    }
    
-   public void addGrad(Grad newGrad) 
-   {
-      if (newGrad == null)
-         return;
-      if (this.gradovi == null)
-         this.gradovi = new ArrayList<Grad>();
-      if (!this.gradovi.contains(newGrad))
-         this.gradovi.add(newGrad);
-   }
-   
-   
-   public void removeGrad(Grad oldGrad) 
-   {
-      if (oldGrad == null)
-         return;
-      if (this.gradovi != null)
-         if (this.gradovi.contains(oldGrad))
-            this.gradovi.remove(oldGrad);
-   }
    public void dodajGrad(Grad grad) {
 	   if (grad == null)
 	         return;
