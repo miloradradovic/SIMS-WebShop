@@ -1,8 +1,8 @@
+/.classpath
+/.project
 /classes/
 /controller/
 /enums/
 /model/
 /states/
 /view/
-/.classpath
-/.project
