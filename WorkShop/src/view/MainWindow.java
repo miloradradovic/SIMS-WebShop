@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import classes.Kategorija;
 import model.Aplikacija;
@@ -32,7 +35,7 @@ public class MainWindow extends JFrame {
 		
 		setLayout(new BorderLayout());
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		JLabel background = new JLabel(new ImageIcon("background1.jpg"));
+		JLabel background = new JLabel(new ImageIcon("white_background.jpg"));
 		
 		//ucitavanje svih kategorija u labele
 		//dodavanje u background radi prikaza
@@ -55,7 +58,17 @@ public class MainWindow extends JFrame {
 		globus_label.setBounds(screenWidth/2 - 100,20,300,30);
 		/*----------------------*/
 		
+		
+		//JTree inicijalizacija
+		DefaultMutableTreeNode kat1 = new DefaultMutableTreeNode("Kategorija1");
+		DefaultMutableTreeNode kat2 = new DefaultMutableTreeNode("Kategorija12");
+		kat1.add(kat2);
+		JTree tree = new JTree(kat1);
+		
+		tree.setBounds(20,200,300,300);
+		
 		add(background);
+		background.add(tree);
 		background.setLayout(null);
 		background.add(globus_label);
 
