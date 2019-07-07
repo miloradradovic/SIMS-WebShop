@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import classes.Adresa;
 import classes.Artikl;
 import classes.Grad;
+import classes.Kategorija;
 import classes.Korisnik;
 import classes.Korpa;
 import classes.Porudzbina;
-import model.Aplikacija;
 import enums.Pol;
-
-import view.*;
+import model.Aplikacija;
+import view.MainWindow;
 
 public class Main {
 
@@ -61,10 +61,10 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-		//MainWindow ww = new MainWindow(app);
+		MainWindow ww = new MainWindow(app);
 		
 		
-		LoginWindow lw = new LoginWindow(app);
+		//RegisterWindow lw = new RegisterWindow(app);
 		
 		try
 		{
