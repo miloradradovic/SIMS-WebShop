@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -21,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import classes.Kategorija;
 import model.Aplikacija;
@@ -247,45 +246,44 @@ public class MainWindow extends JFrame {
 
 	void addActionListeners(Aplikacija app) {
 		// listener za mouse drag preko kategorije - labele iz atributa
-		MouseListener category_press = new MouseListener(){
+		MouseListener category_press = new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = (JLabel) e.getSource();
-				JOptionPane.showMessageDialog(null,"treba proslediti argument trazenja: " + lbl.getText());
-				
+				JOptionPane.showMessageDialog(null, "treba proslediti argument trazenja: " + lbl.getText());
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		};
-		
-		for (JLabel lbl: kategorijeLabele) {
+
+		for (JLabel lbl : kategorijeLabele) {
 			lbl.addMouseListener(category_press);
 		}
-		
+
 		MouseListener panel_moved = new MouseListener() {
 
 			@Override
@@ -301,10 +299,12 @@ public class MainWindow extends JFrame {
 			}
 
 			@Override
-			public void mouseExited(MouseEvent arg0) {
+			public void mouseExited(MouseEvent e) {
+				java.awt.Point p = new java.awt.Point(e.getLocationOnScreen());
+		        SwingUtilities.convertPointFromScreen(p, e.getComponent());
+		        if(e.getComponent().contains(p)) {return;}
 				sale_pic.remove(panel);
 				repaint();
-
 			}
 
 			@Override
@@ -320,8 +320,8 @@ public class MainWindow extends JFrame {
 			}
 
 		};
-		
-		//listener za omogucavanje otvaranja panela pri prolasku misa
+
+		// listener za omogucavanje otvaranja panela pri prolasku misa
 		MouseListener mouse_moved = new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -345,7 +345,7 @@ public class MainWindow extends JFrame {
 						for (Kategorija kat_ : kat.kategorijaB) {
 							int height_movement = 20;
 							JLabel subcategoryLabel = new JLabel(kat_.getNaziv());
-							subcategoryLabel.setBounds(width_movement,height_movement, 150, 35);
+							subcategoryLabel.setBounds(width_movement, height_movement, 150, 35);
 							subcategoryLabel.setFont(new Font("Serif", Font.PLAIN, 20));
 							subcategoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 							subcategories.add(subcategoryLabel);
@@ -364,14 +364,11 @@ public class MainWindow extends JFrame {
 					}
 				}
 
-				/*for (JLabel lbl_ : subcategories) {
-					lbl_.addMouseListener(category_press);
-				}
+			
+				for (JLabel lbl_ : subcategories) { lbl_.addMouseListener(category_press); }
 				
-				for (JLabel lbl_ : subcategories2) {
-					lbl_.addMouseListener(category_press);
-				}
-				*/
+				for (JLabel lbl_ : subcategories2) { lbl_.addMouseListener(category_press); }
+				
 				sale_pic.add(panel);
 				repaint();
 
@@ -404,9 +401,7 @@ public class MainWindow extends JFrame {
 		for (JLabel lbl : kategorijeLabele) {
 			lbl.addMouseListener(mouse_moved);
 		}
-		
-		
-		
+
 	}
-	//*--------------------------------------------------------------*//
+	// *--------------------------------------------------------------*//
 }
