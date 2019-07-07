@@ -1,4 +1,0 @@
-da ne pisem na 15000 mjesta u kodu
-Ako se koriste globalne treba izmijeniti:
-svako citanje iz fajla
-kupiStavke u korisniku

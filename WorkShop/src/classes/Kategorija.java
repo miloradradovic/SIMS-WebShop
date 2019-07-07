@@ -98,6 +98,13 @@ public class Kategorija {
 		this.naziv = naziv;
 	}
 	   
-   
+    @Override
+    public String toString(){
+    	String out = this.getNaziv();
+    	for(int i = 0;i<this.getKategorijaB().size();i++){
+    		out += "|" + this.getKategorijaB().get(i).toString();
+    	}
+    	return out;
+    }
 
 }

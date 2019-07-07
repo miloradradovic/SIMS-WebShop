@@ -1,6 +1,7 @@
-Sale|
-Damen|
-Herren|
-Kutsche|
+Sale|Damen
+Damen|Herren
+Herren|Kutsche,Kinder
+Kutsche|Meh
 Wohnen|
 Kinder|
+Meh|

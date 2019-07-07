@@ -17,8 +17,10 @@ public class Main {
 		fajlovi.add("Kategorija"); fajlovi.add("Prodavnica"); fajlovi.add("Porudzbina");
 		
 		Aplikacija app = new Aplikacija();
+	    
 		
 		//samo neki testni slucajevi za proveru rada
+		/*
 		Kategorija kat1 = new Kategorija();
 		kat1.setNaziv("Sale");
 		app.dodajKategoriju(kat1);
@@ -37,11 +39,12 @@ public class Main {
 		Kategorija kat6 = new Kategorija();
 		kat6.setNaziv("Kinder");
 		app.dodajKategoriju(kat6);
+		/*
 		/* ----------------------------------- */
 		
-		//MainWindow ww = new MainWindow(app);
+		MainWindow ww = new MainWindow(app);
 		
-		LoginWindow lw = new LoginWindow(app);
+		//LoginWindow lw = new LoginWindow(app);
 		
 		try
 		{
