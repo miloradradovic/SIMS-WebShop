@@ -49,7 +49,7 @@ public class Main {
 		app.dodajKategoriju(kat6);
 		kat1.dodajKategoriju(kat6);
 		*/
-		try {
+		/*try {
 			Korisnik kor = new Korisnik("pera.peric@mail.com", "0230-123-123", "Pera", "Peric", 123, 
 					Pol.muski, "pera123", "pera123", app.format.parse("10.05.1999."), 
 					new Adresa("Gunduliceva", 5, new Grad("Novi Sad", 21000)), new Korpa(), new ArrayList<Porudzbina>(),
@@ -59,7 +59,7 @@ public class Main {
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 		
 		//MainWindow ww = new MainWindow(app);
 		
