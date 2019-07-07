@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import classes.Adresa;
 import classes.Artikl;
 import classes.Grad;
-import classes.Kategorija;
 import classes.Korisnik;
 import classes.Korpa;
 import classes.Porudzbina;
 import enums.Pol;
 import model.Aplikacija;
 import view.MainWindow;
+import view.RegisterWindow;
 
 public class Main {
 
@@ -61,14 +61,12 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-		MainWindow ww = new MainWindow(app);
+		//MainWindow ww = new MainWindow(app);
 		
 		
-<<<<<<< HEAD
+
 		//RegisterWindow lw = new RegisterWindow(app);
-=======
 		RegisterWindow rw = new RegisterWindow(app);
->>>>>>> refs/remotes/origin/master
 		
 		try
 		{
