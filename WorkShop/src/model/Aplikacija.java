@@ -41,6 +41,7 @@ public class Aplikacija {
 	   this.kategorije = new ArrayList<Kategorija>();
 	   this.prodavnice = new ArrayList<Prodavnica>();
 	   this.porudzbine = new ArrayList<Porudzbina>();
+	   /*
 	   try{
 		   ucitajIzFajla(); 
 	   }
@@ -49,6 +50,7 @@ public class Aplikacija {
 	   }catch(ParseException e){
 		   e.printStackTrace();
 	   }
+	   */
    }
    
    public Aplikacija(TipKorisnika aktivniKorisnik, int id, ArrayList<Grad> grad, ArrayList<Artikl> artikl,
