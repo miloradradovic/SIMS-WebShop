@@ -1,17 +1,21 @@
 package view;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -31,6 +35,8 @@ public class MainWindow extends JFrame {
 	JLabel slavina_pic;
 	JLabel furniture_pic;
 	JLabel desk_pic;
+	JLabel sale_pic;
+	JPanel panel;
 	// labele - kategorije
 	ArrayList<JLabel> kategorijeLabele = new ArrayList<JLabel>();
 
@@ -46,7 +52,8 @@ public class MainWindow extends JFrame {
 
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-		setTitle("TinyHouse");
+		this.setTitle("TinyHouse");
+		this.setMinimumSize(new Dimension(500, 500));
 
 		// podesavanja pozadine
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -86,8 +93,8 @@ public class MainWindow extends JFrame {
 		Image image_tmp = getScaledImage(image.getImage(), screenWidth - 40, 600);
 		image.setImage(image_tmp);
 
-		JLabel sale_pic = new JLabel(image);
-		sale_pic.setBounds(20, 120, screenWidth - 40, 600);
+		sale_pic = new JLabel(image);
+		sale_pic.setBounds(20, 110, screenWidth - 40, 600);
 		sale_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *-----------------------------------------*//
 
@@ -183,6 +190,13 @@ public class MainWindow extends JFrame {
 		desk_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
+		/*
+		 * JPanel panel1 = new JPanel(); panel1.setBounds(120,120,200,200); JLabel
+		 * testlabel = new JLabel("Put some text in here");
+		 * testlabel.setBounds(150,150,100,20); panel1.add(testlabel);
+		 * panel1.setBackground(Color.gray);
+		 */
+
 		// dodavanje stvari u background
 		sale_pic.add(search_field);
 		background.add(desk_pic);
@@ -198,6 +212,7 @@ public class MainWindow extends JFrame {
 		background.add(login_label);
 		background.setLayout(null);
 		background.add(globus_label);
+		// sale_pic.add(panel1);
 
 		// postavljanje scroll panea i stavljanje backgrounda u njega
 		JScrollPane js = new JScrollPane(background, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -206,6 +221,8 @@ public class MainWindow extends JFrame {
 		// *----------------------------------------*//
 
 		this.setVisible(true);
+
+		addActionListeners(app);
 
 	}
 
@@ -221,5 +238,117 @@ public class MainWindow extends JFrame {
 		g2.dispose();
 
 		return resizedImg;
+	}
+
+	void addActionListeners(Aplikacija app) {
+		// listener za mouse drag preko kategorije - labele iz atributa
+		MouseListener panel_moved = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				sale_pic.remove(panel);
+				repaint();
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		MouseListener mouse_moved = new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getSource();
+				search_field.hide();
+				// ArrayList<JLabel> subcategoriesLabels = new ArrayList<JLabel>();
+				panel = new JPanel();
+				panel.setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, 450);
+				panel.setCursor(Cursor.getDefaultCursor());
+				panel.addMouseListener(panel_moved);
+
+				for (Kategorija kat : app.kategorije) {
+					if (kat.getNaziv().equalsIgnoreCase(lbl.getText())) {
+						int width_movement = 70;
+						for (Kategorija kat_ : kat.kategorijaB) {
+							int height_movement = 20;
+							JLabel subcategoryLabel = new JLabel(kat_.getNaziv());
+							subcategoryLabel.setBounds(width_movement,height_movement, 150, 35);
+							subcategoryLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+							subcategoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+							for (Kategorija kat__ : kat_.kategorijaB) {
+								height_movement += 40;
+								JLabel subcategoryLabel2 = new JLabel(kat__.getNaziv());
+								subcategoryLabel2.setBounds(width_movement, height_movement, 150, 25);
+								subcategoryLabel2.setFont(new Font("Serif", Font.PLAIN, 15));
+								subcategoryLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+								panel.add(subcategoryLabel2);
+							}
+							panel.add(subcategoryLabel);
+							width_movement += 200;
+						}
+					}
+				}
+
+				sale_pic.add(panel);
+				repaint();
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!(e.getX() > -2 && e.getX() < 81 && e.getY() >= 35 && e.getY() < 45)) {
+					sale_pic.remove(panel);
+					search_field.show();
+					repaint();
+				}
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		for (JLabel lbl : kategorijeLabele) {
+			lbl.addMouseListener(mouse_moved);
+		}
+
 	}
 }
