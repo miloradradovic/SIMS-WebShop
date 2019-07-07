@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import classes.Adresa;
 import classes.Artikl;
 import classes.Grad;
-import classes.Kategorija;
 import classes.Korisnik;
 import classes.Korpa;
 import classes.Porudzbina;
@@ -27,7 +26,7 @@ public class Main {
 		Aplikacija app = new Aplikacija();
 		
 		//samo neki testni slucajevi za proveru rada
-		Kategorija kat1 = new Kategorija();
+		/*Kategorija kat1 = new Kategorija();
 		kat1.setNaziv("Sale");
 		app.dodajKategoriju(kat1);
 		Kategorija kat2 = new Kategorija();
@@ -47,7 +46,7 @@ public class Main {
 		Kategorija kat6 = new Kategorija();
 		kat6.setNaziv("Kinder");
 		app.dodajKategoriju(kat6);
-		kat1.dodajKategoriju(kat6);
+		kat1.dodajKategoriju(kat6);*/
 		
 		try {
 			Korisnik kor = new Korisnik("pera.peric@mail.com", "0230-123-123", "Pera", "Peric", 123, 
@@ -61,7 +60,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		/* ----------------------------------- */
 		
 		//MainWindow ww = new MainWindow(app);
 		
