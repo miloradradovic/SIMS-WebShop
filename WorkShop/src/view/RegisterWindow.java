@@ -342,6 +342,7 @@ public class RegisterWindow extends JFrame {
 					Korisnik newKor = new Korisnik(email, phone, name, last, jmbg, gen,
 							user, pass, date, newAdd, new Korpa(), new ArrayList<Porudzbina>(),
 							new ArrayList<Artikl>());
+					app.korisnici.add(newKor);
 					dispose();
 					MainWindow ww = new MainWindow(app);
 				}
