@@ -325,13 +325,17 @@ public class Aplikacija {
 			p.setBrojPor(Integer.parseInt(delimiter[0]));
 			p.setUkupnaCena(Integer.parseInt(delimiter[1]));
 			p.setDatumPorucivanja(format.parse(delimiter[2]));
-			String[] delimiter2 = delimiter[3].split("\\,");
 			HashMap<String,Integer> mapa2 = new HashMap<String,Integer>();
-			for(int i = 0;i<delimiter2.length;i++){
-				String[] delimiter3 = delimiter2[i].split("\\%");
-				mapa2.put(delimiter3[0], Integer.parseInt(delimiter3[1]));
+			try{
+				String[] delimiter2 = delimiter[3].split("\\,");
+				for(int i = 0;i<delimiter2.length;i++){
+					String[] delimiter3 = delimiter2[i].split("\\%");
+					mapa2.put(delimiter3[0], Integer.parseInt(delimiter3[1]));
+				}
+				p.setCene(mapa2);
+			}catch(Exception e){
+				p.setCene(mapa2);
 			}
-			p.setCene(mapa2);
 			//NISAM DODAO STANJE JER NZM :)
 		}
 		br4.close();
@@ -347,17 +351,21 @@ public class Aplikacija {
 			p.setKrajRadVr(delimiter[1]);
 			p.setNaziv(delimiter[2]);
 			p.setEmail(delimiter[3]);
-			String[] delimiter2 = delimiter[4].split("\\,");
 			HashMap<Artikl,Integer> raspolozivost = new HashMap<Artikl,Integer>();
-			for(int i = 0;i<delimiter2.length;i++){
-				String[]delimiter3 = delimiter2[i].split("\\%");
-				for(Artikl a3:artikli){
-					if(a3.getSifra().equals(delimiter3[0])){
-						raspolozivost.put(a3, Integer.parseInt(delimiter3[1]));
+			try{
+				String[] delimiter2 = delimiter[4].split("\\,");
+				for(int i = 0;i<delimiter2.length;i++){
+					String[]delimiter3 = delimiter2[i].split("\\%");
+					for(Artikl a3:artikli){
+						if(a3.getSifra().equals(delimiter3[0])){
+							raspolozivost.put(a3, Integer.parseInt(delimiter3[1]));
+						}
 					}
 				}
+				p.setRaspolozivo(raspolozivost);
+			}catch(Exception e){
+				p.setRaspolozivo(raspolozivost);
 			}
-			p.setRaspolozivo(raspolozivost);
 			String[] delimiter4 = delimiter[5].split("\\%");
 			Adresa adresa = new Adresa();
 			adresa.setUlica(delimiter4[0]);
@@ -397,41 +405,55 @@ public class Aplikacija {
 			}
 			k.setAdresa(a);
 			ArrayList<Porudzbina> porudzbineK = new ArrayList<Porudzbina>();
-			String[] delimiter3 = delimiter[10].split("\\,");
-			for(int i = 0;i<delimiter3.length;i++){
-				for(Porudzbina p:porudzbine){
-					if(p.getBrojPor()==Integer.parseInt(delimiter3[i])){
-						porudzbineK.add(p);
+			try{
+				String[] delimiter3 = delimiter[10].split("\\,");
+				for(int i = 0;i<delimiter3.length;i++){
+					for(Porudzbina p:porudzbine){
+						if(p.getBrojPor()==Integer.parseInt(delimiter3[i])){
+							porudzbineK.add(p);
+						}
 					}
 				}
+				k.setPorudzbina(porudzbineK);
+			}catch(Exception e){
+				k.setPorudzbina(porudzbineK);
 			}
-			k.setPorudzbina(porudzbineK);
-			String[] delimiter4 = delimiter[11].split("\\,");
 			ArrayList<Artikl> listaZeljaK = new ArrayList<Artikl>();
-			for(int i = 0;i<delimiter4.length;i++){
-				for(Artikl a1:artikli){
-					if(a1.getSifra().equals(delimiter4[i])){
-						listaZeljaK.add(a1);
+			try{	
+				String[] delimiter4 = delimiter[11].split("\\,");
+				for(int i = 0;i<delimiter4.length;i++){
+					for(Artikl a1:artikli){
+						if(a1.getSifra().equals(delimiter4[i])){
+							listaZeljaK.add(a1);
+						}
 					}
 				}
+				k.setArtikl(listaZeljaK);
+			}catch(Exception e){
+				k.setArtikl(listaZeljaK);
 			}
-			k.setArtikl(listaZeljaK);
-			String[] delimiter5 = delimiter[12].split("\\,");
 			ArrayList<Stavka> stavkeK = new ArrayList<Stavka>();
-			for(int i = 0;i<delimiter5.length;i++){
-				String[] delimiter6 = delimiter5[i].split("\\%");
-				for(Artikl a2:artikli){
-					if(a2.getSifra().equals(delimiter6[0])){
-						Stavka s1 = new Stavka();
-						s1.setArtikl(a2);
-						s1.setKolicina(Integer.parseInt(delimiter6[1]));
-						stavkeK.add(s1);
+			try{
+				String[] delimiter5 = delimiter[12].split("\\,");
+				for(int i = 0;i<delimiter5.length;i++){
+					String[] delimiter6 = delimiter5[i].split("\\%");
+					for(Artikl a2:artikli){
+						if(a2.getSifra().equals(delimiter6[0])){
+							Stavka s1 = new Stavka();
+							s1.setArtikl(a2);
+							s1.setKolicina(Integer.parseInt(delimiter6[1]));
+							stavkeK.add(s1);
+						}
 					}
 				}
-			}
-			Korpa korpa = new Korpa();
-			korpa.setStavka(stavkeK);
-			k.setKorpa(korpa);
+				Korpa korpa = new Korpa();
+				korpa.setStavka(stavkeK);
+				k.setKorpa(korpa);
+			}catch(Exception e){
+				Korpa korpa = new Korpa();
+				korpa.setStavka(stavkeK);
+				k.setKorpa(korpa);
+			}	
 		}
 		br6.close();
 	}
