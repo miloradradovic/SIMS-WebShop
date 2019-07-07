@@ -25,9 +25,11 @@ public class Main {
 		Kategorija kat2 = new Kategorija();
 		kat2.setNaziv("Damen");
 		app.dodajKategoriju(kat2);
+		kat1.dodajKategoriju(kat2);
 		Kategorija kat3 = new Kategorija();
 		kat3.setNaziv("Herren");
 		app.dodajKategoriju(kat3);
+		kat2.dodajKategoriju(kat3);
 		Kategorija kat4 = new Kategorija();
 		kat4.setNaziv("Kutsche");
 		app.dodajKategoriju(kat4);
@@ -37,11 +39,12 @@ public class Main {
 		Kategorija kat6 = new Kategorija();
 		kat6.setNaziv("Kinder");
 		app.dodajKategoriju(kat6);
+		kat1.dodajKategoriju(kat6);
 		/* ----------------------------------- */
 		
-		//MainWindow ww = new MainWindow(app);
+		MainWindow ww = new MainWindow(app);
 		
-		LoginWindow lw = new LoginWindow(app);
+		//LoginWindow lw = new LoginWindow(app);
 		
 		try
 		{

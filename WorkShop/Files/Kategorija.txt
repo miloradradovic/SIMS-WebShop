@@ -1,5 +1,5 @@
-Sale|
-Damen|
+Sale|Damen,Kinder
+Damen|Herren
 Herren|
 Kutsche|
 Wohnen|
