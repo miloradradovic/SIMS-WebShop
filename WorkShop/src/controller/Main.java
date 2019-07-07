@@ -16,7 +16,7 @@ public class Main {
 		fajlovi.add("Grad"); fajlovi.add("Artikl"); fajlovi.add("Korisnik"); 
 		fajlovi.add("Kategorija"); fajlovi.add("Prodavnica"); fajlovi.add("Porudzbina");
 		
-		Aplikacija app = new Aplikacija(fajlovi);
+		Aplikacija app = new Aplikacija();
 		
 		//samo neki testni slucajevi za proveru rada
 		Kategorija kat1 = new Kategorija();
@@ -39,7 +39,9 @@ public class Main {
 		app.dodajKategoriju(kat6);
 		/* ----------------------------------- */
 		
-		MainWindow ww = new MainWindow(app);
+		//MainWindow ww = new MainWindow(app);
+		
+		LoginWindow lw = new LoginWindow(app);
 		
 		try
 		{

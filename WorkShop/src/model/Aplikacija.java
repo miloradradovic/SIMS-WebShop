@@ -32,10 +32,26 @@ public class Aplikacija {
    
    public SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
    
-   public Aplikacija() {}
+   public Aplikacija() 
+   {
+	   this.gradovi = new ArrayList<Grad>();
+	   this.artikli = new ArrayList<Artikl>();
+	   this.korisnici = new ArrayList<Korisnik>();
+	   this.korpe = new ArrayList<Korpa>();
+	   this.kategorije = new ArrayList<Kategorija>();
+	   this.prodavnice = new ArrayList<Prodavnica>();
+	   this.porudzbine = new ArrayList<Porudzbina>();
+   }
    
    public Aplikacija(ArrayList<String> naziviFajlova)
    {
+	   this.gradovi = new ArrayList<Grad>();
+	   this.artikli = new ArrayList<Artikl>();
+	   this.korisnici = new ArrayList<Korisnik>();
+	   this.korpe = new ArrayList<Korpa>();
+	   this.kategorije = new ArrayList<Kategorija>();
+	   this.prodavnice = new ArrayList<Prodavnica>();
+	   this.porudzbine = new ArrayList<Porudzbina>();
 	   try{
 		   ucitajIzFajla(naziviFajlova); 
 	   }
@@ -443,16 +459,17 @@ public class Aplikacija {
 		
 		while(itGrad.hasNext())
 		{
-			unos = itGrad.next().getMesto() + "|" + itGrad.next().getPostanskiBroj();
+			Grad gr = itGrad.next();
+			unos = gr.getMesto() + "|" + gr.getPostanskiBroj();
 			pwGrad.println(unos);
 			pwGrad.flush();
 		}
 		 
 		while(itArtikl.hasNext())
 		{
-			unos = itArtikl.next().getSifra() + "|" + itArtikl.next().getSlika() + "|" + itArtikl.next().getNaziv() + "|" + 
-					itArtikl.next().getStanje() + "|" + itArtikl.next().getCena() + "|" + itArtikl.next().getBoja() + "|" + 
-					itArtikl.next() + "|" + itArtikl.next().getAktivan() + "|" + itArtikl.next().getKategorija().getNaziv();
+			Artikl ar = itArtikl.next();
+			unos = ar.getSifra() + "|" + ar.getSlika() + "|" + ar.getNaziv() + "|" + ar.getStanje() + "|" 
+			+ ar.getCena() + "|" +ar.getBoja() + "|" + ar.getAktivan() + "|" + ar.getKategorija().getNaziv();
 			pwArtikl.println(unos);
 			pwArtikl.flush();
 		}
@@ -460,27 +477,29 @@ public class Aplikacija {
 		String unosPor;
 		while(itKorisnik.hasNext())
 		{
+			Korisnik kor = itKorisnik.next();
 			StringBuilder sbKorPor = new StringBuilder();
 			StringBuilder sbKorLisZ = new StringBuilder();
 			StringBuilder sbKorKorpa = new StringBuilder();
-			Iterator<Porudzbina> itPor = itKorisnik.next().getIteratorPorudzbina();
-			Iterator<Artikl> itLisZ = itKorisnik.next().getIteratorListaZelja();
-			Iterator<Stavka> itKorpa = itKorisnik.next().getKorpa().getIteratorStavka();
+			Iterator<Porudzbina> itPor = kor.getIteratorPorudzbina();
+			Iterator<Artikl> itLisZ = kor.getIteratorListaZelja();
+			Iterator<Stavka> itKorpa = kor.getKorpa().getIteratorStavka();
 			
 			while(itPor.hasNext())
 			{
-				sbKorPor.append(itPor.next().getBrojPor() + ",");
+				Porudzbina por = itPor.next();
+				sbKorPor.append(por.getBrojPor() + ",");
 				
 				StringBuilder sbPor = new StringBuilder();
 				
-				for (Map.Entry<String, Integer> entry : itPor.next().getCene().entrySet())  
+				for (Map.Entry<String, Integer> entry : por.getCene().entrySet())  
 				{
 					sbPor.append(entry.getKey() + ":" + entry.getValue() + ",");
 				}
 				sbPor.deleteCharAt(sbPor.length() - 1);
 		
-				unosPor = itPor.next().getBrojPor() + "|" + itPor.next().getUkupnaCena() + "|" + 
-						format.format(itPor.next().getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + itPor.next().getStanje();
+				unosPor = por.getBrojPor() + "|" + por.getUkupnaCena() + "|" + 
+						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje();
 				pwPorudzbina.println(unosPor);
 				pwPorudzbina.flush();
 				
@@ -495,49 +514,54 @@ public class Aplikacija {
 			
 			while(itKorpa.hasNext())
 			{
-				sbKorKorpa.append(itKorpa.next().getArtikl().getSifra() + "%" + itKorpa.next().getKolicina() + ",");
+				Stavka st = itKorpa.next();
+				sbKorKorpa.append(st.getArtikl().getSifra() + "%" +st.getKolicina() + ",");
 			}
 			sbKorKorpa.deleteCharAt(sbKorKorpa.length() - 1);
 			
-			unos = itKorisnik.next().getEmail() + "|" + itKorisnik.next().getTelefon() + "|" + itKorisnik.next().getIme() + "|" + 
-					itKorisnik.next().getPrezime() + "|" + itKorisnik.next().getJmbg() + "|" + itKorisnik.next().getPol() + "|" + 
-					itKorisnik.next().getKorisnickoIme() + "|" + itKorisnik.next().getSifra() + "|" + format.format(itKorisnik.next().getDatumRodj())
-					+ "|" + itKorisnik.next().getAdresa().getUlica() + "%" + itKorisnik.next().getAdresa().getBroj() + itKorisnik.next().getAdresa().getGrad().getPostanskiBroj()
-					+ "|" + sbKorPor.toString() + "|" + sbKorLisZ.toString() + "|" + sbKorKorpa.toString();
+			unos = kor.getEmail() + "|" + kor.getTelefon() + "|" + kor.getIme() + "|" + kor.getPrezime() + "|" 
+					+ kor.getJmbg() + "|" + kor.getPol() + "|" + kor.getKorisnickoIme() + "|" + kor.getSifra() + "|" 
+					+ format.format(kor.getDatumRodj()) + "|" + kor.getAdresa().getUlica() + "%" 
+					+ kor.getAdresa().getBroj() + kor.getAdresa().getGrad().getPostanskiBroj() + "|" 
+					+ sbKorPor.toString() + "|" + sbKorLisZ.toString() + "|" + sbKorKorpa.toString();
 			pwKorisnik.println(unos);
 			pwKorisnik.flush();
 		}
 		
 		while(itKategorija.hasNext())
 		{
+			Kategorija kat = itKategorija.next();
 			StringBuilder sbKat = new StringBuilder();
-			Iterator<Kategorija> itKatKat = itKategorija.next().getIteratorKategorijaB();
+			Iterator<Kategorija> itKatKat = kat.getIteratorKategorijaB();
 			
 			while(itKatKat.hasNext())
 			{
 				sbKat.append(itKatKat.next().getNaziv() + ",");
 			}
-			sbKat.deleteCharAt(sbKat.length() - 1);
+			if(sbKat.length() > 0)
+				sbKat.deleteCharAt(sbKat.length() - 1);
 			
-			unos = itKategorija.next().getNaziv() + "|" + sbKat.toString();
+			unos = kat.getNaziv() + "|" + sbKat.toString();
 			pwKategorija.println(unos);
 			pwKategorija.flush();
 		}
 		
 		while(itProdavnica.hasNext())
 		{
+			Prodavnica pro = itProdavnica.next();
 			StringBuilder sbPro = new StringBuilder();
 			
-			for (Map.Entry<Artikl, Integer> entry : itProdavnica.next().getRaspolozivo().entrySet())  
+			for (Map.Entry<Artikl, Integer> entry : pro.getRaspolozivo().entrySet())  
 			{
 				sbPro.append(entry.getKey() + ":" + entry.getValue() + ",");
 			}
-			sbPro.deleteCharAt(sbPro.length() - 1);
+			//if(sbPro.length() > 0)
+				sbPro.deleteCharAt(sbPro.length() - 1);
 			
-			unos = itProdavnica.next().getPocetakRadVr() + "|" + itProdavnica.next().getKrajRadVr() + "|" +
-					itProdavnica.next().getNaziv() + "|" + itProdavnica.next().getEmail() + "|" + sbPro.toString() + "|" + 
-					itProdavnica.next().getAdresa().getUlica() + "%" + itProdavnica.next().getAdresa().getBroj() + "%" +
-					itProdavnica.next().getAdresa().getGrad().getPostanskiBroj();
+			unos = pro.getPocetakRadVr() + "|" + pro.getKrajRadVr() + "|" +
+					pro.getNaziv() + "|" + pro.getEmail() + "|" + sbPro.toString() + "|" + 
+					pro.getAdresa().getUlica() + "%" + pro.getAdresa().getBroj() + "%" +
+					pro.getAdresa().getGrad().getPostanskiBroj();
 			pwProdavnica.println(unos);
 			pwProdavnica.flush();
 		}
