@@ -26,6 +26,7 @@ public class Main {
 		
 		Aplikacija app = new Aplikacija();
 		
+		
 		//samo neki testni slucajevi za proveru rada
 		/*Kategorija kat1 = new Kategorija();
 		kat1.setNaziv("Sale");
