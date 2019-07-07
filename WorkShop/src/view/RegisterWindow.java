@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Choice;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -11,29 +12,46 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import classes.Adresa;
+import classes.Artikl;
+import classes.Grad;
 import classes.Korisnik;
+import classes.Korpa;
+import classes.Porudzbina;
+import enums.Pol;
 import model.Aplikacija;
 
 
 public class RegisterWindow extends JFrame {
 	
 	private static final long serialVersionUID = 3L;
-	JLabel login_label;
-	JLabel username_label, password_label;
-	JTextField username_field;
-	JPasswordField password_field;
-	JButton next_button;
-	JButton cancel_button;
+	JLabel register_label;
+	JLabel email_label, phone_label, name_label, last_label, jmbg_label, 
+	username_label, password_label, date_label, address_label, number_label,
+	town_label, postal_label, gender_label;
+	JTextField email_field, phone_field, name_field, last_field, jmbg_field,
+	username_field, password_field, address_field, number_field,
+	town_field, postal_field;
+	Choice day_choice, month_choice, year_choice;
+	ButtonGroup gender;
+	JRadioButton male_rb, female_rb;
+	JButton next_button, cancel_button;
 	
 	@SuppressWarnings("unused")
 	public RegisterWindow(Aplikacija app) 
@@ -49,73 +67,294 @@ public class RegisterWindow extends JFrame {
 
 		JLabel background = new JLabel(image);
 		
-		login_label = new JLabel("Register");
-		login_label.setFont(new Font("Serif", Font.BOLD, 30));
-		login_label.setBounds(180, 40, 280, 30);
-		login_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		register_label = new JLabel("Register");
+		register_label.setFont(new Font("Serif", Font.BOLD, 30));
+		register_label.setBounds(230, 40, 280, 40);
+		register_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	/*--------------------------*/
+		email_label = new JLabel("Email: ");
+		email_label.setBounds(150, 120, 100, 30);
+		email_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		email_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
+		email_field = new JTextField();
+		email_field.setBounds(250, 120, 200, 30);
+		email_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		email_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		phone_label = new JLabel("Phone: ");
+		phone_label.setBounds(150, 170, 100, 30);
+		phone_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		phone_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		phone_field = new JTextField();
+		phone_field.setBounds(250, 170, 200, 30);
+		phone_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		phone_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		name_label = new JLabel("Name: ");
+		name_label.setBounds(150, 220, 100, 30);
+		name_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		name_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		name_field = new JTextField();
+		name_field.setBounds(250, 220, 200, 30);
+		name_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		name_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		last_label = new JLabel("Last name: ");
+		last_label.setBounds(150, 270, 100, 30);
+		last_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		last_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		last_field = new JTextField();
+		last_field.setBounds(250, 270, 200, 30);
+		last_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		last_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		jmbg_label = new JLabel("JMBG: ");
+		jmbg_label.setBounds(150, 320, 100, 30);
+		jmbg_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		jmbg_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		jmbg_field = new JTextField();
+		jmbg_field.setBounds(250, 320, 200, 30);
+		jmbg_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		jmbg_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*-------------OVDE POL PO KOOR 370  DATE PO KOOR 420-------------*/
 		username_label = new JLabel("Username: ");
-		username_label.setBounds(70, 120, 100, 30);
+		username_label.setBounds(150, 670, 100, 30);
 		username_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		username_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
+		username_field = new JTextField();
+		username_field.setBounds(250, 670, 200, 30);
+		username_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		username_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
 		password_label = new JLabel("Password: ");
-		password_label.setBounds(70, 170, 100, 30);
+		password_label.setBounds(150, 720, 100, 30);
 		password_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		password_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
-		username_field = new JTextField();
-		username_field.setBounds(170, 120, 200, 30);
-		username_field.setFont(new Font("Serif", Font.PLAIN, 20));
-		username_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		
-		
-		password_field = new JPasswordField();
-		password_field.setBounds(170, 170, 200, 30);
+		password_field = new JTextField();
+		password_field.setBounds(250, 720, 200, 30);
 		password_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		password_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-		password_field.setEchoChar('*');
+	/*--------------------------*/
+		gender_label = new JLabel("Gender: ");
+		gender_label.setBounds(150, 370, 100, 30);
+		gender_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		gender_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		male_rb = new JRadioButton("Male");
+		male_rb.setBounds(250, 370, 100, 30);
+		male_rb.setFont(new Font("Serif", Font.PLAIN, 20));
+		male_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		
+		female_rb = new JRadioButton("Female");
+		female_rb.setBounds(350, 370, 100, 30);
+		female_rb.setFont(new Font("Serif", Font.PLAIN, 20));
+		female_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		
+		gender = new ButtonGroup();
+		gender.add(male_rb); gender.add(female_rb);
+	/*--------------------------*/
+		date_label = new JLabel("Birth date: ");
+		date_label.setBounds(150, 420, 100, 30);
+		date_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		date_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		day_choice = new Choice();
+		day_choice.setBounds(250, 420, 50, 30);
+		day_choice.setFont(new Font("Serif", Font.PLAIN, 20));
+		day_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		for(int i = 1; i < 32; i++)
+			day_choice.add(Integer.toString(i));
+		
+		month_choice = new Choice();
+		month_choice.setBounds(300, 420, 50, 30);
+		month_choice.setFont(new Font("Serif", Font.PLAIN, 20));
+		month_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		for(int i = 1; i < 13; i++)
+			month_choice.add(Integer.toString(i));
 		
 		
+		year_choice = new Choice();
+		year_choice.setBounds(350, 420, 100, 30);
+		year_choice.setFont(new Font("Serif", Font.PLAIN, 20));
+		year_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		for(int i = 1960; i < 2001; i++)
+			year_choice.add(Integer.toString(i));
+	/*--------------------------*/
+		address_label = new JLabel("Address: ");
+		address_label.setBounds(150, 470, 100, 30);
+		address_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		address_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		address_field = new JTextField();
+		address_field.setBounds(250, 470, 200, 30);
+		address_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		address_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		number_label = new JLabel("Number: ");
+		number_label.setBounds(150, 520, 100, 30);
+		number_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		number_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		number_field = new JTextField();
+		number_field.setBounds(250, 520, 200, 30);
+		number_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		number_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));	
+	/*--------------------------*/
+		town_label = new JLabel("Town: ");
+		town_label.setBounds(150, 570, 100, 30);
+		town_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		town_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		town_field = new JTextField();
+		town_field.setBounds(250, 570, 200, 30);
+		town_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		town_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+	/*--------------------------*/
+		postal_label = new JLabel("Postal code: ");
+		postal_label.setBounds(150, 620, 120, 30);
+		postal_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		postal_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		postal_field = new JTextField();
+		postal_field.setBounds(250, 620, 200, 30);
+		postal_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		postal_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		
+	/*--------------------------*/
 		next_button = new JButton("Next");
-		next_button.setBounds(250, 220, 100, 30);
+		next_button.setBounds(320, 820, 120, 30);
 		next_button.setFont(new Font("Serif", Font.PLAIN, 20));
 		next_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		next_button.addActionListener(new ActionListener(){  
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String user = username_field.getText();
-				@SuppressWarnings("deprecation")
-				String pass = password_field.getText();
-				Boolean found = false;
-				
-				Iterator<Korisnik> it = app.korisnici.iterator();
-				while(it.hasNext())
+				Boolean correct = true;
+				String email = email_field.getText();
+				String phone = phone_field.getText();
+				String name = name_field.getText();
+				String last = last_field.getText();
+				String jmbg_s = jmbg_field.getText();
+				int jmbg = 0;
+				if(jmbg_s.matches("[0-9]+"))
 				{
-					Korisnik kor = it.next();
-					if(kor.getKorisnickoIme().equals(user) && kor.getSifra().equals(pass))
+					jmbg = Integer.parseInt(jmbg_s);
+				}
+				else 
+				{
+					correct = false;
+				}
+				
+				Pol gen = null;
+				if(male_rb.isSelected() || female_rb.isSelected())
+				{
+					if(male_rb.isSelected())
 					{
+						gen = Pol.muski;
+					}
+					else
+					{
+						gen = Pol.zenski;
+					}
+				}
+				else
+				{
+					correct = false;
+				}
+				
+				Boolean found = false;
+				String user = username_field.getText();
+				
+				Iterator<Korisnik> itK = app.korisnici.iterator();
+				while(itK.hasNext())
+				{
+					Korisnik kor = itK.next();
+					if(kor.getKorisnickoIme().equals(user))
+					{
+						JOptionPane.showMessageDialog(null, "Korisnicko ime postoji");
 						found = true;
 						break;
 					}	
 				}
 				
-				if(found)
+				String pass = password_field.getText();
+				
+				String date_s = day_choice.getSelectedItem() + "." + month_choice.getSelectedItem() + "." + year_choice.getSelectedItem() + ".";
+				Date date = null;
+				try
 				{
-					dispose();
-					MainWindow ww = new MainWindow(app);
+					date = app.format.parse(date_s);
+				}
+				catch (ParseException pe) {
+					JOptionPane.showMessageDialog(null, "Neki podatak nije dobro unet");
+				}
+				
+				String date_check = app.format.format(date);     
+				if(!date_s.equals(date_check))
+				{
+					correct = false;
+				}
+				
+				String address = address_field.getText();
+				String num_s = number_field.getText();
+				int num = 0;
+				if(num_s.matches("[0-9]+"))
+				{
+					num = Integer.parseInt(jmbg_s);
 				}
 				else 
 				{
-					JOptionPane.showMessageDialog(null, "Korisnik ne postoji");
+					correct = false;
+				}
+				String town = town_field.getText();
+				String postal_code_s = postal_field.getText();
+				int postal_code = 0;
+				if(postal_code_s.matches("[0-9]+"))
+				{
+					postal_code = Integer.parseInt(jmbg_s);
+				}
+				else 
+				{
+					correct = false;
+				}
+				
+				Iterator<Grad> itG = app.gradovi.iterator();
+				while(itG.hasNext())
+				{
+					Grad grad = itG.next();
+					if(!town.equals(grad.getMesto()) || postal_code != grad.getPostanskiBroj())
+					{
+						correct = false;
+					}
+				}
+				
+				if(correct && !found)
+				{
+					Grad newGrad = new Grad(town, postal_code);
+					Adresa newAdd = new Adresa(address, num, newGrad);
+					Korisnik newKor = new Korisnik(email, phone, name, last, jmbg, gen,
+							user, pass, date, newAdd, new Korpa(), new ArrayList<Porudzbina>(),
+							new ArrayList<Artikl>());
+					dispose();
+					MainWindow ww = new MainWindow(app);
+				}
+				else if(!found)
+				{
+					JOptionPane.showMessageDialog(null, "Neki podatak nije dobro unet");
 				}
 				
 			}  
 	    });  
 		
 		cancel_button = new JButton("Cancel");
-		cancel_button.setBounds(120, 220, 100, 30);
+		cancel_button.setBounds(155, 820, 120, 30);
 		cancel_button.setFont(new Font("Serif", Font.PLAIN, 20));
 		cancel_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
@@ -128,20 +367,43 @@ public class RegisterWindow extends JFrame {
 			}  
 	    });  
 		
-		
-		
+		background.add(email_field);
+		background.add(email_label);
+		background.add(phone_field);
+		background.add(phone_label);
+		background.add(name_field);
+		background.add(name_label);
+		background.add(last_field);
+		background.add(last_label);		
+		background.add(jmbg_field);
+		background.add(jmbg_label);	
 		background.add(username_field);
-		background.add(username_label);
+		background.add(username_label);	
 		background.add(password_field);
-		background.add(password_label);
-		background.add(login_label);
-		background.add(next_button);
+		background.add(password_label);	
+		background.add(gender_label);
+		background.add(male_rb);
+		background.add(female_rb);
 		background.add(cancel_button);
+		background.add(date_label);
+		background.add(day_choice);
+		background.add(month_choice);
+		background.add(year_choice);
+		background.add(next_button);
+		background.add(address_field);
+		background.add(address_label);
+		background.add(number_field);
+		background.add(number_label);
+		background.add(town_field);
+		background.add(town_label);
+		background.add(postal_field);
+		background.add(postal_label);
 		
+		background.add(register_label);
 		this.add(background);
 		
-		this.setSize(screenWidth/4, screenHeight/3);
-		this.setLocation(screenWidth/3, 100);
+		this.setSize(screenWidth/3, screenHeight-100);
+		this.setLocation(screenWidth/3, 50);
 		this.setVisible(true);
 		
 		addWindowListener(new WindowAdapter()

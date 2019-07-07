@@ -46,15 +46,14 @@ public class Main {
 		Kategorija kat6 = new Kategorija();
 		kat6.setNaziv("Kinder");
 		app.dodajKategoriju(kat6);
-		kat1.dodajKategoriju(kat6);*/
-		
+		kat1.dodajKategoriju(kat6);
+		*/
 		try {
 			Korisnik kor = new Korisnik("pera.peric@mail.com", "0230-123-123", "Pera", "Peric", 123, 
 					Pol.muski, "pera123", "pera123", app.format.parse("10.05.1999."), 
 					new Adresa("Gunduliceva", 5, new Grad("Novi Sad", 21000)), new Korpa(), new ArrayList<Porudzbina>(),
 					new ArrayList<Artikl>());
 			
-			System.out.println(kor.getJmbg());
 		app.dodajKorisnika(kor);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -64,7 +63,11 @@ public class Main {
 		MainWindow ww = new MainWindow(app);
 		
 		
+<<<<<<< HEAD
 		//RegisterWindow lw = new RegisterWindow(app);
+=======
+		RegisterWindow rw = new RegisterWindow(app);
+>>>>>>> refs/remotes/origin/master
 		
 		try
 		{
