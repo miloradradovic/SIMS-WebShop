@@ -20,14 +20,23 @@ public class Main {
 		
 		//samo neki testni slucajevi za proveru rada
 		Kategorija kat1 = new Kategorija();
-		kat1.setNaziv("Kat1");
+		kat1.setNaziv("Sale");
 		app.dodajKategoriju(kat1);
 		Kategorija kat2 = new Kategorija();
-		kat2.setNaziv("Kat2");
+		kat2.setNaziv("Damen");
 		app.dodajKategoriju(kat2);
 		Kategorija kat3 = new Kategorija();
-		kat3.setNaziv("Kat3");
+		kat3.setNaziv("Herren");
 		app.dodajKategoriju(kat3);
+		Kategorija kat4 = new Kategorija();
+		kat4.setNaziv("Kutsche");
+		app.dodajKategoriju(kat4);
+		Kategorija kat5 = new Kategorija();
+		kat5.setNaziv("Wohnen");
+		app.dodajKategoriju(kat5);
+		Kategorija kat6 = new Kategorija();
+		kat6.setNaziv("Kinder");
+		app.dodajKategoriju(kat6);
 		/* ----------------------------------- */
 		
 		MainWindow ww = new MainWindow(app);
