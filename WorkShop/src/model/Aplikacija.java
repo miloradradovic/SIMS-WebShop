@@ -36,7 +36,6 @@ public class Aplikacija {
    
    public Aplikacija(ArrayList<String> naziviFajlova)
    {
-	   //TODO Mico, good luck
 	   try{
 		   ucitajIzFajla(naziviFajlova); 
 	   }
@@ -242,7 +241,6 @@ public class Aplikacija {
 	   
 	public void ucitajIzFajla(ArrayList<String> naziviFajlova) throws IOException, ParseException
 	{
-		//TODO: Mico ovde ide tvoja implementacija ucitavanja iz fajla.
 		for(String fajl:naziviFajlova){
 			if (fajl.equals("Grad")){
 				BufferedReader br = new BufferedReader(new FileReader(".\\Files\\"+fajl+".txt"));
@@ -267,6 +265,7 @@ public class Aplikacija {
 					String[] delimiter2 = delimiter[1].split("\\,");
 					mapa.put(kategorija, delimiter2);
 				}
+				br.close();
 			}else if(fajl.equals("Artikl")){
 				BufferedReader br = new BufferedReader(new FileReader(".\\Files\\"+fajl+".txt"));
 				String temp;
@@ -351,6 +350,7 @@ public class Aplikacija {
 					k.setKorpa(korpa);
 				}
 				br.close();
+				
 			}else if(fajl.equals("Prodavnica")){
 				BufferedReader br = new BufferedReader(new FileReader(".\\Files\\"+fajl+".txt"));
 				
@@ -403,6 +403,8 @@ public class Aplikacija {
 					}
 					p.setCene(mapa);
 					//NISAM DODAO STANJE JER NZM :)
+					
+					br.close();
 				}
 			}
 		}
