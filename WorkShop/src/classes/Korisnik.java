@@ -71,7 +71,7 @@ public void kupiStavke() throws ParseException
    
    public void dodajStavku(Stavka stavka)
    {
-	   boolean uspesnost = this.korpa.dodajStavku(stavka);
+	   this.korpa.dodajStavku(stavka);
    }
    
    public void dodajArtikl(Artikl novArtikl) 
@@ -91,7 +91,7 @@ public void kupiStavke() throws ParseException
    {
       for(Stavka s:this.korpa.getStavka()){
     	  if(s.getArtikl().getSifra().equals(sifraArtikla)){
-    		  boolean uspesnost = this.korpa.obrisiStavku(s);
+    		  this.korpa.obrisiStavku(s);
     	  }
       }
    }

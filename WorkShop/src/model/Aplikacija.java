@@ -434,14 +434,6 @@ public class Aplikacija {
 		br6.close();
 	}
 	
-	public boolean proveraKat(Kategorija k){
-		if(k.getKategorijaB().isEmpty()){
-			return true; 
-		}else{
-			return false;
-		}
-	}
-	
 	public void sacuvajUFajl(ArrayList<String> naziviFajlova) throws IOException
 	{
 		File fajlGrad = new File(".\\Files\\" + naziviFajlova.get(0) +".txt");
@@ -512,7 +504,8 @@ public class Aplikacija {
 				{
 					sbPor.append(entry.getKey() + ":" + entry.getValue() + ",");
 				}
-				sbPor.deleteCharAt(sbPor.length() - 1);
+				if(sbPor.length() > 0)
+					sbPor.deleteCharAt(sbPor.length() - 1);
 		
 				unosPor = por.getBrojPor() + "|" + por.getUkupnaCena() + "|" + 
 						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje();
@@ -520,25 +513,28 @@ public class Aplikacija {
 				pwPorudzbina.flush();
 				
 			}
-			sbKorPor.deleteCharAt(sbKorPor.length() - 1);
+			if(sbKorPor.length() > 0)
+				sbKorPor.deleteCharAt(sbKorPor.length() - 1);
 			
 			while(itLisZ.hasNext())
 			{
 				sbKorLisZ.append(itLisZ.next().getSifra() + ",");
 			}
-			sbKorLisZ.deleteCharAt(sbKorLisZ.length() - 1);
+			if(sbKorLisZ.length() > 0)
+				sbKorLisZ.deleteCharAt(sbKorLisZ.length() - 1);
 			
 			while(itKorpa.hasNext())
 			{
 				Stavka st = itKorpa.next();
 				sbKorKorpa.append(st.getArtikl().getSifra() + "%" +st.getKolicina() + ",");
 			}
-			sbKorKorpa.deleteCharAt(sbKorKorpa.length() - 1);
+			if(sbKorKorpa.length() > 0)
+				sbKorKorpa.deleteCharAt(sbKorKorpa.length() - 1);
 			
 			unos = kor.getEmail() + "|" + kor.getTelefon() + "|" + kor.getIme() + "|" + kor.getPrezime() + "|" 
-					+ kor.getJmbg() + "|" + kor.getPol() + "|" + kor.getKorisnickoIme() + "|" + kor.getSifra() + "|" 
+					+ Integer.toString(kor.getJmbg()) + "|" + kor.getPol() + "|" + kor.getKorisnickoIme() + "|" + kor.getSifra() + "|" 
 					+ format.format(kor.getDatumRodj()) + "|" + kor.getAdresa().getUlica() + "%" 
-					+ kor.getAdresa().getBroj() + kor.getAdresa().getGrad().getPostanskiBroj() + "|" 
+					+ kor.getAdresa().getBroj() + "%" +kor.getAdresa().getGrad().getPostanskiBroj() + "|" 
 					+ sbKorPor.toString() + "|" + sbKorLisZ.toString() + "|" + sbKorKorpa.toString();
 			pwKorisnik.println(unos);
 			pwKorisnik.flush();
@@ -571,7 +567,7 @@ public class Aplikacija {
 			{
 				sbPro.append(entry.getKey() + ":" + entry.getValue() + ",");
 			}
-			//if(sbPro.length() > 0)
+			if(sbPro.length() > 0)
 				sbPro.deleteCharAt(sbPro.length() - 1);
 			
 			unos = pro.getPocetakRadVr() + "|" + pro.getKrajRadVr() + "|" +
