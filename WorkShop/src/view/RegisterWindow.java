@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import classes.Adresa;
@@ -400,8 +401,13 @@ public class RegisterWindow extends JFrame {
 		background.add(postal_field);
 		background.add(postal_label);
 		
+	
+		JScrollPane js = new JScrollPane(background, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.setContentPane(js);
 		
-		this.add(background);
+		
+		
 		this.setVisible(true);
 		
 		addWindowListener(new WindowAdapter()
