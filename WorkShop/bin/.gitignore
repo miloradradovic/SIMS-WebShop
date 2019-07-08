@@ -1,3 +1,24 @@
 /.metadata/
+/.classpath
 /.gitignore
+<<<<<<< HEAD
 /view/
+=======
+/.project
+/Files/
+/RemoteSystemsTempFiles/
+/classes/
+/controller/
+/desk.png
+/enums/
+/furniture.jpg
+/korpica.png
+/location_icon.png
+/model/
+/sale.jpg
+/sale1.png
+/slavina.jpg
+/states/
+/view/
+/white_background.jpg
+>>>>>>> refs/remotes/origin/master
