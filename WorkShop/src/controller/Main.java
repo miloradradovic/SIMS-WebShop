@@ -62,9 +62,9 @@ public class Main {
 		}*/
 		
 		//MainWindow ww = new MainWindow(app);
-		//RegisterWindow rw = new RegisterWindow(app);
+		RegisterWindow rw = new RegisterWindow(app);
 
-		LoginWindow lw = new LoginWindow(app);
+		//LoginWindow lw = new LoginWindow(app);
 
 	
 		
