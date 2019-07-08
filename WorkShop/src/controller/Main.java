@@ -11,6 +11,7 @@ import classes.Korpa;
 import classes.Porudzbina;
 import enums.Pol;
 import model.Aplikacija;
+import view.LoginWindow;
 import view.MainWindow;
 import view.RegisterWindow;
 
@@ -57,22 +58,15 @@ public class Main {
 			
 		app.dodajKorisnika(kor);
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}*/
 		
 		//MainWindow ww = new MainWindow(app);
-		
+		//RegisterWindow rw = new RegisterWindow(app);
 
-		
+		LoginWindow lw = new LoginWindow(app);
 
-		//RegisterWindow lw = new RegisterWindow(app);
-		RegisterWindow rw = new RegisterWindow(app);
-
-		//RegisterWindow lw = new RegisterWindow(app);
-
-		
-
+	
 		
 		try
 		{

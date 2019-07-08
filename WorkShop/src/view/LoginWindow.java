@@ -42,7 +42,7 @@ public class LoginWindow extends JFrame {
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 		setTitle("Login");
 		
-		
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		ImageIcon image = new ImageIcon("white_background.jpg");
 		Image image_tmp = getScaledImage(image.getImage(), screenWidth, screenHeight + 400);
 		image.setImage(image_tmp);
@@ -50,36 +50,36 @@ public class LoginWindow extends JFrame {
 		JLabel background = new JLabel(image);
 		
 		login_label = new JLabel("LOGIN");
-		login_label.setFont(new Font("Serif", Font.BOLD, 30));
-		login_label.setBounds(180, 40, 280, 30);
+		login_label.setFont(new Font("Serif", Font.BOLD, 40));
+		login_label.setBounds(screenWidth/2-100, 40, 280, 50);
 		login_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		username_label = new JLabel("Username: ");
-		username_label.setBounds(70, 120, 100, 30);
-		username_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		username_label.setBounds(screenWidth/2-350, 320, 150, 30);
+		username_label.setFont(new Font("Serif", Font.PLAIN, 25));
 		username_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		password_label = new JLabel("Password: ");
-		password_label.setBounds(70, 170, 100, 30);
-		password_label.setFont(new Font("Serif", Font.PLAIN, 20));
+		password_label.setBounds(screenWidth/2-350, 400, 150, 30);
+		password_label.setFont(new Font("Serif", Font.PLAIN, 25));
 		password_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		username_field = new JTextField();
-		username_field.setBounds(170, 120, 200, 30);
-		username_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		username_field.setBounds(screenWidth/2-150, 320, 400, 30);
+		username_field.setFont(new Font("Serif", Font.PLAIN, 30));
 		username_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		
 		password_field = new JPasswordField();
-		password_field.setBounds(170, 170, 200, 30);
-		password_field.setFont(new Font("Serif", Font.PLAIN, 20));
+		password_field.setBounds(screenWidth/2-150, 400, 400, 30);
+		password_field.setFont(new Font("Serif", Font.PLAIN, 30));
 		password_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		password_field.setEchoChar('*');
 		
 		
 		next_button = new JButton("Next");
-		next_button.setBounds(250, 220, 100, 30);
-		next_button.setFont(new Font("Serif", Font.PLAIN, 20));
+		next_button.setBounds(screenWidth/2+50, 500, 150, 30);
+		next_button.setFont(new Font("Serif", Font.PLAIN, 30));
 		next_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		next_button.addActionListener(new ActionListener(){  
@@ -115,8 +115,8 @@ public class LoginWindow extends JFrame {
 	    });  
 		
 		cancel_button = new JButton("Cancel");
-		cancel_button.setBounds(120, 220, 100, 30);
-		cancel_button.setFont(new Font("Serif", Font.PLAIN, 20));
+		cancel_button.setBounds(screenWidth/2-300, 500, 150, 30);
+		cancel_button.setFont(new Font("Serif", Font.PLAIN, 30));
 		cancel_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		cancel_button.addActionListener(new ActionListener(){  
@@ -128,8 +128,7 @@ public class LoginWindow extends JFrame {
 			}  
 	    });  
 		
-		
-		
+
 		background.add(username_field);
 		background.add(username_label);
 		background.add(password_field);
@@ -139,11 +138,7 @@ public class LoginWindow extends JFrame {
 		background.add(cancel_button);
 		
 		this.add(background);
-		
-		this.setSize(screenWidth/4, screenHeight/3);
-		this.setLocation(screenWidth/3, 100);
 		this.setVisible(true);
-		pack();
 		
 		addWindowListener(new WindowAdapter()
         {

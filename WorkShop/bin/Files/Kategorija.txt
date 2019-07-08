@@ -1,0 +1,7 @@
+Kinder|Bla
+Bla|Meh
+Bla2|Meh,Konj
+Konj|
+Magare|
+Meh|
+Stoka|

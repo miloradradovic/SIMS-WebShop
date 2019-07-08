@@ -1,0 +1,18 @@
+Grad.txt
+Mesto|PostanskiBroj
+
+Artikl.txt
+Sifra|Slika|Naziv|Stanje|Cena|Boja|Aktivan|Kategorija(naziv)
+
+Korisnik.txt
+Email|Telefon|Ime|Prezime|JMBG|Pol|KorisnickoIme|Sifra|Datum|Ulica%Broj%PostanskiBroj(Grada)|
+BrojPorudzbine1, BrojPorudzbine2,..|AriklSifra1, ArtiklSifra2,..|ArtiklSifra1%Kolicina, ArtiklSifra2%Kolicina,..
+
+Kategorija.txt
+Naziv|Kategorija1(naziv), Kategorija2(naziv),..
+
+Prodavnica.txt
+PocetakRadnogVremena|KrajRadnogVremena|Naziv|Email|ArtiklSifra1%Kolicina, ArtiklSifra2%Kolicina,..|Ulica%Broj%PostanskiBroj(Grada)
+
+Porudzbina.txt
+BrojPorudzbine|UkupnaCena|Datum|ArtiklSifra1%Cena, ArtiklSifra2%Cena,..|Stanje
