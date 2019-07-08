@@ -143,6 +143,7 @@ public class LoginWindow extends JFrame {
 		this.setSize(screenWidth/4, screenHeight/3);
 		this.setLocation(screenWidth/3, 100);
 		this.setVisible(true);
+		pack();
 		
 		addWindowListener(new WindowAdapter()
         {

@@ -66,94 +66,94 @@ public class RegisterWindow extends JFrame {
 		image.setImage(image_tmp);
 
 		JLabel background = new JLabel(image);
-		
+
 		register_label = new JLabel("Register");
 		register_label.setFont(new Font("Serif", Font.BOLD, 30));
-		register_label.setBounds(230, 40, 280, 40);
+		register_label.setBounds(screenWidth - 1680, 40, 280, 40);
 		register_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	/*--------------------------*/
 		email_label = new JLabel("Email: ");
-		email_label.setBounds(150, 120, 100, 30);
+		email_label.setBounds(screenWidth - 1775, 120, 100, 30);
 		email_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		email_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		email_field = new JTextField();
-		email_field.setBounds(250, 120, 200, 30);
+		email_field.setBounds(screenWidth - 1670, 120, 200, 30);
 		email_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		email_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		phone_label = new JLabel("Phone: ");
-		phone_label.setBounds(150, 170, 100, 30);
+		phone_label.setBounds(screenWidth - 1775, 170, 100, 30);
 		phone_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		phone_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		phone_field = new JTextField();
-		phone_field.setBounds(250, 170, 200, 30);
+		phone_field.setBounds(screenWidth - 1670, 170, 200, 30);
 		phone_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		phone_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		name_label = new JLabel("Name: ");
-		name_label.setBounds(150, 220, 100, 30);
+		name_label.setBounds(screenWidth - 1775, 220, 100, 30);
 		name_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		name_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		name_field = new JTextField();
-		name_field.setBounds(250, 220, 200, 30);
+		name_field.setBounds(screenWidth - 1670, 220, 200, 30);
 		name_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		name_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		last_label = new JLabel("Last name: ");
-		last_label.setBounds(150, 270, 100, 30);
+		last_label.setBounds(screenWidth - 1775, 270, 100, 30);
 		last_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		last_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		last_field = new JTextField();
-		last_field.setBounds(250, 270, 200, 30);
+		last_field.setBounds(screenWidth - 1670, 270, 200, 30);
 		last_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		last_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		jmbg_label = new JLabel("JMBG: ");
-		jmbg_label.setBounds(150, 320, 100, 30);
+		jmbg_label.setBounds(screenWidth - 1775, 320, 100, 30);
 		jmbg_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		jmbg_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		jmbg_field = new JTextField();
-		jmbg_field.setBounds(250, 320, 200, 30);
+		jmbg_field.setBounds(screenWidth - 1670, 320, 200, 30);
 		jmbg_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		jmbg_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*-------------OVDE POL PO KOOR 370  DATE PO KOOR 420-------------*/
 		username_label = new JLabel("Username: ");
-		username_label.setBounds(150, 670, 100, 30);
+		username_label.setBounds(screenWidth - 1775, 670, 100, 30);
 		username_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		username_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		username_field = new JTextField();
-		username_field.setBounds(250, 670, 200, 30);
+		username_field.setBounds(screenWidth - 1670, 670, 200, 30);
 		username_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		username_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		password_label = new JLabel("Password: ");
-		password_label.setBounds(150, 720, 100, 30);
+		password_label.setBounds(screenWidth - 1775, 720, 100, 30);
 		password_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		password_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		password_field = new JTextField();
-		password_field.setBounds(250, 720, 200, 30);
+		password_field.setBounds(screenWidth - 1670, 720, 200, 30);
 		password_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		password_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		gender_label = new JLabel("Gender: ");
-		gender_label.setBounds(150, 370, 100, 30);
+		gender_label.setBounds(screenWidth - 1775, 370, 100, 30);
 		gender_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		gender_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		male_rb = new JRadioButton("Male");
-		male_rb.setBounds(250, 370, 100, 30);
+		male_rb.setBounds(screenWidth - 1670, 370, 100, 30);
 		male_rb.setFont(new Font("Serif", Font.PLAIN, 20));
 		male_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		female_rb = new JRadioButton("Female");
-		female_rb.setBounds(350, 370, 100, 30);
+		female_rb.setBounds(screenWidth - 1570, 370, 100, 30);
 		female_rb.setFont(new Font("Serif", Font.PLAIN, 20));
 		female_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
@@ -161,19 +161,19 @@ public class RegisterWindow extends JFrame {
 		gender.add(male_rb); gender.add(female_rb);
 	/*--------------------------*/
 		date_label = new JLabel("Birth date: ");
-		date_label.setBounds(150, 420, 100, 30);
+		date_label.setBounds(screenWidth - 1775, 420, 100, 30);
 		date_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		date_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		day_choice = new Choice();
-		day_choice.setBounds(250, 420, 50, 30);
+		day_choice.setBounds(screenWidth - 1670, 420, 50, 30);
 		day_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		day_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for(int i = 1; i < 32; i++)
 			day_choice.add(Integer.toString(i));
 		
 		month_choice = new Choice();
-		month_choice.setBounds(300, 420, 50, 30);
+		month_choice.setBounds(screenWidth - 1620, 420, 50, 30);
 		month_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		month_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for(int i = 1; i < 13; i++)
@@ -181,55 +181,55 @@ public class RegisterWindow extends JFrame {
 		
 		
 		year_choice = new Choice();
-		year_choice.setBounds(350, 420, 100, 30);
+		year_choice.setBounds(screenWidth - 1570, 420, 100, 30);
 		year_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		year_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for(int i = 1960; i < 2001; i++)
 			year_choice.add(Integer.toString(i));
 	/*--------------------------*/
 		address_label = new JLabel("Address: ");
-		address_label.setBounds(150, 470, 100, 30);
+		address_label.setBounds(screenWidth - 1775, 470, 100, 30);
 		address_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		address_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		address_field = new JTextField();
-		address_field.setBounds(250, 470, 200, 30);
+		address_field.setBounds(screenWidth - 1670, 470, 200, 30);
 		address_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		address_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		number_label = new JLabel("Number: ");
-		number_label.setBounds(150, 520, 100, 30);
+		number_label.setBounds(screenWidth - 1775, 520, 100, 30);
 		number_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		number_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		number_field = new JTextField();
-		number_field.setBounds(250, 520, 200, 30);
+		number_field.setBounds(screenWidth - 1670, 520, 200, 30);
 		number_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		number_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));	
 	/*--------------------------*/
 		town_label = new JLabel("Town: ");
-		town_label.setBounds(150, 570, 100, 30);
+		town_label.setBounds(screenWidth - 1775, 570, 100, 30);
 		town_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		town_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		town_field = new JTextField();
-		town_field.setBounds(250, 570, 200, 30);
+		town_field.setBounds(screenWidth - 1670, 570, 200, 30);
 		town_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		town_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	/*--------------------------*/
 		postal_label = new JLabel("Postal code: ");
-		postal_label.setBounds(150, 620, 120, 30);
+		postal_label.setBounds(screenWidth - 1775, 620, 120, 30);
 		postal_label.setFont(new Font("Serif", Font.PLAIN, 20));
 		postal_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		postal_field = new JTextField();
-		postal_field.setBounds(250, 620, 200, 30);
+		postal_field.setBounds(screenWidth - 1670, 620, 200, 30);
 		postal_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		postal_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 	/*--------------------------*/
 		next_button = new JButton("Next");
-		next_button.setBounds(320, 820, 120, 30);
+		next_button.setBounds(screenWidth - 1600, 820, 120, 30);
 		next_button.setFont(new Font("Serif", Font.PLAIN, 20));
 		next_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
@@ -355,7 +355,7 @@ public class RegisterWindow extends JFrame {
 	    });  
 		
 		cancel_button = new JButton("Cancel");
-		cancel_button.setBounds(155, 820, 120, 30);
+		cancel_button.setBounds(screenWidth - 1770, 820, 120, 30);
 		cancel_button.setFont(new Font("Serif", Font.PLAIN, 20));
 		cancel_button.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
@@ -403,9 +403,11 @@ public class RegisterWindow extends JFrame {
 		background.add(register_label);
 		this.add(background);
 		
+		
 		this.setSize(screenWidth/3, screenHeight-100);
 		this.setLocation(screenWidth/3, 50);
 		this.setVisible(true);
+		//pack();
 		
 		addWindowListener(new WindowAdapter()
         {
