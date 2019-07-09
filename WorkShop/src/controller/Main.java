@@ -14,6 +14,7 @@ import model.Aplikacija;
 import view.LoginWindow;
 import view.MainWindow;
 import view.RegisterWindow;
+import view.ArticleWindow;
 
 public class Main {
 
@@ -62,11 +63,11 @@ public class Main {
 		}*/
 		
 		//MainWindow ww = new MainWindow(app);
-		RegisterWindow rw = new RegisterWindow(app);
+		//RegisterWindow rw = new RegisterWindow(app);
 
 		//LoginWindow lw = new LoginWindow(app);
 
-	
+		ArticleWindow aw = new ArticleWindow("123",app);
 		
 		try
 		{
