@@ -18,15 +18,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import classes.Kategorija;
 import model.Aplikacija;
 
-public class MainWindow extends JFrame {
+public abstract class WindowTemplate extends JFrame {
 
-	private static final long serialVersionUID = 1L;
 	JLabel globus_label;
 	JScrollPane js;
 	JTextField search_field;
@@ -34,15 +34,12 @@ public class MainWindow extends JFrame {
 	JLabel register_label;
 	JLabel shops_label;
 	JLabel cart_label;
-	JLabel slavina_pic;
-	JLabel furniture_pic;
-	JLabel desk_pic;
-	JLabel sale_pic;
 	JPanel panel;
 	ArrayList<JLabel> subcategories = new ArrayList<JLabel>();
 	ArrayList<JLabel> subcategories2 = new ArrayList<JLabel>();
 	// labele - kategorije
 	ArrayList<JLabel> kategorijeLabele = new ArrayList<JLabel>();
+	JLabel background;
 
 	// Aplikacija je jedini parametar kao model iz kog se vade podaci
 	// Ne stoji u parametru dok se ne napravi konstruktor klase Aplikacija
@@ -52,7 +49,7 @@ public class MainWindow extends JFrame {
 	// mainwindowu koji preko te aplikacije radi sa podacima i prikazuje ih po
 	// potrebi
 
-	public MainWindow(Aplikacija app) {
+	public WindowTemplate(Aplikacija app) {
 
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -65,9 +62,11 @@ public class MainWindow extends JFrame {
 		Image image_tmp3 = getScaledImage(image3.getImage(), screenWidth, screenHeight + 400);
 		image3.setImage(image_tmp3);
 
-		JLabel background = new JLabel(image3);
+		background = new JLabel(image3);
 		// *----------------------------------------*//
-
+		JSeparator jsep = new JSeparator();
+		jsep.setBounds(5, 110 , screenWidth , 100);
+		
 		// ucitavanje svih kategorija u labele
 		// dodavanje u background radi prikaza
 		// TODO: mozda bi bilo pametno ograditi se na maksimalan broj prvih kategorija
@@ -97,10 +96,6 @@ public class MainWindow extends JFrame {
 		Image image_tmp = getScaledImage(image.getImage(), screenWidth - 40, 600);
 		image.setImage(image_tmp);
 
-		sale_pic = new JLabel(image);
-		sale_pic.setBounds(20, 110, screenWidth - 40, 600);
-		sale_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// *-----------------------------------------*//
 
 		// dodavanje text_fielda za search
 		search_field = new JTextField("Search");
@@ -164,54 +159,15 @@ public class MainWindow extends JFrame {
 		location_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
-		// dodavanje slike korpice pored korpe
-		ImageIcon image4 = new ImageIcon("slavina.jpg");
-		Image image_tmp4 = getScaledImage(image4.getImage(), 300, 500);
-		image4.setImage(image_tmp4);
-
-		slavina_pic = new JLabel(image4);
-		slavina_pic.setBounds(20, 730, 300, 500);
-		slavina_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// *------------------------------------------*//
-
-		// dodavanje slike kreveta ispod SALE
-		ImageIcon image5 = new ImageIcon("furniture.jpg");
-		Image image_tmp5 = getScaledImage(image5.getImage(), 700, 475);
-		image5.setImage(image_tmp5);
-
-		furniture_pic = new JLabel(image5);
-		furniture_pic.setBounds(340, 743, 700, 475);
-		furniture_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// *------------------------------------------*//
-
-		// dodavanje slike stolova ispod sale
-		ImageIcon image6 = new ImageIcon("desk.png");
-		Image image_tmp6 = getScaledImage(image6.getImage(), 450, 475);
-		image6.setImage(image_tmp6);
-
-		desk_pic = new JLabel(image6);
-		desk_pic.setBounds(1060, 743, 450, 475);
-		desk_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// *------------------------------------------*//
-
-		/*
-		 * JPanel panel1 = new JPanel(); panel1.setBounds(120,120,200,200); JLabel
-		 * testlabel = new JLabel("Put some text in here");
-		 * testlabel.setBounds(150,150,100,20); panel1.add(testlabel);
-		 * panel1.setBackground(Color.gray);
-		 */
+	
 
 		// dodavanje stvari u background
-		sale_pic.add(search_field);
-		background.add(desk_pic);
-		background.add(furniture_pic);
-		background.add(slavina_pic);
+		background.add(jsep);
 		background.add(location_pic);
 		background.add(shops_label);
 		background.add(cart_pic);
 		background.add(cart_label);
 		background.add(tmp_slash);
-		background.add(sale_pic);
 		background.add(register_label);
 		background.add(login_label);
 		background.setLayout(null);
@@ -301,10 +257,12 @@ public class MainWindow extends JFrame {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				java.awt.Point p = new java.awt.Point(e.getLocationOnScreen());
-		        SwingUtilities.convertPointFromScreen(p, e.getComponent());
-		        if(e.getComponent().contains(p)) {return;}
-				sale_pic.remove(panel);
-				search_field.show();
+				SwingUtilities.convertPointFromScreen(p, e.getComponent());
+				if (e.getComponent().contains(p)) {
+					return;
+				}
+				background.remove(panel);
+				attributesAppear();
 				repaint();
 			}
 
@@ -333,12 +291,13 @@ public class MainWindow extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				JLabel lbl = (JLabel) e.getSource();
-				search_field.hide();
+				attributesDissapear();
 				// ArrayList<JLabel> subcategoriesLabels = new ArrayList<JLabel>();
 				panel = new JPanel();
-				panel.setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, 450);
+				panel.setBounds(0, 120, Toolkit.getDefaultToolkit().getScreenSize().width, 450);
 				panel.setCursor(Cursor.getDefaultCursor());
 				panel.addMouseListener(panel_moved);
+				panel.setLayout(null);
 
 				for (Kategorija kat : app.kategorije) {
 					if (kat.getNaziv().equalsIgnoreCase(lbl.getText())) {
@@ -365,21 +324,24 @@ public class MainWindow extends JFrame {
 					}
 				}
 
-			
-				for (JLabel lbl_ : subcategories) { lbl_.addMouseListener(category_press); }
-				
-				for (JLabel lbl_ : subcategories2) { lbl_.addMouseListener(category_press); }
-				
-				sale_pic.add(panel);
+				for (JLabel lbl_ : subcategories) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				for (JLabel lbl_ : subcategories2) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				background.add(panel);
 				repaint();
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (!(e.getX() > -2 && e.getX() < 81 && e.getY() >= 35 && e.getY() < 45)) {
-					sale_pic.remove(panel);
-					search_field.show();
+				if (!((e.getX() > -2 && e.getX() < 81) && (e.getY() >= 35 && e.getY() < 45))) {
+					background.remove(panel);
+					attributesAppear();
 					repaint();
 				}
 
@@ -398,76 +360,73 @@ public class MainWindow extends JFrame {
 			}
 
 		};
-		
+
 		MouseListener login_clicked = new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				LoginWindow loginWin = new LoginWindow(app);				
+				LoginWindow loginWin = new LoginWindow(app);
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
-			
-			
 		};
-		
+
 		MouseListener register_clicked = new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				RegisterWindow regWin = new RegisterWindow(app);
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		};
 		
 		MouseListener tiny_house_clicked = new MouseListener() {
@@ -506,9 +465,9 @@ public class MainWindow extends JFrame {
 		};
 		
 		globus_label.addMouseListener(tiny_house_clicked);
-		
+
 		register_label.addMouseListener(register_clicked);
-		
+
 		login_label.addMouseListener(login_clicked);
 
 		for (JLabel lbl : kategorijeLabele) {
@@ -517,4 +476,12 @@ public class MainWindow extends JFrame {
 
 	}
 	// *--------------------------------------------------------------*//
+	
+	void attributesDissapear() {
+		
+	}
+	
+	void attributesAppear() {
+
+	}
 }

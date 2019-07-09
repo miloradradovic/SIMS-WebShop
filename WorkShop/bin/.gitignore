@@ -1,9 +1,4 @@
 /.metadata/
-/.classpath
-/.gitignore
-<<<<<<< HEAD
-/view/
-=======
 /.project
 /Files/
 /RemoteSystemsTempFiles/
@@ -21,4 +16,3 @@
 /states/
 /view/
 /white_background.jpg
->>>>>>> refs/remotes/origin/master

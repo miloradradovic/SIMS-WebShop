@@ -61,8 +61,8 @@ public class Main {
 			e1.printStackTrace();
 		}*/
 		
-		//MainWindow ww = new MainWindow(app);
-		RegisterWindow rw = new RegisterWindow(app);
+		MainWindow ww = new MainWindow(app);
+		//RegisterWindow rw = new RegisterWindow(app);
 
 		//LoginWindow lw = new LoginWindow(app);
 
