@@ -1,6 +1,9 @@
 /.metadata/
+<<<<<<< HEAD
 /.classpath
 /.gitignore
+=======
+>>>>>>> 87e36bfd5e3b79304ef6420d7dbf4412c55fc269
 /.project
 /Files/
 /RemoteSystemsTempFiles/

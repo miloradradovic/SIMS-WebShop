@@ -62,12 +62,16 @@ public class Main {
 			e1.printStackTrace();
 		}*/
 		
+
 		//MainWindow ww = new MainWindow(app);
+
+		MainWindow ww = new MainWindow(app);
+
 		//RegisterWindow rw = new RegisterWindow(app);
 
 		//LoginWindow lw = new LoginWindow(app);
 
-		ArticleWindow aw = new ArticleWindow("123",app);
+		//ArticleWindow aw = new ArticleWindow("123",app);
 		
 		try
 		{
