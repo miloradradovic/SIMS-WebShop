@@ -54,7 +54,7 @@ public class LoginWindow extends WindowTemplate {
 
 		JLabel background = super.background;
 		super.background.setIcon(image);
-		
+
 		login_label = new JLabel("LOGIN");
 		login_label.setFont(new Font("Serif", Font.ITALIC, 30));
 		login_label.setBounds(screenWidth / 2 - 50, 200, 280, 40);
@@ -94,26 +94,34 @@ public class LoginWindow extends WindowTemplate {
 				String pass = password_field.getText();
 				Boolean found = false;
 				int jmbg = 0;
-				
-				Iterator<Korisnik> it = app.korisnici.iterator();
-				while (it.hasNext()) {
-					Korisnik kor = it.next();
-					if (kor.getKorisnickoIme().equals(user) && kor.getSifra().equals(pass)) {
-						found = true;
-						jmbg = kor.getJmbg();
-						break;
-					}
-				}
 
-				if (found) {
+				if (user.equals("cm") && pass.equals("cm")) {
 					dispose();
-					app.setAktivniKorisnik(TipKorisnika.ulogovanKorisnik);
-					app.setId(jmbg);
-					MainWindow ww = new MainWindow(app);
-				} else {
-					JOptionPane.showMessageDialog(null, "Korisnik ne postoji");
+					app.setAktivniKorisnik(TipKorisnika.menadzer);
+					new ContentManagerWindow(app);
 				}
 
+				else {
+					Iterator<Korisnik> it = app.korisnici.iterator();
+					while (it.hasNext()) {
+						Korisnik kor = it.next();
+						if (kor.getKorisnickoIme().equals(user) && kor.getSifra().equals(pass)) {
+							found = true;
+							jmbg = kor.getJmbg();
+							break;
+						}
+					}
+
+					if (found) {
+						dispose();
+						app.setAktivniKorisnik(TipKorisnika.ulogovanKorisnik);
+						app.setId(jmbg);
+						MainWindow ww = new MainWindow(app);
+					} else {
+						JOptionPane.showMessageDialog(null, "Korisnik ne postoji");
+					}
+
+				}
 			}
 		});
 
@@ -139,8 +147,8 @@ public class LoginWindow extends WindowTemplate {
 		background.add(next_button);
 		background.add(cancel_button);
 
-		//this.add(background);
-		//this.setVisible(true);
+		// this.add(background);
+		// this.setVisible(true);
 
 		/*
 		 * addWindowListener(new WindowAdapter() {
@@ -177,7 +185,7 @@ public class LoginWindow extends WindowTemplate {
 		next_button.hide();
 		cancel_button.hide();
 	}
-	
+
 	@Override
 	void attributesAppear() {
 		login_label.show();
@@ -188,5 +196,5 @@ public class LoginWindow extends WindowTemplate {
 		next_button.show();
 		cancel_button.show();
 	}
-	
+
 }

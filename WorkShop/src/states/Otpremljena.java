@@ -35,7 +35,7 @@ public class Otpremljena extends StanjePorudzbine {
 
 	@Override
 	public String toString() {
-		return "Otpremljena []";
+		return "Otpremljena";
 	}
 	
 

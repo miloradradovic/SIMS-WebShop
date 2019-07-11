@@ -300,6 +300,5 @@ public void kupiStavke() throws ParseException
 		this.korpa = korpa;
 	}
    
-   
 
 }

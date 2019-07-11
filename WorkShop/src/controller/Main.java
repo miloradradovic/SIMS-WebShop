@@ -2,6 +2,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import classes.Porudzbina;
 import model.Aplikacija;
 import view.MainWindow;
 
@@ -52,12 +53,10 @@ public class Main {
 		}*/
 		
 
-		MainWindow ww = new MainWindow(app);
 		
-
 		//MainWindow ww = new MainWindow(app);
 		
-		/*Porudzbina poru = new Porudzbina();
+		Porudzbina poru = new Porudzbina();
 		poru.setBrojPor(0);
 		Porudzbina poru1 = new Porudzbina();
 		poru1.setBrojPor(1);
@@ -65,7 +64,8 @@ public class Main {
 		app.porudzbine.add(poru);
 		app.porudzbine.add(poru1);
 
-		ContentManagerWindow cmw = new ContentManagerWindow(app);*/
+		MainWindow ww = new MainWindow(app);
+		//ContentManagerWindow cmw = new ContentManagerWindow(app);
 		
 		//RegisterWindow rw = new RegisterWindow(app);
 
