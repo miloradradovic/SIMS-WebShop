@@ -38,6 +38,7 @@ public class ArticleWindow extends JFrame {
 	private static final long serialVersionUID = 4L;
 	JLabel globus_label;
 	JLabel globus_label2;
+	JPanel panel;
 	JScrollPane js;
 	JLabel shops_label;
 	JLabel login_label;
@@ -445,9 +446,288 @@ public class ArticleWindow extends JFrame {
 			}
 		});
 		
-	}
+		MouseListener category_press = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getSource();
+				JOptionPane.showMessageDialog(null, "treba proslediti argument trazenja: " + lbl.getText());
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		for (JLabel lbl : kategorijeLabele) {
+			lbl.addMouseListener(category_press);
+		}
+
+		MouseListener panel_moved = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				java.awt.Point p = new java.awt.Point(e.getLocationOnScreen());
+				SwingUtilities.convertPointFromScreen(p, e.getComponent());
+				if (e.getComponent().contains(p)) {
+					return;
+				}
+				background.remove(panel);
+				attributesAppear();
+				repaint();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		// listener za omogucavanje otvaranja panela pri prolasku misa
+		MouseListener mouse_moved = new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getSource();
+				attributesDissapear();
+				// ArrayList<JLabel> subcategoriesLabels = new ArrayList<JLabel>();
+				panel = new JPanel();
+				panel.setBounds(0, 120, Toolkit.getDefaultToolkit().getScreenSize().width, 450);
+				panel.setCursor(Cursor.getDefaultCursor());
+				panel.addMouseListener(panel_moved);
+				panel.setLayout(null);
+
+				for (Kategorija kat : app.kategorije) {
+					if (kat.getNaziv().equalsIgnoreCase(lbl.getText())) {
+						int width_movement = 70;
+						for (Kategorija kat_ : kat.kategorijaB) {
+							int height_movement = 20;
+							JLabel subcategoryLabel = new JLabel(kat_.getNaziv());
+							subcategoryLabel.setBounds(width_movement, height_movement, 150, 35);
+							subcategoryLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+							subcategoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+							subcategories.add(subcategoryLabel);
+							for (Kategorija kat__ : kat_.kategorijaB) {
+								height_movement += 40;
+								JLabel subcategoryLabel2 = new JLabel(kat__.getNaziv());
+								subcategoryLabel2.setBounds(width_movement, height_movement, 150, 25);
+								subcategoryLabel2.setFont(new Font("Serif", Font.PLAIN, 15));
+								subcategoryLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+								subcategories2.add(subcategoryLabel2);
+								panel.add(subcategoryLabel2);
+							}
+							panel.add(subcategoryLabel);
+							width_movement += 200;
+						}
+					}
+				}
+
+				for (JLabel lbl_ : subcategories) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				for (JLabel lbl_ : subcategories2) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				background.add(panel);
+				repaint();
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!((e.getX() > -2 && e.getX() < 81) && (e.getY() >= 35 && e.getY() < 45))) {
+					background.remove(panel);
+					attributesAppear();
+					repaint();
+				}
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		MouseListener login_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				LoginWindow loginWin = new LoginWindow(app);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		MouseListener register_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				RegisterWindow regWin = new RegisterWindow(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
 		
+		register_label.addMouseListener(register_clicked);
+
+		login_label.addMouseListener(login_clicked);
+
+		for (JLabel lbl : kategorijeLabele) {
+			lbl.addMouseListener(mouse_moved);
+		}
+
+	}
+	// *--------------------------------------------------------------*//
 	
+	void attributesDissapear() {
+		articlePic.hide();
+		articleName.hide();
+		articleId.hide();
+		articlePrice.hide();
+		articleColor.hide();
+		addCart.hide();
+		addWishList.hide();
+		//number.hide();
+		naziv.hide();
+		cena.hide();
+		sifra.hide();
+		boja.hide();
+		uzeto.hide();
+		brojUzetih.hide();
+		vrednost.hide();
+		plus.hide();
+		minus.hide();
+		pozoviProdavnice.hide();
+		globus_label2.hide();
+	}
+	
+	void attributesAppear() {
+		articlePic.show();
+		articleName.show();
+		articleId.show();
+		articlePrice.show();
+		articleColor.show();
+		addCart.show();
+		addWishList.show();
+		//number.show();
+		naziv.show();
+		cena.show();
+		sifra.show();
+		boja.show();
+		uzeto.show();
+		brojUzetih.show();
+		vrednost.show();
+		plus.show();
+		minus.show();
+		pozoviProdavnice.show();
+		globus_label2.show();
+	}
+			
 	@SuppressWarnings("unused")
 	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
