@@ -152,7 +152,6 @@ public class SearchArticleWindow extends WindowTemplate{
         splitPane.getRightComponent().setMinimumSize(minimumSizeR);
         
     /*---------------------------------------------------------------------------*/
-        background.add(selected);
         background.add(splitPane);
 
         this.addActionListener(app);
@@ -179,13 +178,11 @@ public class SearchArticleWindow extends WindowTemplate{
 	@Override
 	void attributesDissapear() {
 		splitPane.hide();
-		selected.hide();
 	}
 	@SuppressWarnings("deprecation")
 	@Override
 	void attributesAppear() {
 		splitPane.show();
-		selected.show();
 	}
 	
 	void addActionListener(Aplikacija app) {
