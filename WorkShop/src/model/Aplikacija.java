@@ -41,6 +41,8 @@ public class Aplikacija {
 	   this.kategorije = new ArrayList<Kategorija>();
 	   this.prodavnice = new ArrayList<Prodavnica>();
 	   this.porudzbine = new ArrayList<Porudzbina>();
+	   this.id = 0;
+	   this.aktivniKorisnik = TipKorisnika.neulogovanKorisnik;
 	   
 	   try{
 		   ucitajIzFajla(); 

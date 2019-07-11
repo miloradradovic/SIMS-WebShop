@@ -38,6 +38,7 @@ public class ArticleWindow extends JFrame {
 	private static final long serialVersionUID = 4L;
 	JLabel globus_label;
 	JLabel globus_label2;
+	JPanel panel;
 	JScrollPane js;
 	JLabel shops_label;
 	JLabel login_label;
@@ -278,42 +279,501 @@ public class ArticleWindow extends JFrame {
 						break;
 					}
 				}
-				if(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik){
-					s.setArtikl(a);
-					s.setKolicina(Integer.parseInt(vrednost.getText()));
-					boolean nadjena = false;
-					int indeks = 0;
-					for(int i = 0;i<app.korpe.size();i++){
-						if(app.korpe.get(i).getIdNeulog()==0){
-							nadjena = true;
-							indeks = i;
-							break;
+				if(a.getStanje() == 0){
+					JOptionPane.showMessageDialog(null, "Nema vise artikla u magacinu.");
+				}else{
+					if(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik){
+						s.setArtikl(a);
+						s.setKolicina(Integer.parseInt(vrednost.getText()));
+						boolean nadjena = false;
+						int indeks = 0;
+						for(int i = 0;i<app.korpe.size();i++){
+							if(app.korpe.get(i).getIdNeulog()==0){
+								nadjena = true;
+								indeks = i;
+								break;
+							}
+						}
+						
+						if(nadjena == true){
+							if(a.getStanje()<s.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
+							}else{
+								app.korpe.get(indeks).dodajStavku(s);
+								for(Artikl a1:app.artikli){
+									if(a1.getSifra().equals(articleid)){
+										a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+										break;
+									}
+								}
+								JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+							}
+						}else{
+							if(a.getStanje()<s.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
+							}else{
+								Korpa k = new Korpa();
+								k.setIdNeulog(app.getId());
+								k.dodajStavku(s);
+								app.korpe.add(k);
+								for(Artikl a1:app.artikli){
+									if(a1.getSifra().equals(articleid)){
+										a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+										break;
+									}
+								}
+								JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+							}
+						}
+					}else{
+						for(Korisnik k:app.korisnici){
+							if(k.getJmbg()==app.getId()){
+								s.setArtikl(a);
+								s.setKolicina(Integer.parseInt(vrednost.getText()));
+								boolean nadjena = false;
+								int indeks = 0;
+								for(int i = 0;i<app.korpe.size();i++){
+									if(app.korpe.get(i).getIdNeulog()==k.getJmbg()){
+										nadjena = true;
+										indeks = i;
+										break;
+									}
+								}
+								if(nadjena == true){
+									if(a.getStanje()<s.getKolicina()){
+										JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu.");
+									}else{
+										app.korpe.get(indeks).dodajStavku(s);
+										k.setKorpa(app.korpe.get(indeks));
+										for(Artikl a1:app.artikli){
+											if(a1.getSifra().equals(articleid)){
+												a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+												break;
+											}
+										}
+										JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+									}
+								}else{
+									if(a.getStanje()<s.getKolicina()){
+										JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
+									}else{
+										Korpa k2 = new Korpa();
+										k2.setIdNeulog(k.getJmbg());
+										k2.dodajStavku(s);
+										k.setKorpa(k2);
+										app.korpe.add(k2);
+										for(Artikl a1:app.artikli){
+											if(a1.getSifra().equals(articleid)){
+												a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+												break;
+											}
+										}
+										JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+									}
+								}
+							}
 						}
 					}
 					
-					if(nadjena == true){
-						app.korpe.get(indeks).dodajStavku(s);
-					}else{
-						Korpa k = new Korpa();
-						k.setIdNeulog(app.getId());
-						k.dodajStavku(s);
-						app.korpe.add(k);
+				}
+			}
+				  
+	    });  
+		
+		addWishList.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				
+				if(app.getAktivniKorisnik()==TipKorisnika.neulogovanKorisnik){
+					JOptionPane.showMessageDialog(null, "Neulogovan korisnik nema pravo na ovu opciju.");
+				}
+				
+				for(Korisnik k:app.korisnici){
+					if(k.getJmbg()==app.getId()){
+						for(Artikl a1:app.artikli){
+							if(a1.getSifra().equals(articleid)){
+								boolean uspesnost = k.getListaZelja().add(a1);
+								if(uspesnost){
+									JOptionPane.showMessageDialog(null, "Artikl uspesno dodat");
+								}else{
+									JOptionPane.showMessageDialog(null, "Neuspesno dodavanje. Artikl vec postoji.");
+								}
+								break;
+							}
+						break;
 					}
+				}	
+				}
+			}
+		});
+		
+		MouseListener tiny_house_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new MainWindow(app);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+		globus_label.addMouseListener(tiny_house_clicked);
+		globus_label2.addMouseListener(tiny_house_clicked);
+		
+		plus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				Artikl trenutni = new Artikl();
+				for(Artikl a:app.artikli){
+					if(a.getSifra().equals(articleid)){
+						trenutni = a;
+						break;
+					}
+				}
+				int trenutna = Integer.parseInt(vrednost.getText());
+				int trenutna3 = trenutna + 1;
+				if(trenutna3 > trenutni.getStanje()){
+					JOptionPane.showMessageDialog(null, "Prekoracili ste broj artikla u magacinu.");
 				}else{
-					for(Korisnik k:app.korisnici){
-						if(k.getJmbg()==app.getId()){
-							
+					trenutna = trenutna + 1;
+					int trenutna2 = Integer.parseInt(brojUzetih.getText());
+					trenutna2 = trenutna2 + 1;
+					vrednost.setText(Integer.toString(trenutna));
+					brojUzetih.setText(Integer.toString(trenutna2));
+				}
+			}
+		});
+	
+		minus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				Artikl trenutni = new Artikl();
+				for(Artikl a:app.artikli){
+					if(a.getSifra().equals(articleid)){
+						trenutni = a;
+						break;
+					}
+				}
+				int trenutna = Integer.parseInt(vrednost.getText());
+				int trenutna2 = Integer.parseInt(brojUzetih.getText());
+				if(trenutna == 1){
+					JOptionPane.showMessageDialog(null, "Ne moze manje.");
+				}else{
+					trenutna = trenutna - 1;
+					trenutna2 = trenutna2 - 1;
+					vrednost.setText(Integer.toString(trenutna));
+					brojUzetih.setText(Integer.toString(trenutna2));
+				}
+			}
+		});
+		
+		MouseListener category_press = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getSource();
+				JOptionPane.showMessageDialog(null, "treba proslediti argument trazenja: " + lbl.getText());
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		for (JLabel lbl : kategorijeLabele) {
+			lbl.addMouseListener(category_press);
+		}
+
+		MouseListener panel_moved = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				java.awt.Point p = new java.awt.Point(e.getLocationOnScreen());
+				SwingUtilities.convertPointFromScreen(p, e.getComponent());
+				if (e.getComponent().contains(p)) {
+					return;
+				}
+				background.remove(panel);
+				attributesAppear();
+				repaint();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		// listener za omogucavanje otvaranja panela pri prolasku misa
+		MouseListener mouse_moved = new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel lbl = (JLabel) e.getSource();
+				attributesDissapear();
+				// ArrayList<JLabel> subcategoriesLabels = new ArrayList<JLabel>();
+				panel = new JPanel();
+				panel.setBounds(0, 120, Toolkit.getDefaultToolkit().getScreenSize().width, 450);
+				panel.setCursor(Cursor.getDefaultCursor());
+				panel.addMouseListener(panel_moved);
+				panel.setLayout(null);
+
+				for (Kategorija kat : app.kategorije) {
+					if (kat.getNaziv().equalsIgnoreCase(lbl.getText())) {
+						int width_movement = 70;
+						for (Kategorija kat_ : kat.kategorijaB) {
+							int height_movement = 20;
+							JLabel subcategoryLabel = new JLabel(kat_.getNaziv());
+							subcategoryLabel.setBounds(width_movement, height_movement, 150, 35);
+							subcategoryLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+							subcategoryLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+							subcategories.add(subcategoryLabel);
+							for (Kategorija kat__ : kat_.kategorijaB) {
+								height_movement += 40;
+								JLabel subcategoryLabel2 = new JLabel(kat__.getNaziv());
+								subcategoryLabel2.setBounds(width_movement, height_movement, 150, 25);
+								subcategoryLabel2.setFont(new Font("Serif", Font.PLAIN, 15));
+								subcategoryLabel2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+								subcategories2.add(subcategoryLabel2);
+								panel.add(subcategoryLabel2);
+							}
+							panel.add(subcategoryLabel);
+							width_movement += 200;
 						}
 					}
 				}
-				
-			}  
-	    });  
+
+				for (JLabel lbl_ : subcategories) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				for (JLabel lbl_ : subcategories2) {
+					lbl_.addMouseListener(category_press);
+				}
+
+				background.add(panel);
+				repaint();
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!((e.getX() > -2 && e.getX() < 81) && (e.getY() >= 35 && e.getY() < 45))) {
+					background.remove(panel);
+					attributesAppear();
+					repaint();
+				}
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		MouseListener login_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				LoginWindow loginWin = new LoginWindow(app);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		MouseListener register_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				RegisterWindow regWin = new RegisterWindow(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
 		
-		
+		register_label.addMouseListener(register_clicked);
+
+		login_label.addMouseListener(login_clicked);
+
+		for (JLabel lbl : kategorijeLabele) {
+			lbl.addMouseListener(mouse_moved);
+		}
+
 	}
-		
+	// *--------------------------------------------------------------*//
 	
+	void attributesDissapear() {
+		articlePic.hide();
+		articleName.hide();
+		articleId.hide();
+		articlePrice.hide();
+		articleColor.hide();
+		addCart.hide();
+		addWishList.hide();
+		//number.hide();
+		naziv.hide();
+		cena.hide();
+		sifra.hide();
+		boja.hide();
+		uzeto.hide();
+		brojUzetih.hide();
+		vrednost.hide();
+		plus.hide();
+		minus.hide();
+		pozoviProdavnice.hide();
+		globus_label2.hide();
+	}
+	
+	void attributesAppear() {
+		articlePic.show();
+		articleName.show();
+		articleId.show();
+		articlePrice.show();
+		articleColor.show();
+		addCart.show();
+		addWishList.show();
+		//number.show();
+		naziv.show();
+		cena.show();
+		sifra.show();
+		boja.show();
+		uzeto.show();
+		brojUzetih.show();
+		vrednost.show();
+		plus.show();
+		minus.show();
+		pozoviProdavnice.show();
+		globus_label2.show();
+	}
+			
 	@SuppressWarnings("unused")
 	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
