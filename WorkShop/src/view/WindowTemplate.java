@@ -38,7 +38,7 @@ public abstract class WindowTemplate extends JFrame {
 	JLabel shops_label;
 	JLabel cart_label;
 	JPanel panel;
-	JLabel logout_label, profile_label;
+	JLabel logout_label, profile_label, orders;
 	ArrayList<JLabel> subcategories = new ArrayList<JLabel>();
 	ArrayList<JLabel> subcategories2 = new ArrayList<JLabel>();
 	// labele - kategorije
@@ -106,6 +106,13 @@ public abstract class WindowTemplate extends JFrame {
 		search_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		search_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
+		// *------------------------------------------*//
+
+		// dodavanje labele za porudzbine
+		orders = new JLabel("Orders");
+		orders.setBounds(120, 10, 80, 30);
+		orders.setFont(new Font("Serif", Font.PLAIN, 17));
+		orders.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
 		// dodavanje register_labela za registraciju
@@ -177,6 +184,7 @@ public abstract class WindowTemplate extends JFrame {
 		// *------------------------------------------*//
 
 		// dodavanje stvari u background
+		background.add(orders);
 		background.add(profile_label);
 		background.add(logout_label);
 		background.add(jsep);
@@ -200,13 +208,15 @@ public abstract class WindowTemplate extends JFrame {
 		this.setVisible(true);
 
 		addActionListeners(app);
-		
 
-		 addWindowListener(new WindowAdapter() { 
-		 @Override public void windowClosing(WindowEvent e) { dispose();} });
-		
-		 checkUser(app);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dispose();
+			}
+		});
 
+		checkUser(app);
 
 	}
 
@@ -214,8 +224,8 @@ public abstract class WindowTemplate extends JFrame {
 		if (!(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik)) {
 			login_label.hide();
 			register_label.hide();
-		}
-		else {
+		} else {
+			orders.hide();
 			profile_label.hide();
 			logout_label.hide();
 		}
@@ -236,6 +246,81 @@ public abstract class WindowTemplate extends JFrame {
 	}
 
 	void addActionListeners(Aplikacija app) {
+
+		MouseListener logout_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				app.setAktivniKorisnik(TipKorisnika.neulogovanKorisnik);
+				dispose();
+				new MainWindow(app);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		logout_label.addMouseListener(logout_clicked);
+
+		MouseListener orders_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new ContentManagerWindow(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		orders.addMouseListener(orders_clicked);
+
 		// listener za mouse drag preko kategorije - labele iz atributa
 		MouseListener category_press = new MouseListener() {
 

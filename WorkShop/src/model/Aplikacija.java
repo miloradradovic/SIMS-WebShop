@@ -627,5 +627,14 @@ public class Aplikacija {
 		pwProdavnica.close();
 		pwPorudzbina.close();	
 	}
+	
+	   public Korisnik getFromJmbg(int jmbg) {
+		   for (Korisnik kor: this.korisnici) {
+			   if (kor.getJmbg() == jmbg) {
+				   return kor;
+			   }
+		   }
+		   return null;
+	   }
 
 }
