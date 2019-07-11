@@ -726,6 +726,40 @@ public class ArticleWindow extends JFrame {
 		for (JLabel lbl : kategorijeLabele) {
 			lbl.addMouseListener(mouse_moved);
 		}
+		MouseListener cart_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				CartView cv = new CartView(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		cart_label.addMouseListener(cart_clicked);
 
 	}
 	// *--------------------------------------------------------------*//

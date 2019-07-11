@@ -72,9 +72,9 @@ public class Main {
 
 		//LoginWindow lw = new LoginWindow(app);
 
-		//ArticleWindow aw = new ArticleWindow("123",app);
+		ArticleWindow aw = new ArticleWindow("123",app);
 		
-		SearchWindow sw = new SearchWindow(app, "Kinder");
+		//SearchWindow sw = new SearchWindow(app, "Kinder");
 		
 		try
 		{

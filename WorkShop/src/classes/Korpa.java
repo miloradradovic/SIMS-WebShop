@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import states.StanjeKorpe;
+import states.UPripremi;
 
 /** @pdOid f37af365-20a5-4d98-8658-a5bfca0ff05d */
 public class Korpa {
@@ -22,7 +23,11 @@ public class Korpa {
    public Porudzbina porudzbina;
    //porudzbina koja se pravi od ove korpe, dok se porudzbina ne napravi ona je null
    
-   public Korpa() {}   
+   public Korpa() {
+	   this.trenutnoStanje = new UPripremi(this);
+	   this.stavka = new ArrayList<Stavka>();
+	   this.idNeulog = 0;
+   }   
    
    public Korpa(int idNeulog, ArrayList<Stavka> stavka)
    {
@@ -30,6 +35,7 @@ public class Korpa {
 	this.idNeulog = idNeulog;
 	this.stavka = stavka;
 	this.porudzbina = null;
+	this.trenutnoStanje = new UPripremi(this);
    }
    
    public Boolean umanjiStavku(Stavka stavka)
