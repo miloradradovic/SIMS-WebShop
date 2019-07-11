@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 
 import classes.Kategorija;
 import classes.Korisnik;
+import enums.TipKorisnika;
 import model.Aplikacija;
 
 public class LoginWindow extends WindowTemplate {
@@ -104,6 +105,7 @@ public class LoginWindow extends WindowTemplate {
 
 				if (found) {
 					dispose();
+					app.setAktivniKorisnik(TipKorisnika.ulogovanKorisnik);
 					MainWindow ww = new MainWindow(app);
 				} else {
 					JOptionPane.showMessageDialog(null, "Korisnik ne postoji");

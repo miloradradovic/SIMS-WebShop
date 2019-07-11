@@ -1,21 +1,11 @@
 package controller;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import classes.Adresa;
-import classes.Artikl;
-import classes.Grad;
-import classes.Korisnik;
-import classes.Korpa;
 import classes.Porudzbina;
-import enums.Pol;
 import model.Aplikacija;
-import view.LoginWindow;
-import view.MainWindow;
-import view.RegisterWindow;
-import view.SearchWindow;
-import view.ArticleWindow;
+import states.Otpremljena;
+import view.ContentManagerWindow;
 
 public class Main {
 
@@ -67,12 +57,23 @@ public class Main {
 		//MainWindow ww = new MainWindow(app);
 
 		//MainWindow ww = new MainWindow(app);
+		
+		Porudzbina poru = new Porudzbina();
+		poru.setBrojPor(0);
+		poru.setStanje(new Otpremljena(app));
+		Porudzbina poru1 = new Porudzbina();
+		poru1.setBrojPor(1);
+		poru1.setStanje(new Otpremljena(app));
+		app.porudzbine.add(poru);
+		app.porudzbine.add(poru1);
 
+		ContentManagerWindow cmw = new ContentManagerWindow(app);
+		
 		//RegisterWindow rw = new RegisterWindow(app);
 
 		//LoginWindow lw = new LoginWindow(app);
 
-		ArticleWindow aw = new ArticleWindow("123",app);
+		//ArticleWindow aw = new ArticleWindow("123",app);
 		
 		//SearchWindow sw = new SearchWindow(app, "Kinder");
 		
@@ -81,7 +82,7 @@ public class Main {
 			app.sacuvajUFajl(fajlovi);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import classes.Kategorija;
+import enums.TipKorisnika;
 import model.Aplikacija;
 
 public abstract class WindowTemplate extends JFrame {
@@ -35,6 +36,7 @@ public abstract class WindowTemplate extends JFrame {
 	JLabel shops_label;
 	JLabel cart_label;
 	JPanel panel;
+	JLabel logout_label, profile_label;
 	ArrayList<JLabel> subcategories = new ArrayList<JLabel>();
 	ArrayList<JLabel> subcategories2 = new ArrayList<JLabel>();
 	// labele - kategorije
@@ -65,8 +67,8 @@ public abstract class WindowTemplate extends JFrame {
 		background = new JLabel(image3);
 		// *----------------------------------------*//
 		JSeparator jsep = new JSeparator();
-		jsep.setBounds(5, 110 , screenWidth , 1);
-		
+		jsep.setBounds(5, 110, screenWidth, 1);
+
 		// ucitavanje svih kategorija u labele
 		// dodavanje u background radi prikaza
 		// TODO: mozda bi bilo pametno ograditi se na maksimalan broj prvih kategorija
@@ -96,7 +98,6 @@ public abstract class WindowTemplate extends JFrame {
 		Image image_tmp = getScaledImage(image.getImage(), screenWidth - 40, 600);
 		image.setImage(image_tmp);
 
-
 		// dodavanje text_fielda za search
 		search_field = new JTextField("Search");
 		search_field.setBounds(screenWidth / 2 - 250, 70, 500, 50);
@@ -112,11 +113,25 @@ public abstract class WindowTemplate extends JFrame {
 		register_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
-		// dodavanje register_labela za registraciju
+		// dodavanje logout_labela za registraciju
+		logout_label = new JLabel("Logout");
+		logout_label.setBounds(screenWidth - 285, 10, 60, 30);
+		logout_label.setFont(new Font("Serif", Font.PLAIN, 17));
+		logout_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+
+		// dodavanje login_labela za registraciju
 		login_label = new JLabel("Log in");
 		login_label.setBounds(screenWidth - 215, 10, 60, 30);
 		login_label.setFont(new Font("Serif", Font.PLAIN, 17));
 		login_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+
+		// dodavanje profile_labela za registraciju
+		profile_label = new JLabel("Profile");
+		profile_label.setBounds(screenWidth - 215, 10, 60, 30);
+		profile_label.setFont(new Font("Serif", Font.PLAIN, 17));
+		profile_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
 		// izmedju register i login
@@ -159,9 +174,9 @@ public abstract class WindowTemplate extends JFrame {
 		location_pic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
-	
-
 		// dodavanje stvari u background
+		background.add(profile_label);
+		background.add(logout_label);
 		background.add(jsep);
 		background.add(location_pic);
 		background.add(shops_label);
@@ -183,7 +198,20 @@ public abstract class WindowTemplate extends JFrame {
 		this.setVisible(true);
 
 		addActionListeners(app);
+		
+		checkUser(app);
 
+	}
+
+	public void checkUser(Aplikacija app) {
+		if (!(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik)) {
+			login_label.hide();
+			register_label.hide();
+		}
+		else {
+			profile_label.hide();
+			logout_label.hide();
+		}
 	}
 
 	// Pronasao sam na internetu ovu zgodnu metodicu za skaliranje slike na
@@ -428,42 +456,42 @@ public abstract class WindowTemplate extends JFrame {
 			}
 
 		};
-		
+
 		MouseListener tiny_house_clicked = new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				new MainWindow(app);
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		};
-		
+
 		globus_label.addMouseListener(tiny_house_clicked);
 
 		register_label.addMouseListener(register_clicked);
@@ -476,11 +504,11 @@ public abstract class WindowTemplate extends JFrame {
 
 	}
 	// *--------------------------------------------------------------*//
-	
+
 	void attributesDissapear() {
-		
+
 	}
-	
+
 	void attributesAppear() {
 
 	}

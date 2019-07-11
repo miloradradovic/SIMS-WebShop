@@ -56,4 +56,9 @@ public class UPripremi extends StanjeKorpe {
 	      return kontekst.stavka.iterator();
 	   }
 
+	@Override
+	public String toString() {
+		return "UPripremi []";
+	}
+	
 }

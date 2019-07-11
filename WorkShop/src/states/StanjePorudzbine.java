@@ -14,4 +14,6 @@ public abstract class StanjePorudzbine {
 	public StanjePorudzbine(Aplikacija aKontekst) {
 		kontekst = aKontekst;		
 	}
+	
+	
 }
