@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -24,6 +26,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import classes.Artikl;
 import classes.Kategorija;
 import classes.Korisnik;
 import classes.Korpa;
@@ -49,6 +52,8 @@ public class CartView extends WindowTemplate {
 	ArrayList<JLabel> labeleArtikliDinari2 = new ArrayList<JLabel>();
 	ArrayList<JLabel> labeleArtikliCenaJedinicna = new ArrayList<JLabel>();
 	ArrayList<JLabel> labeleArtikliCenaKonacna = new ArrayList<JLabel>();
+	ArrayList<Artikl> artikliA = new ArrayList<Artikl>();
+	ArrayList<Integer> kolicine = new ArrayList<Integer>();
 	JRadioButton credit_card, cash;
 	JButton poruci;
 	
@@ -77,6 +82,8 @@ public class CartView extends WindowTemplate {
 					int dimenzijaSlike1 = screenWidth/2 - 700;
 				    int dimenzijaSlike2 = 200;
 					for(Stavka s:k.getStavka()){
+						artikliA.add(s.getArtikl());
+						kolicine.add(s.getKolicina());
 						JLabel labelaSlika = new JLabel(s.getArtikl().getSlika());
 						JLabel labelaNaziv = new JLabel(s.getArtikl().getNaziv());
 						JLabel labelaBoja = new JLabel(s.getArtikl().getBoja().toString());
@@ -307,6 +314,51 @@ public class CartView extends WindowTemplate {
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.setContentPane(js);
 		this.setVisible(true);
+		
+		for(int i = 0;i<labeleArtikliVrednost.size();i++){
+			labeleArtikliMinus.get(i).addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg0){
+					int pos = labeleArtikliMinus.indexOf(arg0.getSource());
+					if(Integer.parseInt(labeleArtikliVrednost.get(pos).getText())==1){
+						JOptionPane.showMessageDialog(null, "Ne moze manje.");
+					}else{
+						int trenutnaJedinicna = Integer.parseInt(labeleArtikliCenaJedinicna.get(pos).getText());
+						int trenutna = Integer.parseInt(labeleArtikliVrednost.get(pos).getText());
+						trenutna = trenutna-1;
+						labeleArtikliVrednost.get(pos).setText(Integer.toString(trenutna));
+						int trenutnaUkupna = Integer.parseInt(labeleArtikliCenaKonacna.get(pos).getText());
+						trenutnaUkupna = trenutna*trenutnaJedinicna;
+						labeleArtikliCenaKonacna.get(pos).setText(Integer.toString(trenutnaUkupna));
+						for(Artikl a:app.artikli){
+							if(a.getSifra().equals(artikliA.get(pos).getSifra())){
+								a.setStanje(a.getStanje()+1);
+							}
+						}
+					}
+				}
+			});
+			labeleArtikliPlus.get(i).addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg0){
+					int pos = labeleArtikliPlus.indexOf(arg0.getSource());
+					if(Integer.parseInt(labeleArtikliVrednost.get(pos).getText())==kolicine.get(pos)){
+						JOptionPane.showMessageDialog(null, "Ne moze vise.");
+					}else{
+						int trenutnaJedinicna = Integer.parseInt(labeleArtikliCenaJedinicna.get(pos).getText());
+						int trenutnaVrednost = Integer.parseInt(labeleArtikliVrednost.get(pos).getText());
+						int trenutnaUkupna = Integer.parseInt(labeleArtikliCenaKonacna.get(pos).getText());
+						trenutnaVrednost = trenutnaVrednost+1;
+						trenutnaUkupna = trenutnaVrednost*trenutnaJedinicna;
+						labeleArtikliVrednost.get(pos).setText(Integer.toString(trenutnaVrednost));
+						labeleArtikliCenaKonacna.get(pos).setText(Integer.toString(trenutnaUkupna));
+						for(Artikl a:app.artikli){
+							if(a.getSifra().equals(artikliA.get(pos).getSifra())){
+								a.setStanje(a.getStanje()-1);
+							}
+						}
+					}
+				}
+			});
+		}
 		
 		
 	}
