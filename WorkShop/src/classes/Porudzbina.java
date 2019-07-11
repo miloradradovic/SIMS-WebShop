@@ -5,9 +5,10 @@ package classes;
  * Purpose: Defines the Class Porudzbina
  ***********************************************************************/
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
 
-import states.Stanje;
+import states.StanjePorudzbine;
 
 /** @pdOid fbfb16eb-b5ae-4029-9acf-de26d1336b66 */
 public class Porudzbina {
@@ -21,11 +22,11 @@ public class Porudzbina {
    public HashMap<String, Integer> Cene;
    
    /** @pdRoleInfo migr=no name=Stanje assc=association24 mult=1..1 */
-   public Stanje stanje;
+   public StanjePorudzbine stanje;
    
    public Porudzbina() {}
    
-	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, Stanje stanje) 
+	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, StanjePorudzbine stanje) 
 	{
 	super();
 	this.brojPor = brojPor;
@@ -54,10 +55,10 @@ public class Porudzbina {
 		this.datumPorucivanja = datumPorucivanja;
 	}
 	
-	public Stanje getStanje() {
+	public StanjePorudzbine getStanje() {
 		return stanje;
 	}
-	public void setStanje(Stanje stanje) {
+	public void setStanje(StanjePorudzbine stanje) {
 		this.stanje = stanje;
 	}
 	public HashMap<String, Integer> getCene() {

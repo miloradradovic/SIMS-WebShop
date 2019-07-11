@@ -5,15 +5,22 @@ package classes;
  * Purpose: Defines the Class Korpa
  ***********************************************************************/
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import states.StanjeKorpe;
 
 /** @pdOid f37af365-20a5-4d98-8658-a5bfca0ff05d */
 public class Korpa {
    /** @pdOid c01ca2ae-dfc8-427b-9cc2-8add3e1271f7 */
    private int idNeulog;
+   StanjeKorpe trenutnoStanje;
    
    /** @pdRoleInfo migr=no name=Stavka assc=association16 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public ArrayList<Stavka> stavka;
+   
+   public Porudzbina porudzbina;
+   //porudzbina koja se pravi od ove korpe, dok se porudzbina ne napravi ona je null
    
    public Korpa() {}   
    
@@ -22,6 +29,7 @@ public class Korpa {
 	super();
 	this.idNeulog = idNeulog;
 	this.stavka = stavka;
+	this.porudzbina = null;
    }
    
    public Boolean umanjiStavku(Stavka stavka)
@@ -63,25 +71,11 @@ public class Korpa {
    /** @pdGenerated default add
      * @param newStavka */
    public Boolean dodajStavku(Stavka newStavka) {
-      if (newStavka == null)
-         return false;
-      if (this.stavka == null)
-         this.stavka = new ArrayList<Stavka>();
-      if (!this.stavka.contains(newStavka))
-         this.stavka.add(newStavka);
-      else
-      {
-    	 Iterator<Stavka> it = getIteratorStavka();
-    	 while(it.hasNext())
-    	 {
-    		 if(it.next().getArtikl().equals(newStavka.getArtikl()))
-    		 {
-    			 it.next().setKolicina(it.next().getKolicina() + newStavka.getKolicina());
-    			 break;
-    		 }
-    	 }
+      this.trenutnoStanje.dodajStavku(newStavka);
+      if (this.stavka.contains(newStavka)) {
+    	  return true;
       }
-      return true;
+      return false;
    }
    
    /** @pdGenerated default remove
@@ -111,6 +105,14 @@ public class Korpa {
 	public void setIdNeulog(int idNeulog) {
 		this.idNeulog = idNeulog;
 	}
-
+	
+	public void izmeniStanje(StanjeKorpe novoStanje) {
+		
+	}
+	
+	public void napraviPorudzbinu() {
+		
+	}
+	
    
 }

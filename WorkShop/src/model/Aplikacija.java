@@ -1,14 +1,29 @@
 package model;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-import classes.*;
+import classes.Adresa;
+import classes.Artikl;
+import classes.Grad;
+import classes.Kategorija;
+import classes.Korisnik;
+import classes.Korpa;
+import classes.Porudzbina;
+import classes.Prodavnica;
+import classes.Stavka;
 import enums.Boja;
 import enums.Pol;
 import enums.TipKorisnika;
-import states.Stanje;
 
 /***********************************************************************
  * Module:  Aplikacija.java
