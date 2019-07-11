@@ -293,16 +293,39 @@ public class ArticleWindow extends JFrame {
 					
 					if(nadjena == true){
 						app.korpe.get(indeks).dodajStavku(s);
+						JOptionPane.showMessageDialog(null, "Uspesno dodato.");
 					}else{
 						Korpa k = new Korpa();
 						k.setIdNeulog(app.getId());
 						k.dodajStavku(s);
 						app.korpe.add(k);
+						JOptionPane.showMessageDialog(null, "Uspesno dodato.");
 					}
 				}else{
 					for(Korisnik k:app.korisnici){
 						if(k.getJmbg()==app.getId()){
-							
+							s.setArtikl(a);
+							s.setKolicina(Integer.parseInt(vrednost.getText()));
+							boolean nadjena = false;
+							int indeks = 0;
+							for(int i = 0;i<app.korpe.size();i++){
+								if(app.korpe.get(i).getIdNeulog()==k.getJmbg()){
+									nadjena = true;
+									indeks = i;
+									break;
+								}
+							}
+							if(nadjena == true){
+								app.korpe.get(indeks).dodajStavku(s);
+								k.setKorpa(app.korpe.get(indeks));
+							}else{
+								Korpa k2 = new Korpa();
+								k2.setIdNeulog(k.getJmbg());
+								k2.dodajStavku(s);
+								k.setKorpa(k2);
+								app.korpe.add(k2);
+								JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+							}
 						}
 					}
 				}
@@ -310,6 +333,117 @@ public class ArticleWindow extends JFrame {
 			}  
 	    });  
 		
+		addWishList.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				
+				if(app.getAktivniKorisnik()==TipKorisnika.neulogovanKorisnik){
+					JOptionPane.showMessageDialog(null, "Neulogovan korisnik nema pravo na ovu opciju.");
+				}
+				
+				for(Korisnik k:app.korisnici){
+					if(k.getJmbg()==app.getId()){
+						for(Artikl a1:app.artikli){
+							if(a1.getSifra().equals(articleid)){
+								boolean uspesnost = k.getListaZelja().add(a1);
+								if(uspesnost){
+									JOptionPane.showMessageDialog(null, "Artikl uspesno dodat");
+								}else{
+									JOptionPane.showMessageDialog(null, "Neuspesno dodavanje. Artikl vec postoji.");
+								}
+								break;
+							}
+						break;
+					}
+				}	
+				}
+			}
+		});
+		
+		MouseListener tiny_house_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new MainWindow(app);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+		globus_label.addMouseListener(tiny_house_clicked);
+		globus_label2.addMouseListener(tiny_house_clicked);
+		
+		plus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				Artikl trenutni = new Artikl();
+				for(Artikl a:app.artikli){
+					if(a.getSifra().equals(articleid)){
+						trenutni = a;
+						break;
+					}
+				}
+				int trenutna = Integer.parseInt(vrednost.getText());
+				int trenutna3 = trenutna + 1;
+				if(trenutna3 > trenutni.getStanje()){
+					JOptionPane.showMessageDialog(null, "Prekoracili ste broj artikla u magacinu.");
+				}else{
+					trenutna = trenutna + 1;
+					int trenutna2 = Integer.parseInt(brojUzetih.getText());
+					trenutna2 = trenutna2 + 1;
+					vrednost.setText(Integer.toString(trenutna));
+					brojUzetih.setText(Integer.toString(trenutna2));
+				}
+			}
+		});
+	
+		minus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0){
+				Artikl trenutni = new Artikl();
+				for(Artikl a:app.artikli){
+					if(a.getSifra().equals(articleid)){
+						trenutni = a;
+						break;
+					}
+				}
+				int trenutna = Integer.parseInt(vrednost.getText());
+				int trenutna2 = Integer.parseInt(brojUzetih.getText());
+				if(trenutna == 1){
+					JOptionPane.showMessageDialog(null, "Ne moze manje.");
+				}else{
+					trenutna = trenutna - 1;
+					trenutna2 = trenutna2 - 1;
+					vrednost.setText(Integer.toString(trenutna));
+					brojUzetih.setText(Integer.toString(trenutna2));
+				}
+			}
+		});
 		
 	}
 		
