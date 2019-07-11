@@ -33,7 +33,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import enums.Boja;
 import model.Aplikacija;
 
-public class SearchWindow extends WindowTemplate{
+public class SearchArticleWindow extends WindowTemplate{
 
 	private static final long serialVersionUID = 10L;
 	JTree tree;
@@ -42,7 +42,7 @@ public class SearchWindow extends WindowTemplate{
 	
 	ArrayList<JLabel> labels = new ArrayList<JLabel>();
 
-	public SearchWindow(Aplikacija app, String parametar) {
+	public SearchArticleWindow(Aplikacija app, String parametar) {
 		super(app);
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -56,20 +56,18 @@ public class SearchWindow extends WindowTemplate{
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
    /*---------------------------------------------------------------------------*/
-		selected = new JLabel(parametar);
-		selected.setBounds(screenWidth/2, 125, 150, 25);
-		selected.setFont(new Font("Serif", Font.PLAIN, 25));
-		selected.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	/*---------------------------------------------------------------------------*/
 		GridLayout flow = new GridLayout(0, 5, 10, 50);
 
 		JPanel panel = new JPanel(); 
 		
 		panel.setLayout(flow);
 		
+		DefaultMutableTreeNode top =  new DefaultMutableTreeNode("Root");
+		DefaultMutableTreeNode kategorien = new DefaultMutableTreeNode("Kategorien");
+		
 		for(int i = 0; i < app.artikli.size(); i++)
 		{
-			if(app.artikli.get(i).getKategorija().getNaziv().contains(parametar)) 
+			if(app.artikli.get(i).getNaziv().contains(parametar)) 
 			{
 				Container pane =  new Container();
 				pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
@@ -91,25 +89,21 @@ public class SearchWindow extends WindowTemplate{
 				labels.add(articleId);
 				
 				panel.add(pane);
-			}
-			
-		}
-		
-			
-	/*---------------------------------------------------------------------------*/	
-		DefaultMutableTreeNode top =  new DefaultMutableTreeNode("Root");
-		DefaultMutableTreeNode kategorien = new DefaultMutableTreeNode("Kategorien");
-		
-		for(int i = 0; i < app.kategorije.size(); i++)
-		{
-			if(app.kategorije.get(i).getNaziv().equals(parametar))
-			{	
-				for(int j = 0; j < app.kategorije.get(i).getKategorijaB().size(); j++)
+				
+		/*---------------------------------------------------------------------------*/	
+				for(int k = 0; k < app.kategorije.size(); k++)
 				{
-					DefaultMutableTreeNode temp = new DefaultMutableTreeNode(app.kategorije.get(i).getKategorijaB().get(j).getNaziv());
-					kategorien.add(temp);
-				}
+					if(app.kategorije.get(k).getNaziv().equals(app.artikli.get(i).getKategorija().getNaziv()))
+					{	
+						for(int j = 0; j < app.kategorije.get(k).getKategorijaB().size(); j++)
+						{
+							DefaultMutableTreeNode temp = new DefaultMutableTreeNode(app.kategorije.get(k).getKategorijaB().get(j).getNaziv());
+							kategorien.add(temp);
+						}
+					}
+				}			
 			}
+			
 		}
 	
 		DefaultMutableTreeNode farben = new DefaultMutableTreeNode("Farben");
