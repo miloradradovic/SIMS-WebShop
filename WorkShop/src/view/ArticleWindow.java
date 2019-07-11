@@ -279,59 +279,105 @@ public class ArticleWindow extends JFrame {
 						break;
 					}
 				}
-				if(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik){
-					s.setArtikl(a);
-					s.setKolicina(Integer.parseInt(vrednost.getText()));
-					boolean nadjena = false;
-					int indeks = 0;
-					for(int i = 0;i<app.korpe.size();i++){
-						if(app.korpe.get(i).getIdNeulog()==0){
-							nadjena = true;
-							indeks = i;
-							break;
-						}
-					}
-					
-					if(nadjena == true){
-						app.korpe.get(indeks).dodajStavku(s);
-						JOptionPane.showMessageDialog(null, "Uspesno dodato.");
-					}else{
-						Korpa k = new Korpa();
-						k.setIdNeulog(app.getId());
-						k.dodajStavku(s);
-						app.korpe.add(k);
-						JOptionPane.showMessageDialog(null, "Uspesno dodato.");
-					}
+				if(a.getStanje() == 0){
+					JOptionPane.showMessageDialog(null, "Nema vise artikla u magacinu.");
 				}else{
-					for(Korisnik k:app.korisnici){
-						if(k.getJmbg()==app.getId()){
-							s.setArtikl(a);
-							s.setKolicina(Integer.parseInt(vrednost.getText()));
-							boolean nadjena = false;
-							int indeks = 0;
-							for(int i = 0;i<app.korpe.size();i++){
-								if(app.korpe.get(i).getIdNeulog()==k.getJmbg()){
-									nadjena = true;
-									indeks = i;
-									break;
-								}
+					if(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik){
+						s.setArtikl(a);
+						s.setKolicina(Integer.parseInt(vrednost.getText()));
+						boolean nadjena = false;
+						int indeks = 0;
+						for(int i = 0;i<app.korpe.size();i++){
+							if(app.korpe.get(i).getIdNeulog()==0){
+								nadjena = true;
+								indeks = i;
+								break;
 							}
-							if(nadjena == true){
-								app.korpe.get(indeks).dodajStavku(s);
-								k.setKorpa(app.korpe.get(indeks));
+						}
+						
+						if(nadjena == true){
+							if(a.getStanje()<s.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
 							}else{
-								Korpa k2 = new Korpa();
-								k2.setIdNeulog(k.getJmbg());
-								k2.dodajStavku(s);
-								k.setKorpa(k2);
-								app.korpe.add(k2);
+								app.korpe.get(indeks).dodajStavku(s);
+								for(Artikl a1:app.artikli){
+									if(a1.getSifra().equals(articleid)){
+										a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+										break;
+									}
+								}
+								JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+							}
+						}else{
+							if(a.getStanje()<s.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
+							}else{
+								Korpa k = new Korpa();
+								k.setIdNeulog(app.getId());
+								k.dodajStavku(s);
+								app.korpe.add(k);
+								for(Artikl a1:app.artikli){
+									if(a1.getSifra().equals(articleid)){
+										a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+										break;
+									}
+								}
 								JOptionPane.showMessageDialog(null, "Uspesno dodato.");
 							}
 						}
+					}else{
+						for(Korisnik k:app.korisnici){
+							if(k.getJmbg()==app.getId()){
+								s.setArtikl(a);
+								s.setKolicina(Integer.parseInt(vrednost.getText()));
+								boolean nadjena = false;
+								int indeks = 0;
+								for(int i = 0;i<app.korpe.size();i++){
+									if(app.korpe.get(i).getIdNeulog()==k.getJmbg()){
+										nadjena = true;
+										indeks = i;
+										break;
+									}
+								}
+								if(nadjena == true){
+									if(a.getStanje()<s.getKolicina()){
+										JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu.");
+									}else{
+										app.korpe.get(indeks).dodajStavku(s);
+										k.setKorpa(app.korpe.get(indeks));
+										for(Artikl a1:app.artikli){
+											if(a1.getSifra().equals(articleid)){
+												a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+												break;
+											}
+										}
+										JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+									}
+								}else{
+									if(a.getStanje()<s.getKolicina()){
+										JOptionPane.showMessageDialog(null, "Neuspesno dodato. Nedovoljno artikala u magacinu");
+									}else{
+										Korpa k2 = new Korpa();
+										k2.setIdNeulog(k.getJmbg());
+										k2.dodajStavku(s);
+										k.setKorpa(k2);
+										app.korpe.add(k2);
+										for(Artikl a1:app.artikli){
+											if(a1.getSifra().equals(articleid)){
+												a.setStanje(a.getStanje()-Integer.parseInt(vrednost.getText()));
+												break;
+											}
+										}
+										JOptionPane.showMessageDialog(null, "Uspesno dodato.");
+									}
+								}
+							}
+						}
 					}
+					
 				}
-				
-			}  
+			}
+				  
 	    });  
 		
 		addWishList.addActionListener(new ActionListener(){
