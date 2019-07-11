@@ -7,11 +7,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -275,13 +278,27 @@ public class MainWindow extends JFrame {
 	}
 
 	void addActionListeners(Aplikacija app) {
+		
+		Action search_field_enter = new AbstractAction()
+		{
+		    @Override
+		    public void actionPerformed(ActionEvent e)
+		    {
+		        dispose();
+		        new SearchArticleWindow(app,search_field.getText());
+		    }
+		};
+		
+		search_field.addActionListener(search_field_enter);
+		
 		// listener za mouse drag preko kategorije - labele iz atributa
 		MouseListener category_press = new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = (JLabel) e.getSource();
-				JOptionPane.showMessageDialog(null, "treba proslediti argument trazenja: " + lbl.getText());
+				dispose();
+				new SearchWindow(app,lbl.getText());
 
 			}
 
