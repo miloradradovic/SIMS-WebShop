@@ -93,12 +93,14 @@ public class LoginWindow extends WindowTemplate {
 				@SuppressWarnings("deprecation")
 				String pass = password_field.getText();
 				Boolean found = false;
-
+				int jmbg = 0;
+				
 				Iterator<Korisnik> it = app.korisnici.iterator();
 				while (it.hasNext()) {
 					Korisnik kor = it.next();
 					if (kor.getKorisnickoIme().equals(user) && kor.getSifra().equals(pass)) {
 						found = true;
+						jmbg = kor.getJmbg();
 						break;
 					}
 				}
@@ -106,6 +108,7 @@ public class LoginWindow extends WindowTemplate {
 				if (found) {
 					dispose();
 					app.setAktivniKorisnik(TipKorisnika.ulogovanKorisnik);
+					app.setId(jmbg);
 					MainWindow ww = new MainWindow(app);
 				} else {
 					JOptionPane.showMessageDialog(null, "Korisnik ne postoji");

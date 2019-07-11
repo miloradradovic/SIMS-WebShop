@@ -395,12 +395,13 @@ public class ArticleWindow extends JFrame {
 								boolean uspesnost = k.getListaZelja().add(a1);
 								if(uspesnost){
 									JOptionPane.showMessageDialog(null, "Artikl uspesno dodat");
+									break;
 								}else{
 									JOptionPane.showMessageDialog(null, "Neuspesno dodavanje. Artikl vec postoji.");
+									break;
 								}
-								break;
 							}
-						break;
+						//break;
 					}
 				}	
 				}
