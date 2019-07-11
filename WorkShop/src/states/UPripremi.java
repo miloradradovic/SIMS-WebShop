@@ -30,19 +30,16 @@ public class UPripremi extends StanjeKorpe {
 	public void dodajStavku(Stavka newStavka) {
 	      if (kontekst.stavka == null)
 	         kontekst.stavka = new ArrayList<Stavka>();
-	      if (!kontekst.stavka.contains(newStavka))
-	         kontekst.stavka.add(newStavka);
-	      else
-	      {
-	    	 Iterator<Stavka> it = getIteratorStavka();
-	    	 while(it.hasNext())
-	    	 {
-	    		 if(it.next().getArtikl().equals(newStavka.getArtikl()))
-	    		 {
-	    			 it.next().setKolicina(it.next().getKolicina() + newStavka.getKolicina());
-	    			 break;
-	    		 }
-	    	 }
+	      int ind = 0;
+	      for (Stavka stv : kontekst.stavka) {
+	    	  if (stv.getArtikl().getSifra().equals(newStavka.getArtikl().getSifra())) {
+	    		 ind = 1;
+	    		 stv.setKolicina(stv.getKolicina() + newStavka.getKolicina());
+	    	  }
+	    	  
+	      }
+	      if (ind == 0) {
+	    	  kontekst.stavka.add(newStavka);
 	      }
 
 	}

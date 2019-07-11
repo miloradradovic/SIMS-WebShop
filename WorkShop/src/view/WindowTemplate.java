@@ -65,7 +65,7 @@ public abstract class WindowTemplate extends JFrame {
 		background = new JLabel(image3);
 		// *----------------------------------------*//
 		JSeparator jsep = new JSeparator();
-		jsep.setBounds(5, 110 , screenWidth , 100);
+		jsep.setBounds(5, 110 , screenWidth , 1);
 		
 		// ucitavanje svih kategorija u labele
 		// dodavanje u background radi prikaza

@@ -8,9 +8,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Spliterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -51,7 +52,7 @@ public class SearchWindow extends WindowTemplate{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
    /*---------------------------------------------------------------------------*/
 		selected = new JLabel(parametar);
-		selected.setBounds(screenWidth/2, 125, 150, 30);
+		selected.setBounds(screenWidth/2, 125, 150, 25);
 		selected.setFont(new Font("Serif", Font.PLAIN, 25));
 		selected.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
@@ -112,8 +113,9 @@ public class SearchWindow extends WindowTemplate{
         background.add(selected);
         background.add(splitPane);
         
-        
         this.setVisible(true);
+        
+     
 	}
 	
 	@SuppressWarnings("unused")
