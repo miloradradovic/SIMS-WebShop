@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import states.StanjePorudzbine;
+import states.ZaPlacanje;
 
 /** @pdOid fbfb16eb-b5ae-4029-9acf-de26d1336b66 */
 public class Porudzbina {
@@ -24,7 +25,9 @@ public class Porudzbina {
    /** @pdRoleInfo migr=no name=Stanje assc=association24 mult=1..1 */
    public StanjePorudzbine stanje;
    
-   public Porudzbina() {}
+   public Porudzbina() {
+	   this.stanje = new ZaPlacanje(this);
+   }
    
 	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, StanjePorudzbine stanje) 
 	{

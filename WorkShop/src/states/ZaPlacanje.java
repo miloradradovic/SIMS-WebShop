@@ -1,10 +1,10 @@
 package states;
 
-import model.Aplikacija;
+import classes.Porudzbina;
 
 public class ZaPlacanje extends StanjePorudzbine {
 
-	public ZaPlacanje(Aplikacija aKontekst) {
+	public ZaPlacanje(Porudzbina aKontekst) {
 		super(aKontekst);
 		// TODO Auto-generated constructor stub
 	}
@@ -32,5 +32,12 @@ public class ZaPlacanje extends StanjePorudzbine {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public String toString() {
+		return "Za Placanje";
+	}
+	
+	
 
 }

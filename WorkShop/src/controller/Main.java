@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import classes.Porudzbina;
 import model.Aplikacija;
-import states.Otpremljena;
 import view.ContentManagerWindow;
-import view.SearchArticleWindow;
-import view.SearchWindow;
 
 public class Main {
 
@@ -62,14 +59,13 @@ public class Main {
 		
 		Porudzbina poru = new Porudzbina();
 		poru.setBrojPor(0);
-		poru.setStanje(new Otpremljena(app));
 		Porudzbina poru1 = new Porudzbina();
 		poru1.setBrojPor(1);
-		poru1.setStanje(new Otpremljena(app));
+
 		app.porudzbine.add(poru);
 		app.porudzbine.add(poru1);
 
-		//ContentManagerWindow cmw = new ContentManagerWindow(app);
+		ContentManagerWindow cmw = new ContentManagerWindow(app);
 		
 		//RegisterWindow rw = new RegisterWindow(app);
 
@@ -77,8 +73,7 @@ public class Main {
 
 		//ArticleWindow aw = new ArticleWindow("123",app);
 		
-		SearchArticleWindow sw = new SearchArticleWindow(app, "");
-		
+		//SearchWindow sw = new SearchWindow(app, "Kinder");
 		
 		try
 		{
