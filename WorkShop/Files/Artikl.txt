@@ -1,1 +1,3 @@
+124|desk.png|Sto za imucnije :)|50|300|braon|true|Kinder
 123|desk.png|Sto za imucnije :)|50|300|braon|true|Kinder
+125|desk.png|Sto za imucnije :)|50|300|braon|true|Kinder

@@ -67,7 +67,7 @@ public class SearchArticleWindow extends WindowTemplate{
 		
 		for(int i = 0; i < app.artikli.size(); i++)
 		{
-			if(app.artikli.get(i).getNaziv().contains(parametar)) 
+			if(app.artikli.get(i).getNaziv().toLowerCase().contains(parametar.toLowerCase())) 
 			{
 				Container pane =  new Container();
 				pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
