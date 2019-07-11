@@ -9,6 +9,8 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -199,7 +201,12 @@ public abstract class WindowTemplate extends JFrame {
 
 		addActionListeners(app);
 		
-		checkUser(app);
+
+		 addWindowListener(new WindowAdapter() { 
+		 @Override public void windowClosing(WindowEvent e) { dispose();} });
+		
+		 checkUser(app);
+
 
 	}
 

@@ -6,6 +6,7 @@ import classes.Porudzbina;
 import model.Aplikacija;
 import states.Otpremljena;
 import view.ContentManagerWindow;
+import view.SearchWindow;
 
 public class Main {
 
@@ -67,7 +68,7 @@ public class Main {
 		app.porudzbine.add(poru);
 		app.porudzbine.add(poru1);
 
-		ContentManagerWindow cmw = new ContentManagerWindow(app);
+		//ContentManagerWindow cmw = new ContentManagerWindow(app);
 		
 		//RegisterWindow rw = new RegisterWindow(app);
 
@@ -75,7 +76,7 @@ public class Main {
 
 		//ArticleWindow aw = new ArticleWindow("123",app);
 		
-		//SearchWindow sw = new SearchWindow(app, "Kinder");
+		SearchWindow sw = new SearchWindow(app, "Kinder");
 		
 		try
 		{

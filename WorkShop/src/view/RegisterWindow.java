@@ -9,8 +9,6 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,16 +21,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import classes.Adresa;
 import classes.Artikl;
 import classes.Grad;
-import classes.Kategorija;
 import classes.Korisnik;
 import classes.Korpa;
 import classes.Porudzbina;
@@ -157,7 +152,7 @@ public class RegisterWindow extends WindowTemplate {
 
 		password_field = new JTextField();
 		password_field.setBounds(screenWidth / 2 + 150, 480, 300, 30);
-		password_field.setFont(new Font("Serif", Font.PLAIN, 30));
+		password_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		password_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		fields.add(password_field);
 		/*--------------------------*/
@@ -167,12 +162,12 @@ public class RegisterWindow extends WindowTemplate {
 		gender_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		male_rb = new JRadioButton("Male");
-		male_rb.setBounds(screenWidth / 4 + 250, 620, 100, 30);
+		male_rb.setBounds(screenWidth / 4 + 250, 620, 120, 30);
 		male_rb.setFont(new Font("Serif", Font.PLAIN, 20));
 		male_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
 		female_rb = new JRadioButton("Female");
-		female_rb.setBounds(screenWidth / 4 + 350, 620, 100, 30);
+		female_rb.setBounds(screenWidth / 4 + 370, 620, 120, 30);
 		female_rb.setFont(new Font("Serif", Font.PLAIN, 20));
 		female_rb.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
@@ -187,21 +182,44 @@ public class RegisterWindow extends WindowTemplate {
 		labels.add(date_label);
 
 		day_choice = new Choice();
-		day_choice.setBounds(screenWidth / 2 + 150, 340, 100, 22);
+		day_choice.setBounds(screenWidth / 2 + 150, 340, 80, 22);
 		day_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		day_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for (int i = 1; i < 32; i++)
-			day_choice.add(Integer.toString(i));
+		{
+			if(i < 10)
+			{
+				day_choice.add("0" + Integer.toString(i));
+			}
+			else
+			{
+				day_choice.add(Integer.toString(i));				
+			}
+			
+		}
+			
 
 		month_choice = new Choice();
-		month_choice.setBounds(screenWidth / 2 + 250, 340, 100, 22);
+		month_choice.setBounds(screenWidth / 2 + 230, 340, 80, 22);
 		month_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		month_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for (int i = 1; i < 13; i++)
-			month_choice.add(Integer.toString(i));
+		{
+			if(i < 10)
+			{
+				month_choice.add("0" + Integer.toString(i));
+			}
+			else
+			{
+				month_choice.add(Integer.toString(i));
+				
+			}
+		}
+		
+			
 
 		year_choice = new Choice();
-		year_choice.setBounds(screenWidth / 2 + 350, 340, 200, 22);
+		year_choice.setBounds(screenWidth / 2 + 310, 340, 140, 22);
 		year_choice.setFont(new Font("Serif", Font.PLAIN, 20));
 		year_choice.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		for (int i = 1960; i < 2001; i++)
@@ -215,7 +233,7 @@ public class RegisterWindow extends WindowTemplate {
 		
 		address_field = new JTextField();
 		address_field.setBounds(screenWidth / 4 - 50, 410, 300, 30);
-		address_field.setFont(new Font("Serif", Font.PLAIN, 30));
+		address_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		address_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		fields.add(address_field);
 		/*--------------------------*/
@@ -227,7 +245,7 @@ public class RegisterWindow extends WindowTemplate {
 
 		number_field = new JTextField();
 		number_field.setBounds(screenWidth / 4 - 50, 480, 300, 30);
-		number_field.setFont(new Font("Serif", Font.PLAIN, 30));
+		number_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		number_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		fields.add(number_field);
 		/*--------------------------*/
@@ -239,7 +257,7 @@ public class RegisterWindow extends WindowTemplate {
 		
 		town_field = new JTextField();
 		town_field.setBounds(screenWidth / 4 - 50, 550, 300, 30);
-		town_field.setFont(new Font("Serif", Font.PLAIN, 30));
+		town_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		town_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		fields.add(town_field);
 		/*--------------------------*/
@@ -251,7 +269,7 @@ public class RegisterWindow extends WindowTemplate {
 
 		postal_field = new JTextField();
 		postal_field.setBounds(screenWidth / 2 + 150, 550, 300, 30);
-		postal_field.setFont(new Font("Serif", Font.PLAIN, 30));
+		postal_field.setFont(new Font("Serif", Font.PLAIN, 20));
 		postal_field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		fields.add(postal_field);
 
@@ -269,7 +287,8 @@ public class RegisterWindow extends WindowTemplate {
 				String phone = phone_field.getText();
 				String name = name_field.getText();
 				String last = last_field.getText();
-				String jmbg_s = jmbg_field.getText();
+				
+				String jmbg_s = jmbg_field.getText().trim();
 				int jmbg = 0;
 				if (jmbg_s.matches("[0-9]+")) {
 					jmbg = Integer.parseInt(jmbg_s);
@@ -309,27 +328,28 @@ public class RegisterWindow extends WindowTemplate {
 				try {
 					date = app.format.parse(date_s);
 				} catch (ParseException pe) {
-					JOptionPane.showMessageDialog(null, "Neki podatak nije dobro unet");
+					JOptionPane.showMessageDialog(null, "Neki podatak nije dobro unet!");
 				}
 
 				String date_check = app.format.format(date);
+				
 				if (!date_s.equals(date_check)) {
 					correct = false;
 				}
 
 				String address = address_field.getText();
-				String num_s = number_field.getText();
+				String num_s = number_field.getText().trim();
 				int num = 0;
 				if (num_s.matches("[0-9]+")) {
-					num = Integer.parseInt(jmbg_s);
+					num = Integer.parseInt(num_s);
 				} else {
 					correct = false;
 				}
 				String town = town_field.getText();
-				String postal_code_s = postal_field.getText();
+				String postal_code_s = postal_field.getText().trim();
 				int postal_code = 0;
 				if (postal_code_s.matches("[0-9]+")) {
-					postal_code = Integer.parseInt(jmbg_s);
+					postal_code = Integer.parseInt(postal_code_s);
 				} else {
 					correct = false;
 				}
