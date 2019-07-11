@@ -18,7 +18,6 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -43,6 +42,7 @@ public class MainWindow extends JFrame {
 	JLabel desk_pic;
 	JLabel sale_pic;
 	JPanel panel;
+	JLabel orders;
 	JLabel logout_label, profile_label;
 	ArrayList<JLabel> subcategories = new ArrayList<JLabel>();
 	ArrayList<JLabel> subcategories2 = new ArrayList<JLabel>();
@@ -168,9 +168,16 @@ public class MainWindow extends JFrame {
 
 		// dodavanje basket labela za korpu
 		shops_label = new JLabel("Shops");
-		shops_label.setBounds(30, 10, 40, 30);
+		shops_label.setBounds(30, 10, 50, 30);
 		shops_label.setFont(new Font("Serif", Font.PLAIN, 17));
 		shops_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+
+		// dodavanje labele za porudzbine
+		orders = new JLabel("Orders");
+		orders.setBounds(120, 10, 80, 30);
+		orders.setFont(new Font("Serif", Font.PLAIN, 17));
+		orders.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		// *------------------------------------------*//
 
 		// dodavanje slike korpice pored korpe
@@ -222,6 +229,7 @@ public class MainWindow extends JFrame {
 
 		// dodavanje stvari u background
 		sale_pic.add(search_field);
+		background.add(orders);
 		background.add(profile_label);
 		background.add(logout_label);
 		background.add(desk_pic);
@@ -248,16 +256,18 @@ public class MainWindow extends JFrame {
 		this.setVisible(true);
 
 		addActionListeners(app);
-		
+
 		checkUser(app);
 
 	}
+
 	public void checkUser(Aplikacija app) {
 		if (!(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik)) {
 			login_label.hide();
 			register_label.hide();
-		}
-		else {
+
+		} else {
+			orders.hide();
 			profile_label.hide();
 			logout_label.hide();
 		}
@@ -278,19 +288,91 @@ public class MainWindow extends JFrame {
 	}
 
 	void addActionListeners(Aplikacija app) {
-		
-		Action search_field_enter = new AbstractAction()
-		{
-		    @Override
-		    public void actionPerformed(ActionEvent e)
-		    {
-		        dispose();
-		        new SearchArticleWindow(app,search_field.getText());
-		    }
+
+		MouseListener logout_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				app.setAktivniKorisnik(TipKorisnika.neulogovanKorisnik);
+				dispose();
+				new MainWindow(app);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
 		};
-		
+
+		logout_label.addMouseListener(logout_clicked);
+
+		MouseListener orders_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new ContentManagerWindow(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		orders.addMouseListener(orders_clicked);
+
+		Action search_field_enter = new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new SearchArticleWindow(app, search_field.getText());
+			}
+		};
+
 		search_field.addActionListener(search_field_enter);
-		
+
 		// listener za mouse drag preko kategorije - labele iz atributa
 		MouseListener category_press = new MouseListener() {
 
@@ -298,7 +380,7 @@ public class MainWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				JLabel lbl = (JLabel) e.getSource();
 				dispose();
-				new SearchWindow(app,lbl.getText());
+				new SearchWindow(app, lbl.getText());
 
 			}
 
