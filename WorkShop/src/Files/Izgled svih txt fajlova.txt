@@ -12,7 +12,8 @@ Kategorija.txt
 Naziv|Kategorija1(naziv), Kategorija2(naziv),..
 
 Prodavnica.txt
-PocetakRadnogVremena|KrajRadnogVremena|Naziv|Email|ArtiklSifra1%Kolicina, ArtiklSifra2%Kolicina,..|Ulica%Broj%PostanskiBroj(Grada)
+PocetakRadnogVremena|KrajRadnogVremena|Naziv|Email|ArtiklSifra1%Kolicina, ArtiklSifra2%Kolicina,..|
+Ulica%Broj%PostanskiBroj(Grada)|IdProdavnice
 
 Porudzbina.txt
-BrojPorudzbine|UkupnaCena|Datum|ArtiklSifra1%Cena, ArtiklSifra2%Cena,..|Stanje
+BrojPorudzbine|UkupnaCena|Datum|ArtiklSifra1%Cena, ArtiklSifra2%Cena,..|Stanje|Ulica%Broj%PostanskiBroj(Grada)

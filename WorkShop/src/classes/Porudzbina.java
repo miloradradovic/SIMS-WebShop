@@ -76,6 +76,10 @@ public class Porudzbina {
 	public StanjePorudzbine getStanje() {
 		return stanje;
 	}
+	
+	public Adresa getAdresa() {
+		return adresa;
+	}
 
 	public void setStanje(StanjePorudzbine stanje) {
 		this.stanje = stanje;

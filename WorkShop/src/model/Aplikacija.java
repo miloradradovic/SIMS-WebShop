@@ -475,14 +475,14 @@ public class Aplikacija {
 		br6.close();
 	}
 	
-	public void sacuvajUFajl(ArrayList<String> naziviFajlova) throws IOException
+	public void sacuvajUFajl() throws IOException
 	{
-		File fajlGrad = new File(".\\Files\\" + naziviFajlova.get(0) +".txt");
-		File fajlArtikl = new File(".\\Files\\" + naziviFajlova.get(1) +".txt");
-		File fajlKorisnik = new File(".\\Files\\" + naziviFajlova.get(2) +".txt");
-		File fajlKategorija = new File(".\\Files\\" + naziviFajlova.get(3) +".txt");
-		File fajlProdavnica = new File(".\\Files\\" + naziviFajlova.get(4) +".txt");
-		File fajlPorudzbina = new File(".\\Files\\" + naziviFajlova.get(5) +".txt");
+		File fajlGrad = new File(".\\Files\\Grad.txt");
+		File fajlArtikl = new File(".\\Files\\Artikl.txt");
+		File fajlKorisnik = new File(".\\Files\\Korisnik.txt");
+		File fajlKategorija = new File(".\\Files\\Kategorija.txt");
+		File fajlProdavnica = new File(".\\Files\\Prodavnica.txt");
+		File fajlPorudzbina = new File(".\\Files\\Porudzbina.txt");
 		
 		fajlGrad.createNewFile();
 		fajlArtikl.createNewFile();
@@ -549,7 +549,9 @@ public class Aplikacija {
 					sbPor.deleteCharAt(sbPor.length() - 1);
 		
 				unosPor = por.getBrojPor() + "|" + por.getUkupnaCena() + "|" + 
-						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje();
+						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje()
+						+ "|" + por.getAdresa().getUlica() + "%" + por.getAdresa().getBroj() 
+						+ "%" + por.getAdresa().getGrad().getPostanskiBroj();
 				pwPorudzbina.println(unosPor);
 				pwPorudzbina.flush();
 				
@@ -614,7 +616,7 @@ public class Aplikacija {
 			unos = pro.getPocetakRadVr() + "|" + pro.getKrajRadVr() + "|" +
 					pro.getNaziv() + "|" + pro.getEmail() + "|" + sbPro.toString() + "|" + 
 					pro.getAdresa().getUlica() + "%" + pro.getAdresa().getBroj() + "%" +
-					pro.getAdresa().getGrad().getPostanskiBroj();
+					pro.getAdresa().getGrad().getPostanskiBroj() + "|" + pro.getIdProd();
 			pwProdavnica.println(unos);
 			pwProdavnica.flush();
 		}
