@@ -1,0 +1,6 @@
+07:00|21:00|Prodavnica1|prodavnica1mail||ulica1%1%20000|1
+08:00|23:00|Prodavnica2|prodavnica2mail||ulica2%1%21000|2
+10:00|00:00|Prodavnica3|prodavnica3mail||ulica3%1%22000|3
+11:00|21:00|Prodavnica4|prodavnica4mail||ulica4%1%23000|4
+12:00|03:00|Prodavnica5|prodavnica5mail||ulica5%1%21000|5
+06:00|12:00|Prodavnica6|prodavnica6mail||ulica6%1%20000|6

@@ -396,6 +396,7 @@ public class CartView extends WindowTemplate {
 					k.kupi(app.getNextOrderId());
 					Porudzbina por = k.porudzbina;
 					new AcceptPaymentWindow(app,por);
+					dispose();
 					
 				}
 				else {
@@ -404,7 +405,7 @@ public class CartView extends WindowTemplate {
 					k.kupi(app.getNextOrderId());
 					Porudzbina por = k.porudzbina;
 					new AcceptPaymentWindow(app,por);
-					
+					dispose();
 					
 				}
 

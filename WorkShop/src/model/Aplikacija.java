@@ -379,6 +379,8 @@ public class Aplikacija {
 					a.setGrad(g);
 				}
 			}
+			p.setAdresa(a);
+			porudzbine.add(p);
 		}
 		br4.close();
 		
@@ -419,6 +421,7 @@ public class Aplikacija {
 			}
 			p.setAdresa(adresa);
 			p.setIdProd(Integer.parseInt(delimiter[6]));
+			prodavnice.add(p);
 		}
 		br5.close();
 		
@@ -497,6 +500,7 @@ public class Aplikacija {
 				korpa.setStavka(stavkeK);
 				k.setKorpa(korpa);
 			}	
+			korisnici.add(k);
 		}
 		br6.close();
 	}

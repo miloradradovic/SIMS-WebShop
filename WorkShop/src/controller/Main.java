@@ -1,7 +1,4 @@
 package controller;
-import java.util.ArrayList;
-
-import classes.Artikl;
 import model.Aplikacija;
 import view.MainWindow;
 
@@ -60,7 +57,7 @@ public class Main {
 
 		//ArticleWindow aw = new ArticleWindow("123",app);
 		
-		//SearchWindow sw = new SearchWindow(app, "Kinder");
+		//SearchArticleWindow sw = new SearchArticleWindow(app, "");
 		
 	
 	}
