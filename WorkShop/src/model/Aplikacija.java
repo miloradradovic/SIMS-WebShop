@@ -24,6 +24,11 @@ import classes.Stavka;
 import enums.Boja;
 import enums.Pol;
 import enums.TipKorisnika;
+import states.Odbijena;
+import states.Otpremljena;
+import states.Prihvacena;
+import states.ZaOtpremu;
+import states.ZaPlacanje;
 
 /***********************************************************************
  * Module:  Aplikacija.java
@@ -353,7 +358,27 @@ public class Aplikacija {
 			}catch(Exception e){
 				p.setCene(mapa2);
 			}
-			//NISAM DODAO STANJE JER NZM :)
+			if(delimiter[4].equals("Za Otpremu")){
+				p.setStanje(new ZaOtpremu(p));
+			}else if(delimiter[4].equals("Za Placanje")){
+				p.setStanje(new ZaPlacanje(p));
+			}else if(delimiter[4].equals("Otpremljena")){
+				p.setStanje(new Otpremljena(p));
+			}else if(delimiter[4].equals("Prihvacena")){
+				p.setStanje(new Prihvacena(p));
+			}else if(delimiter[4].equals("Odbijena []")){
+				p.setStanje(new Odbijena(p));
+			}
+			
+			String[] delimiter4 = delimiter[5].split("\\%");
+			Adresa a = new Adresa();
+			a.setUlica(delimiter4[0]);
+			a.setBroj(Integer.parseInt(delimiter4[1]));
+			for(Grad g:gradovi){
+				if(g.getPostanskiBroj()==Integer.parseInt(delimiter4[2])){
+					a.setGrad(g);
+				}
+			}
 		}
 		br4.close();
 		
@@ -393,6 +418,7 @@ public class Aplikacija {
 				}
 			}
 			p.setAdresa(adresa);
+			p.setIdProd(Integer.parseInt(delimiter[6]));
 		}
 		br5.close();
 		

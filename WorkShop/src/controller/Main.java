@@ -1,6 +1,7 @@
 package controller;
 import java.util.ArrayList;
 
+import classes.Artikl;
 import model.Aplikacija;
 import view.MainWindow;
 
@@ -11,7 +12,9 @@ public class Main {
 		
 		Aplikacija app = new Aplikacija();
 		
-		
+		for(Artikl a:app.artikli){
+			System.out.println(a.getNaziv());
+		}
 		//samo neki testni slucajevi za proveru rada
 		/*Kategorija kat1 = new Kategorija();
 		kat1.setNaziv("Sale");

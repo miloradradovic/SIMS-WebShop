@@ -24,7 +24,9 @@ public class Prodavnica {
    public Adresa adresa;
    
    
-   public Prodavnica() {}
+   public Prodavnica() {
+	   Raspolozivo = new HashMap<Artikl,Integer>();
+   }
    
    public Prodavnica(int id, String pocetakRadVr, String krajRadVr, String naziv, String email,
 		HashMap<Artikl, Integer> raspolozivo, Adresa adresa) 

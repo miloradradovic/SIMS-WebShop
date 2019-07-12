@@ -37,6 +37,7 @@ public class Porudzbina {
 
 	public Porudzbina() {
 		this.stanje = new ZaPlacanje(this);
+		Cene = new HashMap<String,Integer>();
 	}
 
 	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene) {
