@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import classes.Porudzbina;
 import model.Aplikacija;
-import view.MainWindow;
+import view.AcceptPaymentWindow;
 
 public class Main {
 
@@ -64,7 +64,8 @@ public class Main {
 		app.porudzbine.add(poru);
 		app.porudzbine.add(poru1);
 
-		MainWindow ww = new MainWindow(app);
+		//MainWindow ww = new MainWindow(app);
+		new AcceptPaymentWindow(app);
 		//ContentManagerWindow cmw = new ContentManagerWindow(app);
 		
 		//RegisterWindow rw = new RegisterWindow(app);

@@ -5,7 +5,10 @@ package classes;
  * Purpose: Defines the Class Korpa
  ***********************************************************************/
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import states.StanjeKorpe;
@@ -116,8 +119,19 @@ public class Korpa {
 		
 	}
 	
-	public void napraviPorudzbinu() {
-		
+	public void kupi(int id) {
+		napraviPorudzbinu(id);
+	}
+	
+	public void napraviPorudzbinu(int id) {
+		HashMap<String,Integer> cene = new HashMap<String,Integer>();
+		int ukupna_cena = 0;
+		for (Stavka stv: stavka) {
+			cene.put(stv.getArtikl().getSifra(), stv.getArtikl().getCena());
+			ukupna_cena+=stv.getKolicina()*stv.getArtikl().getCena();
+		}
+		Date date = new Date(System.currentTimeMillis());  
+		this.porudzbina = new Porudzbina(id,ukupna_cena,date,cene);
 	}
 	
 	public void notifyListeners() {

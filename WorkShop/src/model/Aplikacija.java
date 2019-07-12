@@ -636,5 +636,9 @@ public class Aplikacija {
 		   }
 		   return null;
 	   }
+	   
+	   public int getNextOrderId() {
+		   return porudzbine.size();
+		}
 
 }

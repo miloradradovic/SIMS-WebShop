@@ -29,14 +29,14 @@ public class Porudzbina {
 	   this.stanje = new ZaPlacanje(this);
    }
    
-	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene, StanjePorudzbine stanje) 
+	public Porudzbina(int brojPor, int ukupnaCena, Date datumPorucivanja, HashMap<String, Integer> cene) 
 	{
 	super();
 	this.brojPor = brojPor;
 	this.ukupnaCena = ukupnaCena;
 	this.datumPorucivanja = datumPorucivanja;
 	Cene = cene;
-	this.stanje = stanje;
+	this.stanje = new ZaPlacanje(this);
 	}
 	
 	public int getBrojPor() {
