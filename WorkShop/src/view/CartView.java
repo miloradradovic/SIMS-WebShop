@@ -394,12 +394,17 @@ public class CartView extends WindowTemplate {
 				if (app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik) {
 					Korpa k = app.nadjiKorpu(app.getId());
 					k.kupi(app.getNextOrderId());
+					Porudzbina por = k.porudzbina;
+					new AcceptPaymentWindow(app,por);
+					
 				}
 				else {
 					Korisnik kor = app.nadjiKorisnika(app.getId());
 					Korpa k = kor.getKorpa();
 					k.kupi(app.getNextOrderId());
 					Porudzbina por = k.porudzbina;
+					new AcceptPaymentWindow(app,por);
+					
 					
 				}
 

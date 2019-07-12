@@ -11,6 +11,8 @@ public abstract class StanjePorudzbine {
 	public abstract void exit();
 	public abstract void plati();
 	public abstract void otpremi();
+	public abstract void prihvati();
+	public abstract void odbij();
 	
 	public StanjePorudzbine(Porudzbina aKontekst) {
 		kontekst = aKontekst;		

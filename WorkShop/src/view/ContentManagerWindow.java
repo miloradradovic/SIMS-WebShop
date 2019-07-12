@@ -4,14 +4,21 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 
 import classes.Porudzbina;
 import enums.TipKorisnika;
 import model.Aplikacija;
+import states.Odbijena;
+import states.Otpremljena;
+import states.Prihvacena;
+import states.StanjePorudzbine;
+import states.ZaOtpremu;
 
 public class ContentManagerWindow extends WindowTemplate {
 
@@ -20,10 +27,12 @@ public class ContentManagerWindow extends WindowTemplate {
 	int i;
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	ArrayList<String> sifre = new ArrayList<String>();
+	
+	Aplikacija appli;
 
 	public ContentManagerWindow(Aplikacija app) {
 		super(app);
-
+		appli = app;
 		int height = 200;
 		int width = 100;
 		if (app.getAktivniKorisnik() == TipKorisnika.menadzer) {
@@ -52,7 +61,22 @@ public class ContentManagerWindow extends WindowTemplate {
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						int pos = buttons.indexOf(arg0.getSource());
-						System.out.println("Sifra je: " + sifre.get(pos));
+						Porudzbina por = app.getPorudzbina(pos);
+						if (por.getStanje().getClass() == ZaOtpremu.class) {
+							por.addListeners(ContentManagerWindow.this);
+							por.otpremi();
+							return;
+						}
+						if(por.getStanje().getClass() == Otpremljena.class) {
+							por.addListeners(ContentManagerWindow.this);
+							Random rand = new Random();
+							if (rand.nextInt(5)%2 == 0) {
+								por.prihvati();
+							}
+							else {
+								por.odbij();
+							}
+						}
 					}
 
 				});
@@ -77,6 +101,12 @@ public class ContentManagerWindow extends WindowTemplate {
 
 		}
 
+	}
+	
+	@Override
+	public void osvezi() {
+		dispose();
+		new ContentManagerWindow(appli);
 	}
 
 }

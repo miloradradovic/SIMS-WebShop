@@ -641,4 +641,21 @@ public class Aplikacija {
 		   return porudzbine.size();
 		}
 
+	   public Grad nadjiImeGrada(String naziv) {
+		   for (Grad gr: gradovi) {
+			   if (gr.getMesto().equalsIgnoreCase(naziv)) {
+				   return gr;
+			   }
+		   }
+		   return null;
+	   }
+	   
+	   public Porudzbina getPorudzbina(int id) {
+		   for (Porudzbina por: porudzbine) {
+			   if(por.getBrojPor() == id) {
+				   return por;
+			   }
+		   }
+		   return null;
+	   }
 }

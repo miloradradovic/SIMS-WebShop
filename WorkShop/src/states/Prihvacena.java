@@ -1,5 +1,7 @@
 package states;
 
+import javax.swing.JOptionPane;
+
 import classes.Porudzbina;
 
 public class Prihvacena extends StanjePorudzbine {
@@ -11,7 +13,8 @@ public class Prihvacena extends StanjePorudzbine {
 
 	@Override
 	public void entry() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "Prihvacena!");
+		
 
 	}
 
@@ -36,6 +39,18 @@ public class Prihvacena extends StanjePorudzbine {
 	@Override
 	public String toString() {
 		return "Prihvacena";
+	}
+
+	@Override
+	public void prihvati() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void odbij() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

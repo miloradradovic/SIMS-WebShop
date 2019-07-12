@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import classes.Porudzbina;
 import model.Aplikacija;
-import view.AcceptPaymentWindow;
+import states.ZaOtpremu;
+import view.MainWindow;
 
 public class Main {
 
@@ -56,16 +57,18 @@ public class Main {
 		
 		//MainWindow ww = new MainWindow(app);
 		
-		Porudzbina poru = new Porudzbina();
+		/*Porudzbina poru = new Porudzbina();
 		poru.setBrojPor(0);
 		Porudzbina poru1 = new Porudzbina();
 		poru1.setBrojPor(1);
+		poru.setStanje(new ZaOtpremu(poru));
+		poru1.setStanje(new ZaOtpremu(poru));
 
 		app.porudzbine.add(poru);
-		app.porudzbine.add(poru1);
+		app.porudzbine.add(poru1);*/
 
-		//MainWindow ww = new MainWindow(app);
-		new AcceptPaymentWindow(app);
+		MainWindow ww = new MainWindow(app);
+		//new AcceptPaymentWindow(app);
 		//ContentManagerWindow cmw = new ContentManagerWindow(app);
 		
 		//RegisterWindow rw = new RegisterWindow(app);

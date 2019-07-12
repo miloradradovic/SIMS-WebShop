@@ -24,6 +24,7 @@ public class ZaPlacanje extends StanjePorudzbine {
 	@Override
 	public void plati() {
 		// TODO Auto-generated method stub
+		//ovde ide kod za automat koji skida novac ili sta vec
 
 	}
 
@@ -36,6 +37,18 @@ public class ZaPlacanje extends StanjePorudzbine {
 	@Override
 	public String toString() {
 		return "Za Placanje";
+	}
+
+	@Override
+	public void prihvati() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void odbij() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

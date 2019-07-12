@@ -108,8 +108,6 @@ public class LoginWindow extends WindowTemplate {
 						if (kor.getKorisnickoIme().equals(user) && kor.getSifra().equals(pass)) {
 							found = true;
 							jmbg = kor.getJmbg();
-							kor.addPorudzbina(app.porudzbine.get(0));
-							kor.addPorudzbina(app.porudzbine.get(1));
 							break;
 						}
 					}

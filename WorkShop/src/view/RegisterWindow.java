@@ -355,12 +355,12 @@ public class RegisterWindow extends WindowTemplate {
 				}
 
 				Iterator<Grad> itG = app.gradovi.iterator();
-				while (itG.hasNext()) {
+				/*while (itG.hasNext()) {
 					Grad grad = itG.next();
 					if (!town.equals(grad.getMesto()) || postal_code != grad.getPostanskiBroj()) {
 						correct = false;
 					}
-				}
+				}*/
 
 				if (correct && !found) {
 					Grad newGrad = new Grad(town, postal_code);

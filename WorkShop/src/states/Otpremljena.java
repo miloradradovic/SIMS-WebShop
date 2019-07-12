@@ -37,6 +37,18 @@ public class Otpremljena extends StanjePorudzbine {
 	public String toString() {
 		return "Otpremljena";
 	}
+
+	@Override
+	public void prihvati() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void odbij() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
