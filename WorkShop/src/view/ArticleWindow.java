@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -61,6 +63,7 @@ public class ArticleWindow extends JFrame {
 	JButton plus;
 	JButton minus;
 	JButton pozoviProdavnice;
+	JLabel logout_label, profile_label, orders;
 	
 	
 	public ArticleWindow(String articleid, Aplikacija app){
@@ -102,6 +105,28 @@ public class ArticleWindow extends JFrame {
 		globus_label2.setFont(new Font("Serif", Font.BOLD, 30));
 		globus_label2.setBounds(screenWidth-350,200,250,50);
 		globus_label2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		// dodavanje labele za porudzbine
+		orders = new JLabel("Orders");
+		orders.setBounds(120, 10, 80, 30);
+		orders.setFont(new Font("Serif", Font.PLAIN, 17));
+		orders.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+		
+		// dodavanje logout_labela za registraciju
+		logout_label = new JLabel("Logout");
+		logout_label.setBounds(screenWidth - 285, 10, 60, 30);
+		logout_label.setFont(new Font("Serif", Font.PLAIN, 17));
+		logout_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+		
+		// dodavanje profile_labela za registraciju
+		profile_label = new JLabel("Profile");
+		profile_label.setBounds(screenWidth - 215, 10, 60, 30);
+		profile_label.setFont(new Font("Serif", Font.PLAIN, 17));
+		profile_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+
 		
 		//DODAVANJE NAZIVA ARTIKLA
 		Artikl trazeni = new Artikl();
@@ -264,7 +289,6 @@ public class ArticleWindow extends JFrame {
 		
 		this.add(background);
 		this.setVisible(true);
-
 		
 		addCart.addActionListener(new ActionListener(){  
 			@Override
@@ -570,7 +594,83 @@ public class ArticleWindow extends JFrame {
 			}
 
 		};
+		
+		MouseListener logout_clicked = new MouseListener() {
 
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				app.setAktivniKorisnik(TipKorisnika.neulogovanKorisnik);
+				dispose();
+				new MainWindow(app);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+		logout_label.addMouseListener(logout_clicked);
+		
+		MouseListener orders_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new ContentManagerWindow(app);
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+
+		orders.addMouseListener(orders_clicked);
+		
+		
+		
+		
 		// listener za omogucavanje otvaranja panela pri prolasku misa
 		MouseListener mouse_moved = new MouseListener() {
 			@Override
@@ -761,9 +861,30 @@ public class ArticleWindow extends JFrame {
 			}
 		};
 		cart_label.addMouseListener(cart_clicked);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dispose();
+			}
+		});
+		
+		checkUser(app);
 
 	}
 	// *--------------------------------------------------------------*//
+	
+	public void checkUser(Aplikacija app) {
+		if (!(app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik)) {
+			login_label.hide();
+			register_label.hide();
+		} else {
+			orders.hide();
+			profile_label.hide();
+			logout_label.hide();
+		}
+	}
+	
 	
 	void attributesDissapear() {
 		articlePic.hide();
@@ -820,6 +941,5 @@ public class ArticleWindow extends JFrame {
 
 		return resizedImg;
 	}
-	
 
 }

@@ -97,6 +97,13 @@ public class MainWindow extends JFrame {
 		globus_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		/*----------------------*/
 
+		// dodavanje profile_labela za registraciju
+		profile_label = new JLabel("Profile");
+		profile_label.setBounds(screenWidth - 215, 10, 60, 30);
+		profile_label.setFont(new Font("Serif", Font.PLAIN, 17));
+		profile_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		// *------------------------------------------*//
+		
 		// inicijalizacija slike da bude na sredini
 		ImageIcon image = new ImageIcon("sale1.png");
 		Image image_tmp = getScaledImage(image.getImage(), screenWidth - 40, 600);
@@ -645,6 +652,41 @@ public class MainWindow extends JFrame {
 		for (JLabel lbl : kategorijeLabele) {
 			lbl.addMouseListener(mouse_moved);
 		}
+		
+		MouseListener cart_clicked = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				new CartView(app);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+		cart_label.addMouseListener(cart_clicked);
 
 	}
 	// *--------------------------------------------------------------*//
