@@ -174,6 +174,8 @@ public class CartView extends WindowTemplate {
 					int dimenzijaSlike1 = screenWidth / 2 - 700;
 					int dimenzijaSlike2 = 200;
 					for (Stavka s : k.getKorpa().getStavka()) {
+						artikliA.add(s.getArtikl());
+						kolicine.add(s.getKolicina());
 						JLabel labelaSlika = new JLabel(s.getArtikl().getSlika());
 						JLabel labelaNaziv = new JLabel(s.getArtikl().getNaziv());
 						JLabel labelaBoja = new JLabel(s.getArtikl().getBoja().toString());
@@ -338,6 +340,8 @@ public class CartView extends WindowTemplate {
 			labeleArtikliPlus.get(i).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int pos = labeleArtikliPlus.indexOf(arg0.getSource());
+					System.out.println(kolicine.size());
+					System.out.println(labeleArtikliPlus.size());
 					if (Integer.parseInt(labeleArtikliVrednost.get(pos).getText()) == kolicine.get(pos)) {
 						JOptionPane.showMessageDialog(null, "Ne moze vise.");
 					} else {
