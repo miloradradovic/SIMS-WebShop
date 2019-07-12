@@ -604,4 +604,8 @@ public abstract class WindowTemplate extends JFrame {
 	void attributesAppear() {
 
 	}
+	
+	public void osvezi() {
+		
+	}
 }

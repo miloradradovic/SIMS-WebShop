@@ -46,7 +46,7 @@ public class UPripremi extends StanjeKorpe {
 
 	@Override
 	public void obrisiStavku(Stavka oldStavka) {
-		// TODO Auto-generated method stub
+		kontekst.stavka.remove(oldStavka);
 		
 	}
 	

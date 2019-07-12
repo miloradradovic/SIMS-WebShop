@@ -1,11 +1,7 @@
 /.metadata/
-/.classpath
-/.gitignore
-/.project
 /Files/
 /classes/
 /controller/
-<<<<<<< HEAD
 /desk.png
 /enums/
 /furniture.jpg
@@ -18,8 +14,3 @@
 /states/
 /view/
 /white_background.jpg
-=======
-/states/
-/classes/
-/model/
->>>>>>> d9bd5efc3d461eea143900aa185b0ddb8f1c59a3

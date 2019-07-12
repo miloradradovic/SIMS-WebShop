@@ -56,32 +56,34 @@ public class CartView extends WindowTemplate {
 	ArrayList<Integer> kolicine = new ArrayList<Integer>();
 	JRadioButton credit_card, cash;
 	JButton poruci;
-	
-	
+
+	Aplikacija appli;
+
 	public CartView(Aplikacija app) {
 		super(app);
+		this.appli = app;
 		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 		this.setTitle("Cart view");
 		this.setMinimumSize(new Dimension(500, 500));
-		
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		ImageIcon image3 = new ImageIcon("white_background.jpg");
 		Image image_tmp3 = getScaledImage(image3.getImage(), screenWidth, screenHeight + 400);
 		image3.setImage(image_tmp3);
-		
+
 		JLabel background = super.background;
 		super.background.setIcon(image3);
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		//DODAVANJE LABELA
-		if(app.getAktivniKorisnik()==TipKorisnika.neulogovanKorisnik){
-			for(Korpa k:app.korpe){
-				if(k.getIdNeulog()==app.getId()){
-					int dimenzijaSlike1 = screenWidth/2 - 700;
-				    int dimenzijaSlike2 = 200;
-					for(Stavka s:k.getStavka()){
+
+		// DODAVANJE LABELA
+		if (app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik) {
+			for (Korpa k : app.korpe) {
+				if (k.getIdNeulog() == app.getId()) {
+					int dimenzijaSlike1 = screenWidth / 2 - 700;
+					int dimenzijaSlike2 = 200;
+					for (Stavka s : k.getStavka()) {
 						artikliA.add(s.getArtikl());
 						kolicine.add(s.getKolicina());
 						JLabel labelaSlika = new JLabel(s.getArtikl().getSlika());
@@ -93,90 +95,91 @@ public class CartView extends WindowTemplate {
 						JTextField vrednost = new JTextField(Integer.toString(s.getKolicina()));
 						JButton plus = new JButton("+");
 						JLabel labelaDinar2 = new JLabel("RSD ");
-						JLabel labelaCenaUkupno = new JLabel(Integer.toString(s.getKolicina()*s.getArtikl().getCena()));
+						JLabel labelaCenaUkupno = new JLabel(
+								Integer.toString(s.getKolicina() * s.getArtikl().getCena()));
 						JButton obrisi = new JButton("Obrisi stavku");
-						
-						//FORMIRANJE LABELE SLIKA
-						labelaSlika.setBounds(dimenzijaSlike1, dimenzijaSlike2,200,300);
+
+						// FORMIRANJE LABELE SLIKA
+						labelaSlika.setBounds(dimenzijaSlike1, dimenzijaSlike2, 200, 300);
 						ImageIcon image2 = new ImageIcon(s.getArtikl().getSlika());
-						Image image_tmp2 = getScaledImage(image2.getImage(),200,300);
+						Image image_tmp2 = getScaledImage(image2.getImage(), 200, 300);
 						image2.setImage(image_tmp2);
 						labelaSlika.setIcon(image2);
 						labeleArtikliSlike.add(labelaSlika);
-						
-						//FORMIRANJE LABELE NAZIV
-						labelaNaziv.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaNaziv.setBounds(dimenzijaSlike1+200,dimenzijaSlike2,150,150);
+
+						// FORMIRANJE LABELE NAZIV
+						labelaNaziv.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaNaziv.setBounds(dimenzijaSlike1 + 200, dimenzijaSlike2, 150, 150);
 						labeleArtikliNaziv.add(labelaNaziv);
-						
-						//FORMIRANJE LABELE BOJA
-						labelaBoja.setFont(new Font("Serif",Font.PLAIN,15));
-						labelaBoja.setBounds(dimenzijaSlike1+200,dimenzijaSlike2+25,150,150);
+
+						// FORMIRANJE LABELE BOJA
+						labelaBoja.setFont(new Font("Serif", Font.PLAIN, 15));
+						labelaBoja.setBounds(dimenzijaSlike1 + 200, dimenzijaSlike2 + 25, 150, 150);
 						labeleArtikliBoja.add(labelaBoja);
-						
-						//FORMIRANJE LABELE DINAR1
-						
-						labelaDinar.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaDinar.setBounds(dimenzijaSlike1+200+200,dimenzijaSlike2+50,100,100);
+
+						// FORMIRANJE LABELE DINAR1
+
+						labelaDinar.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaDinar.setBounds(dimenzijaSlike1 + 200 + 200, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliDinari.add(labelaDinar);
-						
-						//FORMIRANJE LABELE JEDINICNA CENA
-						
-						labelaCenaJedinicna.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaCenaJedinicna.setBounds(dimenzijaSlike1+200+200+50, dimenzijaSlike2+50, 100, 100);
+
+						// FORMIRANJE LABELE JEDINICNA CENA
+
+						labelaCenaJedinicna.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaCenaJedinicna.setBounds(dimenzijaSlike1 + 200 + 200 + 50, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliCenaJedinicna.add(labelaCenaJedinicna);
-						
-						//FORMIRANJE BUTTONA MINUS
-						
-						minus.setFont(new Font("Serif",Font.PLAIN,17));
-						minus.setBounds(dimenzijaSlike1+200+200+150+100,dimenzijaSlike2+50,70,70);
+
+						// FORMIRANJE BUTTONA MINUS
+
+						minus.setFont(new Font("Serif", Font.PLAIN, 17));
+						minus.setBounds(dimenzijaSlike1 + 200 + 200 + 150 + 100, dimenzijaSlike2 + 50, 70, 70);
 						labeleArtikliMinus.add(minus);
-						
-						//FORMIRANJE VREDNOSTI IZMEDJU MINUSA I PLUSA
-						
-						vrednost.setFont(new Font("Serif",Font.PLAIN,17));
-						vrednost.setBounds(dimenzijaSlike1+200+200+150+150,dimenzijaSlike2+50,70,70);
+
+						// FORMIRANJE VREDNOSTI IZMEDJU MINUSA I PLUSA
+
+						vrednost.setFont(new Font("Serif", Font.PLAIN, 17));
+						vrednost.setBounds(dimenzijaSlike1 + 200 + 200 + 150 + 150, dimenzijaSlike2 + 50, 70, 70);
 						vrednost.setHorizontalAlignment(JTextField.CENTER);
 						vrednost.setEditable(false);
 						labeleArtikliVrednost.add(vrednost);
-						
-						//FORMIRANJE BUTTONA PLUS
-						
-						plus.setFont(new Font("Serif",Font.PLAIN,17));
-						plus.setBounds(dimenzijaSlike1+700+50, dimenzijaSlike2+50, 70, 70);
+
+						// FORMIRANJE BUTTONA PLUS
+
+						plus.setFont(new Font("Serif", Font.PLAIN, 17));
+						plus.setBounds(dimenzijaSlike1 + 700 + 50, dimenzijaSlike2 + 50, 70, 70);
 						labeleArtikliPlus.add(plus);
-						
-						//FORMIRANJE BUTTONA BRISANJA
-						
-						obrisi.setFont(new Font("Serif",Font.PLAIN,17));
-						obrisi.setBounds(dimenzijaSlike1+650,dimenzijaSlike2+150,200,70);
+
+						// FORMIRANJE BUTTONA BRISANJA
+
+						obrisi.setFont(new Font("Serif", Font.PLAIN, 17));
+						obrisi.setBounds(dimenzijaSlike1 + 650, dimenzijaSlike2 + 150, 200, 70);
 						labeleArtikliBrisanje.add(obrisi);
-						
-						//FORMIRANJE DINARA 2
-						
-						labelaDinar2.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaDinar2.setBounds(dimenzijaSlike1+890+50,dimenzijaSlike2+50,100,100);
+
+						// FORMIRANJE DINARA 2
+
+						labelaDinar2.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaDinar2.setBounds(dimenzijaSlike1 + 890 + 50, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliDinari2.add(labelaDinar2);
-						
-						//FORMIRANJE UKUPNE CENE
-						
-						labelaCenaUkupno.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaCenaUkupno.setBounds(dimenzijaSlike1+940+50, dimenzijaSlike2+65, 70, 70);
+
+						// FORMIRANJE UKUPNE CENE
+
+						labelaCenaUkupno.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaCenaUkupno.setBounds(dimenzijaSlike1 + 940 + 50, dimenzijaSlike2 + 65, 70, 70);
 						labeleArtikliCenaKonacna.add(labelaCenaUkupno);
-						
-						//POVECAVANJE DIMENZIJA ZBOG SLEDECE SLIKE
-						
+
+						// POVECAVANJE DIMENZIJA ZBOG SLEDECE SLIKE
+
 						dimenzijaSlike2 = dimenzijaSlike2 + 300;
-					
+
 					}
 				}
 			}
-		}else{
-			for(Korisnik k:app.korisnici){
-				if(k.getJmbg()==app.getId()){
-					int dimenzijaSlike1 = screenWidth/2 - 700;
-				    int dimenzijaSlike2 = 200;
-					for(Stavka s:k.getKorpa().getStavka()){
+		} else {
+			for (Korisnik k : app.korisnici) {
+				if (k.getJmbg() == app.getId()) {
+					int dimenzijaSlike1 = screenWidth / 2 - 700;
+					int dimenzijaSlike2 = 200;
+					for (Stavka s : k.getKorpa().getStavka()) {
 						JLabel labelaSlika = new JLabel(s.getArtikl().getSlika());
 						JLabel labelaNaziv = new JLabel(s.getArtikl().getNaziv());
 						JLabel labelaBoja = new JLabel(s.getArtikl().getBoja().toString());
@@ -186,111 +189,112 @@ public class CartView extends WindowTemplate {
 						JTextField vrednost = new JTextField(Integer.toString(s.getKolicina()));
 						JButton plus = new JButton("+");
 						JLabel labelaDinar2 = new JLabel("RSD ");
-						JLabel labelaCenaUkupno = new JLabel(Integer.toString(s.getKolicina()*s.getArtikl().getCena()));
+						JLabel labelaCenaUkupno = new JLabel(
+								Integer.toString(s.getKolicina() * s.getArtikl().getCena()));
 						JButton obrisi = new JButton("Obrisi stavku");
-						
-						//FORMIRANJE LABELE SLIKA
-						labelaSlika.setBounds(dimenzijaSlike1, dimenzijaSlike2,200,300);
+
+						// FORMIRANJE LABELE SLIKA
+						labelaSlika.setBounds(dimenzijaSlike1, dimenzijaSlike2, 200, 300);
 						ImageIcon image2 = new ImageIcon(s.getArtikl().getSlika());
-						Image image_tmp2 = getScaledImage(image2.getImage(),200,300);
+						Image image_tmp2 = getScaledImage(image2.getImage(), 200, 300);
 						image2.setImage(image_tmp2);
 						labelaSlika.setIcon(image2);
 						labeleArtikliSlike.add(labelaSlika);
-						
-						//FORMIRANJE LABELE NAZIV
-						labelaNaziv.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaNaziv.setBounds(dimenzijaSlike1+200,dimenzijaSlike2,150,150);
+
+						// FORMIRANJE LABELE NAZIV
+						labelaNaziv.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaNaziv.setBounds(dimenzijaSlike1 + 200, dimenzijaSlike2, 150, 150);
 						labeleArtikliNaziv.add(labelaNaziv);
-						
-						//FORMIRANJE LABELE BOJA
-						labelaBoja.setFont(new Font("Serif",Font.PLAIN,15));
-						labelaBoja.setBounds(dimenzijaSlike1+200,dimenzijaSlike2+25,150,150);
+
+						// FORMIRANJE LABELE BOJA
+						labelaBoja.setFont(new Font("Serif", Font.PLAIN, 15));
+						labelaBoja.setBounds(dimenzijaSlike1 + 200, dimenzijaSlike2 + 25, 150, 150);
 						labeleArtikliBoja.add(labelaBoja);
-						
-						//FORMIRANJE LABELE DINAR1
-						
-						labelaDinar.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaDinar.setBounds(dimenzijaSlike1+200+200,dimenzijaSlike2+50,100,100);
+
+						// FORMIRANJE LABELE DINAR1
+
+						labelaDinar.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaDinar.setBounds(dimenzijaSlike1 + 200 + 200, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliDinari.add(labelaDinar);
-						
-						//FORMIRANJE LABELE JEDINICNA CENA
-						
-						labelaCenaJedinicna.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaCenaJedinicna.setBounds(dimenzijaSlike1+200+200+50, dimenzijaSlike2+50, 100, 100);
+
+						// FORMIRANJE LABELE JEDINICNA CENA
+
+						labelaCenaJedinicna.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaCenaJedinicna.setBounds(dimenzijaSlike1 + 200 + 200 + 50, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliCenaJedinicna.add(labelaCenaJedinicna);
-						
-						//FORMIRANJE BUTTONA MINUS
-						
-						minus.setFont(new Font("Serif",Font.PLAIN,17));
-						minus.setBounds(dimenzijaSlike1+200+200+150+100,dimenzijaSlike2+50,70,70);
+
+						// FORMIRANJE BUTTONA MINUS
+
+						minus.setFont(new Font("Serif", Font.PLAIN, 17));
+						minus.setBounds(dimenzijaSlike1 + 200 + 200 + 150 + 100, dimenzijaSlike2 + 50, 70, 70);
 						labeleArtikliMinus.add(minus);
-						
-						//FORMIRANJE VREDNOSTI IZMEDJU MINUSA I PLUSA
-						
-						vrednost.setFont(new Font("Serif",Font.PLAIN,17));
-						vrednost.setBounds(dimenzijaSlike1+200+200+150+150,dimenzijaSlike2+50,70,70);
+
+						// FORMIRANJE VREDNOSTI IZMEDJU MINUSA I PLUSA
+
+						vrednost.setFont(new Font("Serif", Font.PLAIN, 17));
+						vrednost.setBounds(dimenzijaSlike1 + 200 + 200 + 150 + 150, dimenzijaSlike2 + 50, 70, 70);
 						vrednost.setHorizontalAlignment(JTextField.CENTER);
 						vrednost.setEditable(false);
 						labeleArtikliVrednost.add(vrednost);
-						
-						//FORMIRANJE BUTTONA PLUS
-						
-						plus.setFont(new Font("Serif",Font.PLAIN,17));
-						plus.setBounds(dimenzijaSlike1+700+50, dimenzijaSlike2+50, 70, 70);
+
+						// FORMIRANJE BUTTONA PLUS
+
+						plus.setFont(new Font("Serif", Font.PLAIN, 17));
+						plus.setBounds(dimenzijaSlike1 + 700 + 50, dimenzijaSlike2 + 50, 70, 70);
 						labeleArtikliPlus.add(plus);
-						
-						//FORMIRANJE BUTTONA BRISANJA
-						
-						obrisi.setFont(new Font("Serif",Font.PLAIN,17));
-						obrisi.setBounds(dimenzijaSlike1+650,dimenzijaSlike2+150,200,70);
+
+						// FORMIRANJE BUTTONA BRISANJA
+
+						obrisi.setFont(new Font("Serif", Font.PLAIN, 17));
+						obrisi.setBounds(dimenzijaSlike1 + 650, dimenzijaSlike2 + 150, 200, 70);
 						labeleArtikliBrisanje.add(obrisi);
-						
-						//FORMIRANJE DINARA 2
-						
-						labelaDinar2.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaDinar2.setBounds(dimenzijaSlike1+890+50,dimenzijaSlike2+50,100,100);
+
+						// FORMIRANJE DINARA 2
+
+						labelaDinar2.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaDinar2.setBounds(dimenzijaSlike1 + 890 + 50, dimenzijaSlike2 + 50, 100, 100);
 						labeleArtikliDinari2.add(labelaDinar2);
-						
-						//FORMIRANJE UKUPNE CENE
-						
-						labelaCenaUkupno.setFont(new Font("Serif",Font.PLAIN,17));
-						labelaCenaUkupno.setBounds(dimenzijaSlike1+940+50, dimenzijaSlike2+65, 70, 70);
+
+						// FORMIRANJE UKUPNE CENE
+
+						labelaCenaUkupno.setFont(new Font("Serif", Font.PLAIN, 17));
+						labelaCenaUkupno.setBounds(dimenzijaSlike1 + 940 + 50, dimenzijaSlike2 + 65, 70, 70);
 						labeleArtikliCenaKonacna.add(labelaCenaUkupno);
-						
-						//POVECAVANJE DIMENZIJA ZBOG SLEDECE SLIKE
-						
+
+						// POVECAVANJE DIMENZIJA ZBOG SLEDECE SLIKE
+
 						dimenzijaSlike2 = dimenzijaSlike2 + 300;
 					}
-				}	
+				}
 			}
 		}
-		
-		//POSTAVLJANJE LABELE ARTIKL
+
+		// POSTAVLJANJE LABELE ARTIKL
 		artikl = new JLabel("ARTIKL");
-		artikl.setFont(new Font("Serif",Font.BOLD,25));
-		artikl.setBounds(screenWidth/2 - 550, 120, 100,100);
-		
-		//POSTAVLJANJE LABELE JEDINICNA CENA
+		artikl.setFont(new Font("Serif", Font.BOLD, 25));
+		artikl.setBounds(screenWidth / 2 - 550, 120, 100, 100);
+
+		// POSTAVLJANJE LABELE JEDINICNA CENA
 		cenaJedinicna = new JLabel("JEDINICNA CENA");
-		cenaJedinicna.setFont(new Font("Serif",Font.BOLD,25));
-		cenaJedinicna.setBounds(screenWidth/2 - 700+350, 20, 300, 300);
-		
-		//POSTAVLJANJE LABELE KOLICINA
+		cenaJedinicna.setFont(new Font("Serif", Font.BOLD, 25));
+		cenaJedinicna.setBounds(screenWidth / 2 - 700 + 350, 20, 300, 300);
+
+		// POSTAVLJANJE LABELE KOLICINA
 		kolicina = new JLabel("KOLICINA");
-		kolicina.setFont(new Font("Serif",Font.BOLD,25));
-		kolicina.setBounds(screenWidth/2-25 ,70,200,200);
-		
-		//POSTAVLJANJE LABELE UKUPNA CENA
+		kolicina.setFont(new Font("Serif", Font.BOLD, 25));
+		kolicina.setBounds(screenWidth / 2 - 25, 70, 200, 200);
+
+		// POSTAVLJANJE LABELE UKUPNA CENA
 		cenaUkupna = new JLabel("UKUPNA CENA");
-		cenaUkupna.setFont(new Font("Serif",Font.BOLD,25));
-		cenaUkupna.setBounds(screenWidth/2+200,70,200,200);
-		
-		//POSTAVLJANJE BUTTONA ZA PORUCIVANJE
+		cenaUkupna.setFont(new Font("Serif", Font.BOLD, 25));
+		cenaUkupna.setBounds(screenWidth / 2 + 200, 70, 200, 200);
+
+		// POSTAVLJANJE BUTTONA ZA PORUCIVANJE
 		poruci = new JButton("PORUCI");
-		poruci.setFont(new Font("Serif",Font.BOLD,25));
-		poruci.setBounds(screenWidth/2+450,120,200,200);
-		
-		for(int i = 0;i<labeleArtikliVrednost.size();i++){
+		poruci.setFont(new Font("Serif", Font.BOLD, 25));
+		poruci.setBounds(screenWidth / 2 + 450, 120, 200, 200);
+
+		for (int i = 0; i < labeleArtikliVrednost.size(); i++) {
 			background.add(labeleArtikliSlike.get(i));
 			background.add(labeleArtikliNaziv.get(i));
 			background.add(labeleArtikliBoja.get(i));
@@ -309,60 +313,98 @@ public class CartView extends WindowTemplate {
 		background.add(cenaUkupna);
 		background.add(poruci);
 		background.setLayout(null);
-		
+
 		JScrollPane js = new JScrollPane(background, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.setContentPane(js);
 		this.setVisible(true);
-		
-		for(int i = 0;i<labeleArtikliVrednost.size();i++){
-			labeleArtikliMinus.get(i).addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent arg0){
+
+		for (int i = 0; i < labeleArtikliVrednost.size(); i++) {
+			labeleArtikliMinus.get(i).addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
 					int pos = labeleArtikliMinus.indexOf(arg0.getSource());
-					if(Integer.parseInt(labeleArtikliVrednost.get(pos).getText())==1){
+					if (Integer.parseInt(labeleArtikliVrednost.get(pos).getText()) == 1) {
 						JOptionPane.showMessageDialog(null, "Ne moze manje.");
-					}else{
+					} else {
 						int trenutnaJedinicna = Integer.parseInt(labeleArtikliCenaJedinicna.get(pos).getText());
 						int trenutna = Integer.parseInt(labeleArtikliVrednost.get(pos).getText());
-						trenutna = trenutna-1;
+						trenutna = trenutna - 1;
 						labeleArtikliVrednost.get(pos).setText(Integer.toString(trenutna));
 						int trenutnaUkupna = Integer.parseInt(labeleArtikliCenaKonacna.get(pos).getText());
-						trenutnaUkupna = trenutna*trenutnaJedinicna;
+						trenutnaUkupna = trenutna * trenutnaJedinicna;
 						labeleArtikliCenaKonacna.get(pos).setText(Integer.toString(trenutnaUkupna));
-						for(Artikl a:app.artikli){
-							if(a.getSifra().equals(artikliA.get(pos).getSifra())){
-								a.setStanje(a.getStanje()+1);
+						for (Artikl a : app.artikli) {
+							if (a.getSifra().equals(artikliA.get(pos).getSifra())) {
+								a.setStanje(a.getStanje() + 1);
 							}
 						}
 					}
 				}
 			});
-			labeleArtikliPlus.get(i).addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent arg0){
+			labeleArtikliPlus.get(i).addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
 					int pos = labeleArtikliPlus.indexOf(arg0.getSource());
-					if(Integer.parseInt(labeleArtikliVrednost.get(pos).getText())==kolicine.get(pos)){
+					if (Integer.parseInt(labeleArtikliVrednost.get(pos).getText()) == kolicine.get(pos)) {
 						JOptionPane.showMessageDialog(null, "Ne moze vise.");
-					}else{
+					} else {
 						int trenutnaJedinicna = Integer.parseInt(labeleArtikliCenaJedinicna.get(pos).getText());
 						int trenutnaVrednost = Integer.parseInt(labeleArtikliVrednost.get(pos).getText());
 						int trenutnaUkupna = Integer.parseInt(labeleArtikliCenaKonacna.get(pos).getText());
-						trenutnaVrednost = trenutnaVrednost+1;
-						trenutnaUkupna = trenutnaVrednost*trenutnaJedinicna;
+						trenutnaVrednost = trenutnaVrednost + 1;
+						trenutnaUkupna = trenutnaVrednost * trenutnaJedinicna;
 						labeleArtikliVrednost.get(pos).setText(Integer.toString(trenutnaVrednost));
 						labeleArtikliCenaKonacna.get(pos).setText(Integer.toString(trenutnaUkupna));
-						for(Artikl a:app.artikli){
-							if(a.getSifra().equals(artikliA.get(pos).getSifra())){
-								a.setStanje(a.getStanje()-1);
+						for (Artikl a : app.artikli) {
+							if (a.getSifra().equals(artikliA.get(pos).getSifra())) {
+								a.setStanje(a.getStanje() - 1);
 							}
 						}
 					}
 				}
 			});
+			labeleArtikliBrisanje.get(i).addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int pos = labeleArtikliBrisanje.indexOf(arg0.getSource());
+					Artikl art = artikliA.get(pos);
+					Stavka stavka = null;
+					// obrisi iz korpe
+					if (app.getAktivniKorisnik() == TipKorisnika.neulogovanKorisnik) {
+						Korpa k = app.nadjiKorpu(app.getId());
+						k.addListener(CartView.this);
+						for (Stavka s : k.getStavka()) {
+							if (s.getArtikl().getSifra().equalsIgnoreCase(art.getSifra())) {
+								stavka = s;
+							}
+						}
+						k.obrisiStavku(stavka);
+					} else {
+						Korisnik kor = app.getFromJmbg(app.getId());
+						Korpa k = kor.getKorpa();
+						k.addListener(CartView.this);
+						for (Stavka s : k.getStavka()) {
+							if (s.getArtikl().getSifra().equalsIgnoreCase(art.getSifra())) {
+								stavka = s;
+							}
+						}
+						k.obrisiStavku(stavka);
+					}
+				}
+			});
+			
 		}
-		
-		
+
+		poruci.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+
 	}
-	
+
 	@SuppressWarnings("unused")
 	private Image getScaledImage(Image srcImg, int w, int h) {
 		BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
@@ -374,10 +416,10 @@ public class CartView extends WindowTemplate {
 
 		return resizedImg;
 	}
-	
+
 	@Override
 	void attributesDissapear() {
-		try{
+		try {
 			labeleArtikliSlike.get(0).hide();
 			labeleArtikliNaziv.get(0).hide();
 			labeleArtikliBoja.get(0).hide();
@@ -389,8 +431,8 @@ public class CartView extends WindowTemplate {
 			labeleArtikliDinari2.get(0).hide();
 			labeleArtikliCenaJedinicna.get(0).hide();
 			labeleArtikliCenaKonacna.get(0).hide();
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		artikl.hide();
 		cenaJedinicna.hide();
@@ -398,10 +440,10 @@ public class CartView extends WindowTemplate {
 		kolicina.hide();
 		poruci.hide();
 	}
-	
+
 	@Override
 	void attributesAppear() {
-		try{
+		try {
 			labeleArtikliSlike.get(0).show();
 			labeleArtikliNaziv.get(0).show();
 			labeleArtikliBoja.get(0).show();
@@ -413,8 +455,8 @@ public class CartView extends WindowTemplate {
 			labeleArtikliDinari2.get(0).show();
 			labeleArtikliCenaJedinicna.get(0).show();
 			labeleArtikliCenaKonacna.get(0).show();
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		artikl.show();
 		cenaJedinicna.show();
@@ -423,6 +465,10 @@ public class CartView extends WindowTemplate {
 		poruci.show();
 	}
 
-	
-	
+	@Override
+	public void osvezi() {
+		dispose();
+		new CartView(appli);
+	}
+
 }

@@ -10,6 +10,7 @@ import java.util.Iterator;
 
 import states.StanjeKorpe;
 import states.UPripremi;
+import view.WindowTemplate;
 
 /** @pdOid f37af365-20a5-4d98-8658-a5bfca0ff05d */
 public class Korpa {
@@ -19,6 +20,7 @@ public class Korpa {
    
    /** @pdRoleInfo migr=no name=Stavka assc=association16 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
    public ArrayList<Stavka> stavka;
+   ArrayList<WindowTemplate> listeners = new ArrayList<WindowTemplate>();
    
    public Porudzbina porudzbina;
    //porudzbina koja se pravi od ove korpe, dok se porudzbina ne napravi ona je null
@@ -52,6 +54,10 @@ public class Korpa {
   	 return false;
    }
 
+   public void addListener(WindowTemplate wt) {
+	   this.listeners.add(wt);
+   }
+   
 /** @pdGenerated default getter */
    public ArrayList<Stavka> getStavka() {
       if (stavka == null)
@@ -87,15 +93,9 @@ public class Korpa {
    /** @pdGenerated default remove
      * @param oldStavka */
    public Boolean obrisiStavku(Stavka oldStavka) {
-      if (oldStavka == null)
-         return false;
-      if (this.stavka != null)
-         if (this.stavka.contains(oldStavka))
-         {
-        	 this.stavka.remove(oldStavka);
-        	 return true;
-         }           
-      return false;
+      this.trenutnoStanje.obrisiStavku(oldStavka);
+      notifyListeners();
+      return true;
    }
    
    /** @pdGenerated default removeAll */
@@ -120,5 +120,10 @@ public class Korpa {
 		
 	}
 	
+	public void notifyListeners() {
+		for (WindowTemplate wt: listeners) {
+			wt.osvezi();
+		}
+	}
    
 }
