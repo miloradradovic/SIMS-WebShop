@@ -132,6 +132,7 @@ public class Korpa {
 		}
 		Date date = new Date(System.currentTimeMillis());  
 		this.porudzbina = new Porudzbina(id,ukupna_cena,date,cene);
+		stavka = new ArrayList<Stavka>();
 	}
 	
 	public void notifyListeners() {

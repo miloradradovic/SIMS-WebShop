@@ -1,12 +1,12 @@
 100|desk.png|Sto za ucenje|66|8000|braon|true|Kinder
-101|chair.jpg|Stolica|42|7000|braon|true|Damen
-102|dress.jpg|Haljina|91|300|crna|true|Meh
-103|pants.jpg|Pantalone|66|800|siva|true|Damen3
+101|chair.jpg|Stolica|29|7000|braon|true|Damen
+102|dress.jpg|Haljina|87|300|crna|true|Meh
+103|pants.jpg|Pantalone|59|800|siva|true|Damen3
 104|pantsplusshoes.jpg|Pantalone i cipele|7|6000|siva|true|Meh2
 105|tshirt.jpg|Majica|116|200|crna|true|Damen2
 106|tshirt2.jpg|Majica|13|400|plava|true|Meh4
 107|tshirt3.jpeg|Majica|9|300|bela|true|Bla
 108|sofa.jpg|Sofa|150|10000|crna|true|Damen3
-109|sofa2.jpg|Sofa|200|12000|roza|true|Kinder
+109|sofa2.jpg|Sofa|197|12000|roza|true|Kinder
 110|heels.jpg|Stikle|300|4000|crna|true|Meh3
 111|tshirt4.jpg|Majica|77|400|roza|true|Kinder
