@@ -4,8 +4,8 @@
 103|pants.jpg|Pantalone|70|800|siva|true|Damen3
 104|pantsplusshoes.jpg|Pantalone i cipele|15|6000|siva|true|Meh2
 105|tshirt.jpg|Majica|120|200|crna|true|Damen2
-106|tshirt2.png|Majica|13|400|plava|true|Meh4
-107|tshirt3.jpg|Majica|15|300|bela|true|Bla
+106|tshirt2.jpg|Majica|13|400|plava|true|Meh4
+107|tshirt3.jpeg|Majica|15|300|bela|true|Bla
 108|sofa.jpg|Sofa|150|10000|crna|true|Damen3
 109|sofa2.jpg|Sofa|200|12000|roza|true|Kinder
 110|heels.jpg|Stikle|300|4000|crna|true|Meh3

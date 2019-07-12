@@ -17,3 +17,4 @@ Ulica%Broj%PostanskiBroj(Grada)|IdProdavnice
 
 Porudzbina.txt
 BrojPorudzbine|UkupnaCena|Datum|ArtiklSifra1%Cena, ArtiklSifra2%Cena,..|Stanje|Ulica%Broj%PostanskiBroj(Grada)
+S
