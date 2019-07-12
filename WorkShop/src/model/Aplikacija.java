@@ -24,6 +24,11 @@ import classes.Stavka;
 import enums.Boja;
 import enums.Pol;
 import enums.TipKorisnika;
+import states.Odbijena;
+import states.Otpremljena;
+import states.Prihvacena;
+import states.ZaOtpremu;
+import states.ZaPlacanje;
 
 /***********************************************************************
  * Module:  Aplikacija.java
@@ -353,7 +358,27 @@ public class Aplikacija {
 			}catch(Exception e){
 				p.setCene(mapa2);
 			}
-			//NISAM DODAO STANJE JER NZM :)
+			if(delimiter[4].equals("Za Otpremu")){
+				p.setStanje(new ZaOtpremu(p));
+			}else if(delimiter[4].equals("Za Placanje")){
+				p.setStanje(new ZaPlacanje(p));
+			}else if(delimiter[4].equals("Otpremljena")){
+				p.setStanje(new Otpremljena(p));
+			}else if(delimiter[4].equals("Prihvacena")){
+				p.setStanje(new Prihvacena(p));
+			}else if(delimiter[4].equals("Odbijena []")){
+				p.setStanje(new Odbijena(p));
+			}
+			
+			String[] delimiter4 = delimiter[5].split("\\%");
+			Adresa a = new Adresa();
+			a.setUlica(delimiter4[0]);
+			a.setBroj(Integer.parseInt(delimiter4[1]));
+			for(Grad g:gradovi){
+				if(g.getPostanskiBroj()==Integer.parseInt(delimiter4[2])){
+					a.setGrad(g);
+				}
+			}
 		}
 		br4.close();
 		
@@ -393,6 +418,7 @@ public class Aplikacija {
 				}
 			}
 			p.setAdresa(adresa);
+			p.setIdProd(Integer.parseInt(delimiter[6]));
 		}
 		br5.close();
 		
@@ -475,14 +501,14 @@ public class Aplikacija {
 		br6.close();
 	}
 	
-	public void sacuvajUFajl(ArrayList<String> naziviFajlova) throws IOException
+	public void sacuvajUFajl() throws IOException
 	{
-		File fajlGrad = new File(".\\Files\\" + naziviFajlova.get(0) +".txt");
-		File fajlArtikl = new File(".\\Files\\" + naziviFajlova.get(1) +".txt");
-		File fajlKorisnik = new File(".\\Files\\" + naziviFajlova.get(2) +".txt");
-		File fajlKategorija = new File(".\\Files\\" + naziviFajlova.get(3) +".txt");
-		File fajlProdavnica = new File(".\\Files\\" + naziviFajlova.get(4) +".txt");
-		File fajlPorudzbina = new File(".\\Files\\" + naziviFajlova.get(5) +".txt");
+		File fajlGrad = new File(".\\Files\\Grad.txt");
+		File fajlArtikl = new File(".\\Files\\Artikl.txt");
+		File fajlKorisnik = new File(".\\Files\\Korisnik.txt");
+		File fajlKategorija = new File(".\\Files\\Kategorija.txt");
+		File fajlProdavnica = new File(".\\Files\\Prodavnica.txt");
+		File fajlPorudzbina = new File(".\\Files\\Porudzbina.txt");
 		
 		fajlGrad.createNewFile();
 		fajlArtikl.createNewFile();
@@ -549,7 +575,9 @@ public class Aplikacija {
 					sbPor.deleteCharAt(sbPor.length() - 1);
 		
 				unosPor = por.getBrojPor() + "|" + por.getUkupnaCena() + "|" + 
-						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje();
+						format.format(por.getDatumPorucivanja()) + "|" + sbPor.toString() + "|" + por.getStanje()
+						+ "|" + por.getAdresa().getUlica() + "%" + por.getAdresa().getBroj() 
+						+ "%" + por.getAdresa().getGrad().getPostanskiBroj();
 				pwPorudzbina.println(unosPor);
 				pwPorudzbina.flush();
 				
@@ -614,7 +642,7 @@ public class Aplikacija {
 			unos = pro.getPocetakRadVr() + "|" + pro.getKrajRadVr() + "|" +
 					pro.getNaziv() + "|" + pro.getEmail() + "|" + sbPro.toString() + "|" + 
 					pro.getAdresa().getUlica() + "%" + pro.getAdresa().getBroj() + "%" +
-					pro.getAdresa().getGrad().getPostanskiBroj();
+					pro.getAdresa().getGrad().getPostanskiBroj() + "|" + pro.getIdProd();
 			pwProdavnica.println(unos);
 			pwProdavnica.flush();
 		}

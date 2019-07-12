@@ -29,7 +29,10 @@ public class Korisnik {
    public ArrayList<Artikl> listaZelja;
    public Korpa korpa;
    
-   public Korisnik() {}
+   public Korisnik() {
+	   porudzbina = new ArrayList<Porudzbina>();
+	   listaZelja = new ArrayList<Artikl>();
+   }
    
    public Korisnik(String email, String telefon, String ime, String prezime, int jmbg, Pol pol, String korisnickoIme,
 		String sifra, Date datumRodj, Adresa adresa, Korpa korpa, ArrayList<Porudzbina> porudzbina,

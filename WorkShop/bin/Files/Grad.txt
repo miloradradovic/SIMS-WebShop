@@ -1,0 +1,4 @@
+Novi Sad|20000
+Beograd|21000
+Bijelo Polje|22000
+Kikinda|23000

@@ -1,1 +1,23 @@
 /.metadata/
+<<<<<<< HEAD
+=======
+/.classpath
+/.gitignore
+/.project
+/Files/
+/classes/
+/controller/
+/desk.png
+/enums/
+/furniture.jpg
+/korpica.png
+/location_icon.png
+/model/
+/sale.jpg
+/sale1.png
+/slavina.jpg
+/states/
+/tests/
+/view/
+/white_background.jpg
+>>>>>>> 16f9a9fafecab65c268b928f7743a2f0ec5bc03a

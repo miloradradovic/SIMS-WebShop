@@ -16,7 +16,10 @@ public class Kategorija {
    /** @pdRoleInfo migr=no name=Kategorija assc=association20 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Aggregation */
    public ArrayList<Kategorija> kategorijaB;
    
-   public Kategorija() {}
+   public Kategorija() 
+   {
+	   kategorijaB = new ArrayList<Kategorija>();
+   }
    
    public Kategorija(String naziv, ArrayList<Kategorija> kategorijaB) 
    {

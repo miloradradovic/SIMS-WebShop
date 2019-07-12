@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -213,6 +214,14 @@ public abstract class WindowTemplate extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				dispose();
+				try
+				{
+					app.sacuvajUFajl();
+					
+				} catch (IOException s) {
+					System.out.println("catch");
+					s.printStackTrace();
+				};
 			}
 		});
 

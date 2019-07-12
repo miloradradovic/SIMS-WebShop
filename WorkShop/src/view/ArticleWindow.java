@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -289,6 +290,21 @@ public class ArticleWindow extends JFrame {
 		
 		this.add(background);
 		this.setVisible(true);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				try
+				{
+					app.sacuvajUFajl();
+					
+				} catch (IOException s) {
+					System.out.println("catch");
+					s.printStackTrace();
+				};
+			}
+		});
 		
 		addCart.addActionListener(new ActionListener(){  
 			@Override

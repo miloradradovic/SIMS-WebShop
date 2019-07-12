@@ -1,3 +1,4 @@
-Novi Sad|23000
-Beograd|24000
-Nis|25000
+Novi Sad|20000
+Beograd|21000
+Bijelo Polje|22000
+Kikinda|23000

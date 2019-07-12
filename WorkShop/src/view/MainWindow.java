@@ -10,7 +10,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -265,6 +268,21 @@ public class MainWindow extends JFrame {
 		addActionListeners(app);
 
 		checkUser(app);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dispose();
+				try
+				{
+					app.sacuvajUFajl();
+					
+				} catch (IOException s) {
+					System.out.println("catch");
+					s.printStackTrace();
+				};
+			}
+		});
 
 	}
 
