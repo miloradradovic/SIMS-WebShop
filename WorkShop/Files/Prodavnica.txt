@@ -1,6 +1,0 @@
-07:00|21:00|Prodavnica1|prodavnica1mail|100%30,101%25,108%100,110%250,111%77|ulica1%1%20000|1
-08:00|23:00|Prodavnica2|prodavnica2mail|100%36,101%25,108%50,110%50,104%15|ulica2%1%21000|2
-10:00|00:00|Prodavnica3|prodavnica3mail|103%60,102%50,105%120,109%170|ulica3%1%22000|3
-11:00|21:00|Prodavnica4|prodavnica4mail|103%10,102%50,104%2|ulica4%1%23000|4
-12:00|03:00|Prodavnica5|prodavnica5mail|101%25,104%8,106%13,109%30|ulica5%1%21000|5
-06:00|12:00|Prodavnica6|prodavnica6mail|101%25,104%5,107%15|ulica6%1%20000|6
